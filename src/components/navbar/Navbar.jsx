@@ -63,7 +63,7 @@ export default function Drawer() {
           type="button"
           onClick={toggleDrawer}
           aria-controls="drawer-navigation"
-          className="text-slate-300 dark:text-slate-600 bg-transparent text-sm p-1.5 absolute top-3 right-2.5 inline-flex items-center"
+          className="text-slate-600 dark:text-slate-300 bg-transparent text-sm p-1.5 absolute top-3 right-2.5 inline-flex items-center"
         >
           <IoCloseSharp />
           <span className="sr-only">Close menu</span>

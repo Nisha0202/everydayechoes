@@ -1,26 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-:root {
-  /* --bg : #18181b; */
-  /* --text : #f9fafb; 
-}
 
-body{
-  /* background-color: var(--bg); */
-  /* color: var(--text); 
-} */
 
 .active{
   background-color: #94a3b8;
   border-radius: 4px;
 }
 
-/* @layer base {
-  body {
-    @apply dark:bg-gray-900 bg-gray-50;
-  }
-}   */
+
 
 

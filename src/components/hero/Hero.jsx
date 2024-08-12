@@ -21,7 +21,9 @@ export default function Hero() {
                         <p className="text-sm font-normal max-w-xl text-gray-500 dark:text-gray-400 mb-6">
                             Dive into the world of nail art with our easy-to-follow tutorials, perfect for beginners and pros alike. Learn how to create eye-catching designs that will leave everyone impressed.
                         </p>
-                        <Link href={'/'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white rounded-lg bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 dark:focus:ring-pink-900">
+                        <Link href={'/'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center
+                         text-white 
+                         rounded-md bg-[#d64779] dark:bg-[#a8325c]  hover:bg-pink-800 hover:dark:bg-pink-600 focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-900">
                             Read more
                             <FaArrowRightLong className='ms-1.5' />
                         </Link>
@@ -35,7 +37,7 @@ export default function Hero() {
                                 alt="Picture of a nail art"
                                 className="rounded hero"
                             />
-                            <div className="absolute bg-black inset-0 bg-opacity-50 rounded opacity-20 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300">
+                            <div className="absolute bg-black inset-0 bg-opacity-30 rounded opacity-20 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300">
 
                             </div>
 
@@ -45,16 +47,6 @@ export default function Hero() {
 
 
                 </div>
-
-
-
-
-
-
-
-
-
-
 
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
