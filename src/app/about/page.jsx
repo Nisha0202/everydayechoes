@@ -14,7 +14,7 @@ const AboutSection = () => {
     <section className="bg-white dark:bg-gray-900">
       <div className=" px-4 mx-auto max-w-screen-xl lg:py-24 py-10 flex flex-col items-center justify-center">
         <div>
-          <h1 className='text-gray-900 dark:text-white text-3xl font-extrabold my-2 text-center'>
+          <h1 className='text-4xl font-extrabold text-gray-900 dark:text-white my-2 text-center'>
             About Everyday Echoes
           </h1>
           <p className='py-4 text-center font-light- max-w-xl'>
