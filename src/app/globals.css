@@ -8,6 +8,19 @@
   border-radius: 4px;
 }
 
+/* globals.css */
+
+body {
+  /* Light mode background color */
+  background-color: white;
+}
+
+.dark body {
+  /* Dark mode background color */
+  background-color: #111827; /* Equivalent to gray-900 */
+}
+
+
 
 
 

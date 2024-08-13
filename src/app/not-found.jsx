@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link';
 export default function NotFound() {
   return (
-    <div className='h-[calc(100vh-150px)] w-screen flex justify-center items-center pb-4 flex-col gap-4'>
+    <div className='h-screen w-screen flex justify-center items-center flex-col gap-4 dark:bg-gray-900'>
         <h1 className='font-semibold text-lg'>
           Not Found  
         </h1>

@@ -27,7 +27,7 @@ export default function Drawer() {
     <nav className='dark:bg-gray-900'>
       {/* Drawer Toggle Button */}
       <div className="lg:p-6 p-4 flex items-center justify-between">
-        <Link href={'/'} className='font-semibold'>NailTales</Link>
+        <Link href={'/'} className='font-semibold'>Everyday Echoes</Link>
         <div className='flex gap-6 items-center'>
           <button type="button">
             <ThemeSwitcher />
@@ -57,7 +57,7 @@ export default function Drawer() {
           id="drawer-navigation-label"
           className=""
         >
-          <Link href={'/'} className='font-medium'>NailTales</Link>
+          <Link href={'/'} className='font-medium'>Everyday Echoes</Link>
         </h5>
         <button
           type="button"
