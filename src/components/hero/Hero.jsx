@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaBook, FaHeart, FaLaptopCode} from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
+import Footer from '../footer/Footer';
 export default function Hero() {
     return (
         <section className="bg-white dark:bg-gray-900">
@@ -29,13 +30,13 @@ export default function Hero() {
                 <div className="w-1/2 hidden lg:flex justify-end">
                     <div className='relative group'>
                         <Image
-                            src="/img/18.jpg"
+                            src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             width={450}
                             height={180}
                             alt="Picture of a study session"
                             className="rounded hero"
                         />
-                        <div className="absolute bg-black inset-0 bg-opacity-30 rounded opacity-20 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300">
+                        <div className="absolute bg-black  border-2 border-gray-500 inset-0 bg-opacity-30 rounded opacity-30 group-hover:opacity-100 flex justify-center items-center transition-opacity duration-300">
                         </div>
                     </div>
                 </div>
@@ -76,6 +77,7 @@ export default function Hero() {
                 </div>
             </div>
         </div>
+        <Footer/>
     </section>
     
 

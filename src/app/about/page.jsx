@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'; // Import icons or any other icons you prefer
 
 const AboutSection = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -10,10 +11,10 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="bg-white dark:bg-gray-900 min-h-screen">
+    <section className="bg-white dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 flex flex-col items-center justify-center">
         <div>
-          <h1 className='text-gray-900 dark:text-white text-3xl font-extrabold mb-2 text-center'>
+          <h1 className='text-gray-900 dark:text-white text-3xl font-extrabold my-2 text-center'>
             About Everyday Echoes
           </h1>
           <p className='py-4 text-center font-light- max-w-xl'>
@@ -41,6 +42,23 @@ const AboutSection = () => {
           {isExpanded ? 'See Less' : 'See More'}
         </button>
       </div>
+      <div className="flex flex-col font-light items-center bg-white dark:bg-gray-900 p-6">
+      {/* Social Media Links */}
+      <div className="flex space-x-4">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+          <FaFacebookF className="mr-2" />
+          Facebook
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-800 dark:text-white hover:text-blue-400 dark:hover:text-blue-300">
+          <FaTwitter className="mr-2" />
+          Twitter
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-800 dark:text-white hover:text-pink-600 dark:hover:text-pink-400">
+          <FaInstagram className="mr-2" />
+          Instagram
+        </a>
+      </div>
+    </div>
     </section>
   );
 };
