@@ -12,7 +12,7 @@ const AboutSection = () => {
 
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 flex flex-col items-center justify-center">
+      <div className=" px-4 mx-auto max-w-screen-xl lg:py-24 py-10 flex flex-col items-center justify-center">
         <div>
           <h1 className='text-gray-900 dark:text-white text-3xl font-extrabold my-2 text-center'>
             About Everyday Echoes
