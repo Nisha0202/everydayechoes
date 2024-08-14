@@ -1,46 +1,38 @@
 import React from 'react'
+import BlogCard from '@/components/card/BlogCard';
+import Link from 'next/link';
+
 
 
 const blogs = [
   {
     id: 1,
     title: 'A Day in the Life of a Computer Science Student',
-    date: 'August 13, 2024',
-    image: 'https://via.placeholder.com/300',
+    date: '13 August 2024',
+    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Today was all about debugging my code and solving challenging problems in algorithms class...',
     link: '#',
   },
   {
     id: 2,
+    title: 'How I Stay on Top of My Studies',
+    date: '12 August 2024',
+    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    description: 'Staying organized is key. Here are my tips for managing coursework, projects, and prepping for exams as a computer science student.' ,         
+    link: '#',
+  },
+  {
+    id: 3,
     title: 'Balancing Studies and Social Life',
-    date: 'August 12, 2024',
-    image: 'https://via.placeholder.com/300',
+    date: '10 August 2024',
+    image: 'https://images.unsplash.com/photo-1604882406305-67a5b1376126?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     description: 'Finding the right balance between studies and hanging out with friends can be tricky, but here’s how I manage...',
     link: '#',
   },
-  // Add more blog entries here
+
 ];
 
-const BlogCard = ({ blog }) => (
-  <div className="bg-gray-100 rounded-lg shadow-md overflow-hidden dark:bg-gray-800">
-    <img className="w-full h-48 object-cover" src={blog.image} alt={blog.title} />
-    <div className="p-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{blog.title}</h2>
-        <span className="text-sm text-gray-500 dark:text-gray-400">{blog.date}</span>
-      </div>
-      <p className="mt-3 text-gray-700 dark:text-gray-300">
-        {blog.description}
-      </p>
-      <a
-        href={blog.link}
-        className="inline-block mt-4 text-blue-600 dark:text-blue-500 hover:underline"
-      >
-        Read More
-      </a>
-    </div>
-  </div>
-);
+
 
 const BlogList = () => {
   return (
