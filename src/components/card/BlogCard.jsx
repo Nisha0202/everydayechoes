@@ -3,10 +3,8 @@ import Image from 'next/image'
 import React from 'react'
 import { FaArrowRightLong } from 'react-icons/fa6';
 
-
-
-
 export default function BlogCard({ blog }) {
+
     function truncateWords(str, numWords) {
         if (!str) return '';
         const words = str.split(' '); // array of words
@@ -34,7 +32,7 @@ export default function BlogCard({ blog }) {
     <p className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4">
       {truncateWords(blog.description, 50)}
     </p>
-    <Link href={'/'} className="underline font-medium text-sm inline-flex items-center">
+    <Link href={'/'} className="underline font-medium text-sm inline-flex items-center hover:scale-105">
       Read more
       <FaArrowRightLong className='ms-1.5' />
     </Link>

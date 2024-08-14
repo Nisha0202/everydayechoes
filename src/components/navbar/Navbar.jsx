@@ -98,7 +98,7 @@ export default function Drawer() {
       <span className="flex-1 ms-3 whitespace-nowrap">About</span>
     </Link>
   </li>
-  <li className={pathname == "/contact" ? "active" : ""}>
+  {/* <li className={pathname == "/contact" ? "active" : ""}>
     <Link
       href="/contact"
       className="flex items-center p-2 rounded group hover:bg-slate-400"
@@ -106,7 +106,7 @@ export default function Drawer() {
       <FiMail className="text-xl" />
       <span className="flex-1 ms-3 whitespace-nowrap">Contact</span>
     </Link>
-  </li>
+  </li> */}
   {isAdmin && (
     <li className={pathname == "/admin" ? "active" : ""}>
       <Link
