@@ -37,27 +37,27 @@ const Footer = () => {
           href="https://facebook.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center hover:text-gray-200"
+          className="flex text-sm items-center hover:text-gray-200"
         >
-          <FaFacebookF className="mr-1" />
+          <FaFacebookF className="mr-1 text-base" />
           Facebook
         </Link>
         <Link
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center hover:text-gray-200"
+          className="flex text-sm items-center hover:text-gray-200"
         >
-          <FaTwitter className="mr-1" />
+          <FaTwitter className="mr-1 text-base" />
           Twitter
         </Link>
         <Link
           href="https://instagram.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center hover:text-gray-200"
+          className="flex  text-sm items-center hover:text-gray-200"
         >
-          <FaInstagram className="mr-1" />
+          <FaInstagram className="mr-1 text-base" />
           Instagram
         </Link>
       </div>

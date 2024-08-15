@@ -45,8 +45,8 @@ export default function Drawer() {
       {/* Drawer Component */}
       <div
         id="drawer-navigation"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
-          } bg-slate-100 dark:bg-slate-900`}  // Ensure these classes are correct
+        className={`fixed top-0 left-0 z-40 w-64 h-screen px-4 py-8 overflow-y-auto transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
+          } bg-slate-50 shadow-lg dark:bg-slate-900`}  // Ensure these classes are correct
         tabIndex="-1"
         aria-labelledby="drawer-navigation-label"
       >
@@ -124,7 +124,7 @@ export default function Drawer() {
       className="flex items-center p-2 rounded group hover:bg-slate-400"
     >
       <TbMailPlus className="text-xl" />
-      <span className="flex-1 ms-3 whitespace-nowrap">Subscribe</span>
+      <span className="flex-1 ms-3 whitespace-nowrap font-medium">Subscribe</span>
     </Link>
   </li>
   {session && (

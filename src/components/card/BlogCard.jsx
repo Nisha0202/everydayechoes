@@ -5,6 +5,7 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 
 export default function BlogCard({ blog }) {
 
+  // text: '#AAFF01',
     function truncateWords(str, numWords) {
         if (!str) return '';
         const words = str.split(' '); // array of words
@@ -29,7 +30,7 @@ export default function BlogCard({ blog }) {
     <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
       {truncateWords(blog.title, 8)}
     </h2>
-    <p className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4">
+    <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-4">
       {truncateWords(blog.description, 50)}
     </p>
     <Link href={'/'} className="underline font-medium text-sm inline-flex items-center hover:scale-105">

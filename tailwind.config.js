@@ -14,6 +14,7 @@ module.exports = {
         lightDark: '#1f2937',
         textlight: '#cbd5e1',
         textdark: '#475569 ',
+   
 
       },
     },
