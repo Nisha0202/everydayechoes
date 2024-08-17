@@ -1,19 +1,36 @@
+"use client"
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 
 import { TbArrowRight } from 'react-icons/tb';
-
+import { FaCheck } from 'react-icons/fa6';
+import { FaArrowAltCircleRight } from 'react-icons/fa';
+ 
 const Login = () => {
+
+  const [loading, setLoading] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleClick = () => {
+    setLoading(true); // Show the loader
+    setSubscribed(false); // Ensure "Subscribed" is not shown yet
+
+    setTimeout(() => {
+      setLoading(false); // Hide the loader
+      setSubscribed(true); 
+    }, 1000); // 1 seconds
+  };
+  
   return (
     <section className="">
       <div className="py-10 px-4 mx-auto max-w-screen-xl lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-16">
         <div className="flex flex-col justify-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Subscribe Today
+            Subscribe Today
           </h1>
           <p className="lg:mb-6 mb-4 font-light text-gray-500  dark:text-gray-400">
-          If you're interested in following the daily life of a female student navigating her way through studies, experiences, 
-          and the little moments that make life special, subscribe to Everyday Echoes. 
+            If you're interested in following the daily life of a female student navigating her way through studies, experiences,
+            and the little moments that make life special, subscribe to Everyday Echoes.
           </p>
           <Link
             href="/about"
@@ -43,15 +60,60 @@ const Login = () => {
                   required
                 />
               </div>
-          
-           
+
+{/*                          
               <button
                 type="submit"
                 className="w-full text-center text-white rounded-md bg-blue-700 py-2 px-4 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Subscribe
-              </button>
-           
+              </button> */}
+
+<button
+      type="button"
+      onClick={handleClick}
+      className="w-full text-center text-white rounded-md bg-blue-700 py-2 px-4 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
+    >
+      {loading && (
+        <span className="absolute inset-0 flex items-center justify-center">
+          <svg
+            className="animate-spin h-5 w-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4l4-4-4-4v4a12 12 0 00-12 12h4z"
+            />
+          </svg>
+        </span>
+      )}
+      {subscribed ? (
+        <span className="flex items-center justify-center">
+          <FaCheck className="mr-2 text-white" /> Subscribed
+        </span>
+      ) : (
+        !loading && <span>Subscribe</span>
+      )}
+    </button>
+
+       
+
+
+
+
+
+
             </form>
           </div>
         </div>

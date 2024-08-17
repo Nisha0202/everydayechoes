@@ -1,2 +1,2 @@
-//admin page
-//windowing
+// admin page
+// windowing

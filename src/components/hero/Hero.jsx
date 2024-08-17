@@ -24,14 +24,14 @@ export default function Hero() {
         From small victories to deep reflections, each post captures a snapshot of everyday life, offering a window into the joys, challenges, and lessons learned along the way.
       </p>
 
-      <div className='flex items-center gap-6'>
+      <div className='flex items-center gap-4'>
 
       <Link href={'/'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-semibold text-center  rounded-md bg-gray-400 hover:bg-gray-500 dark:hover:bg-gray-700 dark:bg-gray-600">
               Read Blogs
             
             </Link>
 
-            <Link href={'/'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white rounded-md bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
+            <Link href={'/login'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white rounded-md bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
               Subscribe
             
             </Link>
@@ -47,7 +47,7 @@ export default function Hero() {
         <Image
           src="/img/blog.png"
           alt="Picture of a study session"
-          className="rounded hero"
+          className="rounded hero lg:py-8 py-3"
           width={500}
           height={500}
         />
