@@ -13,7 +13,7 @@ const AboutSection = () => {
 
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className=" px-4 mx-auto max-w-screen-xl lg:pt-20 lg:pb-12 py-10 flex flex-col items-center justify-center">
+      <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8 flex flex-col items-center justify-center">
         <div>
           <h1 className='text-4xl font-extrabold text-gray-900 dark:text-white my-2 text-center'>
             About Everyday Echoes
@@ -37,29 +37,13 @@ const AboutSection = () => {
 
         <button
           onClick={toggleExpand}
-          className="mt-6 px-4 py-2 text-sm font-medium text-white   
-          rounded-md bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
+          className="mt-6 px-4 py-2 text-sm font-semibold 
+          rounded-md text-center  bg-gray-400 hover:bg-gray-500 dark:hover:bg-gray-700 dark:bg-gray-600">
         
           {isExpanded ? 'See Less' : 'See More'}
         </button>
       </div>
-      <div className="flex flex-col font-light items-center bg-white dark:bg-gray-900 p-6">
-      {/* Social Media Links */}
-      <div className="flex space-x-4 text-sm">
-        <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
-          <FaFacebookF className="mr-2 text-base" />
-          Facebook
-        </Link>
-        <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-800 dark:text-white hover:text-blue-400 dark:hover:text-blue-300">
-          <FaTwitter className="mr-2 text-base" />
-          Twitter
-        </Link>
-        <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-800 dark:text-white hover:text-pink-600 dark:hover:text-pink-400">
-          <FaInstagram className="mr-2 text-base" />
-          Instagram
-        </Link>
-      </div>
-    </div>
+     
     </section>
   );
 };

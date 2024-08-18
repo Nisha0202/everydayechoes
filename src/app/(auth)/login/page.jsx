@@ -76,9 +76,9 @@ const Login = () => {
     >
       {loading && (
         <span className="flex items-center justify-center">
-          <button type='button' className="btn rounded-md font-bold">
+   
                         <RiLoader3Fill className="animate-spin text-xl" />
-                    </button>
+                   
         </span>
       )}
       {subscribed ? (

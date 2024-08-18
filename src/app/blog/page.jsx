@@ -31,9 +31,9 @@ const BlogList = () => {
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
-    <section className="bg-white dark:bg-gray-900 py-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
+    <section className="bg-white dark:bg-gray-900">
+      <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
+        <h1 className="text-4xl/tight font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
         <div className="grid lg:grid-cols-3 gap-8">
           {blogs.length > 0 ? (
             blogs.map((blog) => (

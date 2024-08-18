@@ -21,7 +21,7 @@ export default function Hero() {
         Where Ordinary Meets Extraordinary
       </h1>
       <p className="lg:text-base text-sm/relaxed lg:pt-1 pt-0 font-normal max-w-xl text-gray-500 dark:text-gray-400 mb-6">
-        From small victories to deep reflections, each post captures a snapshot of everyday life, offering a window into the joys, challenges, and lessons learned along the way.
+        From small victories to deep reflections, each post captures a snapshot of my everyday life, offering a window into the joys, challenges, and lessons learned along the way.
       </p>
 
       <div className='flex items-center gap-4'>
@@ -49,7 +49,8 @@ export default function Hero() {
           alt="Picture of a study session"
           className="rounded hero lg:py-8 py-3"
           width={500}
-          height={500}
+          height={300}
+          
         />
       </div>
     </div>
