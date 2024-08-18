@@ -33,7 +33,7 @@ const BlogList = () => {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
-        <h1 className="text-4xl/tight font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
+        <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
         <div className="grid lg:grid-cols-3 gap-8">
           {blogs.length > 0 ? (
             blogs.map((blog) => (

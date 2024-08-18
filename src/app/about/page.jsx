@@ -15,10 +15,10 @@ const AboutSection = () => {
     <section className="bg-white dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8 flex flex-col items-center justify-center">
         <div>
-          <h1 className='text-4xl font-extrabold text-gray-900 dark:text-white my-2 text-center'>
+          <h1 className='text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white my-2 text-center'>
             About Everyday Echoes
           </h1>
-          <p className='py-4 text-center font-light- max-w-xl text-gray-500 dark:text-gray-400'>
+          <p className='py-4 text-center font-light max-w-xl text-gray-500 dark:text-gray-400'>
             Welcome to Everyday Echoes: Link glimpse into the daily life of Link female student.
           </p>
           <p className='max-w-xl text-sm/relaxed text-center text-gray-500 dark:text-gray-400'>
