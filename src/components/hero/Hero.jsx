@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowRightLong } from "react-icons/fa6";
-import Footer from '../footer/Footer';
+
 export default function Hero() {
 
   function truncateWords(str, numWords) {
@@ -89,7 +89,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <Footer />
+
     </section>
 
   )

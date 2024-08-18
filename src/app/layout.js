@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { Providers } from "@/theme/Providers";
+import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,10 +15,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers>
-          <Navbar />
+
+        <Providers >
+          <div className='grid min-h-[100vh] grid-rows-[auto_1fr_auto]'>
+             <Navbar />
           {children}
 
+          <Footer />
+          </div>
+         
         </Providers>
       </body>
 
