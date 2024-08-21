@@ -26,7 +26,7 @@ export default function Hero() {
 
       <div className='flex items-center gap-4'>
 
-      <Link href={'/blogs'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-semibold text-center  rounded-md bg-gray-400 hover:bg-gray-500 dark:hover:bg-gray-700 dark:bg-gray-600">
+      <Link href={'/blogs'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-semibold text-center  rounded-md bg-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600">
               Read Blogs
             
             </Link>

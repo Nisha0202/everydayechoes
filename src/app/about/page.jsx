@@ -18,7 +18,7 @@ const AboutSection = () => {
           <h1 className='text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white my-2 text-center'>
             About Everyday Echoes
           </h1>
-          <p className='py-4 text-center font-light max-w-xl text-gray-500 dark:text-gray-400'>
+          <p className='py-4 text-center text-sm max-w-xl text-gray-500 dark:text-gray-400'>
             Welcome to Everyday Echoes: Link glimpse into the daily life of Link female student.
           </p>
           <p className='max-w-xl text-sm/relaxed text-center text-gray-500 dark:text-gray-400'>
@@ -37,8 +37,8 @@ const AboutSection = () => {
 
         <button
           onClick={toggleExpand}
-          className="mt-6 px-4 py-2 text-sm font-semibold 
-          rounded-md text-center  bg-gray-400 hover:bg-gray-500 dark:hover:bg-gray-700 dark:bg-gray-600">
+          className="mt-6 px-3 py-1.5 text-sm font-semibold 
+          rounded-md text-center  bg-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600">
         
           {isExpanded ? 'See Less' : 'See More'}
         </button>
