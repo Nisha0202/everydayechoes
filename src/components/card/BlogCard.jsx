@@ -34,7 +34,7 @@ export default function BlogCard({ blog }) {
           <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-4">
             {truncateWords(blog.description, 50)}
           </p>
-          <Link href={'/'} className="underline font-medium text-sm inline-flex items-center hover:scale-105">
+          <Link href={`/blog/${blog.id}`} className="underline font-medium text-sm inline-flex items-center hover:scale-105">
             Read more
             <FaArrowRightLong className='ms-1.5' />
           </Link>
