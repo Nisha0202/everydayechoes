@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import BlogCard from '@/components/card/BlogCard';
-import Link from 'next/link';
+import BlogCardSkeleton from '@/components/skeleton/BlogCardSkeleton';
 
 // Define the fetchData function if it is not defined elsewhere
 const fetchData = async (url) => {
@@ -15,7 +15,8 @@ const fetchData = async (url) => {
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
-  
+  const [loading, setLoading] = useState(true); // Initialize loading state
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -24,17 +25,45 @@ const BlogList = () => {
         setBlogs(blogsData);
       } catch (error) {
         console.error('Failed to fetch blogs:', error);
+        setError('Failed to load blogs.');
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched or error occurs
       }
     };
 
     getData();
   }, []); // Empty dependency array ensures this runs once on mount
 
+  if (loading) {
+    return (
+      <section className="bg-white dark:bg-gray-900">
+      <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
+        <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
+        <div className="grid lg:grid-cols-3 gap-8">
+        {Array.from({ length: 3 }).map((_, index) => (
+            <BlogCardSkeleton key={index} />
+          ))}
+         
+        </div>
+      </div>
+    </section>
+ 
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-screen h-screen flex items-center justify-center text-red-500">
+        <p>{error}</p>
+      </div>
+    );
+  }
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
         <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="flex  flex-wrap justify-around gap-6">
           {blogs.length > 0 ? (
             blogs.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
