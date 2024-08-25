@@ -1,26 +1,39 @@
 "use client"
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { TbArrowRight } from 'react-icons/tb';
 import { FaCheck } from 'react-icons/fa6';
-import { FaArrowAltCircleRight } from 'react-icons/fa';
- 
-const Login = () => {
+import { FcGoogle } from 'react-icons/fc';
 
+
+const Login = () => {
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [step, setStep] = useState(1);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
-  const handleClick = () => {
-    setLoading(true); // Show the loader
-    setSubscribed(false); // Ensure "Subscribed" is not shown yet
-
-    setTimeout(() => {
-      setLoading(false); // Hide the loader
-      setSubscribed(true); 
-    }, 1000); // 1 seconds
+  const handleNextClick = () => {
+    if (step < 3) {
+      setStep(step + 1);
+    } else {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setSubscribed(true);
+      }, 1000); // Simulate API call
+    }
   };
-  
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'email') setEmail(value);
+    if (name === 'password') setPassword(value);
+    if (name === 'name') setName(value);
+  };
+
   return (
     <section className="">
       <div className="py-10 px-4 mx-auto max-w-screen-xl lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-16">
@@ -28,75 +41,126 @@ const Login = () => {
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
             Subscribe Today
           </h1>
-          <p className="lg:mb-6 mb-4 font-light text-gray-500  dark:text-gray-400">
+          <p className="lg:mb-6 mb-4 font-light text-gray-500 dark:text-gray-400">
             If you're interested in following the daily life of a female student navigating her way through studies, experiences,
             and the little moments that make life special, subscribe to Everyday Echoes.
           </p>
           <Link
             href="/about"
-            className="text-blue-600 dark:text-blue-500 font-medium inline-flex items-center"
+            className="text-blue-600 dark:text-blue-500 font-medium inline-flex items-center text-sm lg:text-base"
           >
             More about Everyday Echoes
-            <TbArrowRight className="w-4 h-4 ms-2 rtl:rotate-180" />
           </Link>
         </div>
         <div>
-          <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-gray-100 rounded-md dark:bg-gray-800">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white ">Everyday Echoes</h2>
-            <form className="mt-8 space-y-6" action="#">
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@company.com"
-                  required
-                />
+          <div className="w-full lg:max-w-xl lg:p-6  p-8 bg-gray-100 rounded-md dark:bg-gray-800">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white hidden lg:flex mb-6">Everyday Echoes</h2>
+            <form className="space-y-6">
+              {step === 1 && (
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm  text-gray-900 dark:text-white"
+                  >
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={handleInputChange}
+                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    required
+                  />
+                </div>
+              )}
+
+              {step === 2 && (
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm text-gray-900 dark:text-white"
+                  >
+                    Your Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={password}
+                    onChange={handleInputChange}
+                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="********"
+                    required
+                  />
+                </div>
+              )}
+
+              {step === 3 && (
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm text-gray-900 dark:text-white"
+                  >
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={name}
+                    onChange={handleInputChange}
+                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+              )}
+
+           
+              <button
+                type="button"
+                onClick={handleNextClick}
+                className={`w-full text-center text-white font-semibold rounded-md py-2 text-sm px-4 focus:ring-2 sm:w-auto relative ${step < 3
+                    ? 'bg-gray-500 hover:bg-gray-600 '
+                    : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                  }`}
+              >
+                {loading && (
+                  <span className="flex items-center justify-center">
+                    <RiLoader3Fill className="animate-spin text-xl" />
+                  </span>
+                )}
+                {subscribed ? (
+                  <span className="flex items-center justify-center">
+                    <FaCheck className="mr-2 text-white" /> Subscribed
+                  </span>
+                ) : (
+                  !loading && <span>{step < 3 ? 'Next' : 'Subscribe'}</span>
+                )}
+              </button>
+
+
+              <div className="flex justify-between items-center mt-4">
+                <Link href="/login" className="text-sm ">
+                  Already have subscribed? <span className=' ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline'>Log In</span>
+                </Link>
               </div>
 
-{/*                          
+              <div className="relative flex py-1 items-center">
+                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+                <span className="flex-shrink mx-4 text-gray-400">or</span>
+                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+              </div>
+
               <button
-                type="submit"
-                className="w-full text-center text-white rounded-md bg-blue-700 py-2 px-4 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button"
+                className="w-full bg-gray-200 font-semibold text-sm px-4 lg:py-2 py-3 hover:bg-gray-400  text-center text-gray-900 rounded-md focus:ring-2 focus:ring-red-300 sm:w-auto flex items-center justify-center"
               >
-                Subscribe
-              </button> */}
-
-<button
-      type="button"
-      onClick={handleClick}
-      className="w-full text-center text-white rounded-md bg-blue-700 py-2 px-4 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 relative"
-    >
-      {loading && (
-        <span className="flex items-center justify-center">
-   
-                        <RiLoader3Fill className="animate-spin text-xl" />
-                   
-        </span>
-      )}
-      {subscribed ? (
-        <span className="flex items-center justify-center">
-          <FaCheck className="mr-2 text-white" /> Subscribed
-        </span>
-      ) : (
-        !loading && <span>Subscribe</span>
-      )}
-    </button>
-
-       
-
-
-
-
-
-
+                <FcGoogle className="mr-2 text-xl" /> Subscribe with Google
+              </button>
             </form>
           </div>
         </div>
@@ -106,3 +170,5 @@ const Login = () => {
 };
 
 export default Login;
+
+
