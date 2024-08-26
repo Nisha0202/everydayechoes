@@ -118,9 +118,9 @@ export default function Drawer() {
       </Link>
     </li>
   )}
-  <li className={pathname == "/login" ? "active" : ""}>
+  <li className={pathname == "/subscribe" ? "active" : ""}>
     <Link
-      href="/login"
+      href="/subscribe"
       className="flex items-center p-2 rounded group hover:bg-slate-400"
     >
       <TbMailPlus className="text-xl" />

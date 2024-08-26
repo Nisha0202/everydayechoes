@@ -1,11 +1,10 @@
-"use client"
+"use client";
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { TbArrowRight } from 'react-icons/tb';
 import { FaCheck } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
-
 
 const Subscribe = () => {
   const [loading, setLoading] = useState(false);
@@ -77,7 +76,6 @@ const Subscribe = () => {
                 </div>
               )}
 
-          
               {step === 2 && (
                 <div>
                   <label
@@ -90,7 +88,7 @@ const Subscribe = () => {
                     type="text"
                     name="otp"
                     id="otp"
-                    value={otp} // Consider renaming this state to 'otp' for clarity
+                    value={otp}
                     onChange={handleInputChange}
                     className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter your OTP"
@@ -98,7 +96,6 @@ const Subscribe = () => {
                   />
                 </div>
               )}
-
 
               {step === 3 && (
                 <div>
@@ -121,11 +118,10 @@ const Subscribe = () => {
                 </div>
               )}
 
-
               <button
                 type="button"
                 onClick={handleNextClick}
-                className={`w-full text-center text-white font-semibold rounded-md py-2 text-sm px-4 focus:ring-2 sm:w-auto relative ${step < 3
+                className={`w-full text-center text-white font-semibold rounded-md py-2 text-sm px-4 focus:ring-2 ${step < 3
                   ? 'bg-gray-500 hover:bg-gray-600 '
                   : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
                   }`}
@@ -144,7 +140,6 @@ const Subscribe = () => {
                 )}
               </button>
 
-
               <div className="flex justify-between items-center mt-4">
                 <Link href="/login" className="text-sm ">
                   Already have subscribed? <span className=' ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline'>Log In</span>
@@ -159,7 +154,7 @@ const Subscribe = () => {
 
               <button
                 type="button"
-                className="w-full bg-gray-200 font-semibold text-sm px-4 lg:py-2 py-3 hover:bg-gray-400  text-center text-gray-900 rounded-md focus:ring-2 focus:ring-red-300 sm:w-auto flex items-center justify-center"
+                className="w-full bg-gray-200 font-semibold text-sm px-4 lg:py-2 py-3 hover:bg-gray-400  text-center text-gray-900 rounded-md focus:ring-2 focus:ring-red-300 flex items-center justify-center"
               >
                 <FcGoogle className="mr-2 text-xl" /> Subscribe with Google
               </button>
@@ -172,5 +167,3 @@ const Subscribe = () => {
 };
 
 export default Subscribe;
-
-
