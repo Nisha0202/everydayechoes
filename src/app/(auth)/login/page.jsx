@@ -1,37 +1,33 @@
-"use client"
+"use client";
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
-import { TbArrowRight } from 'react-icons/tb';
-import { FaCheck } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
-
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
-  const [subscribed, setSubscribed] = useState(false);
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [otp, setOtp] = useState('');
 
   const handleNextClick = () => {
-    if (step < 3) {
-      setStep(step + 1);
-    } else {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setSubscribed(true);
-      }, 1000); // Simulate API call
+    if (step === 1 && email) {
+      setStep(2); // Move to OTP input step
     }
+  };
+
+  const handleLoginClick = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      // Add logic here for OTP verification and login
+    }, 1000); // Simulate API call
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'email') setEmail(value);
-    if (name === 'password') setPassword(value);
-    if (name === 'name') setName(value);
+    if (name === 'otp') setOtp(value);
   };
 
   return (
@@ -39,28 +35,27 @@ const Login = () => {
       <div className="py-10 px-4 mx-auto max-w-screen-xl lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-16">
         <div className="flex flex-col justify-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-            Subscribe Today
+            Log In
           </h1>
           <p className="lg:mb-6 mb-4 font-light text-gray-500 dark:text-gray-400">
-            If you're interested in following the daily life of a female student navigating her way through studies, experiences,
-            and the little moments that make life special, subscribe to Everyday Echoes.
+            Access your Everyday Echoes account and stay updated with the latest blogs and stories.
           </p>
           <Link
             href="/about"
             className="text-blue-600 dark:text-blue-500 font-medium inline-flex items-center text-sm lg:text-base"
           >
-            More about Everyday Echoes
+            Learn more about Everyday Echoes
           </Link>
         </div>
         <div>
-          <div className="w-full lg:max-w-xl lg:p-6  p-8 bg-gray-100 rounded-md dark:bg-gray-800">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white hidden lg:flex mb-6">Everyday Echoes</h2>
+          <div className="w-full lg:max-w-xl lg:p-6 p-8 bg-gray-100 rounded-md dark:bg-gray-800">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white hidden lg:flex mb-6">Everyday Echoes Login</h2>
             <form className="space-y-6">
               {step === 1 && (
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm  text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm text-gray-900 dark:text-white"
                   >
                     Your Email
                   </label>
@@ -74,78 +69,53 @@ const Login = () => {
                     placeholder="name@company.com"
                     required
                   />
+                  <button
+                    type="button"
+                    onClick={handleNextClick}
+                    className="mt-4 w-full bg-gray-500 hover:bg-gray-600  text-center text-white font-semibold rounded-md py-2 text-sm px-4 focus:ring-2 focus:ring-gray-300 "
+                  >
+                    Next
+                  </button>
                 </div>
               )}
 
               {step === 2 && (
                 <div>
                   <label
-                    htmlFor="password"
+                    htmlFor="otp"
                     className="block mb-2 text-sm text-gray-900 dark:text-white"
                   >
-                    Your Password
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={handleInputChange}
-                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="********"
-                    required
-                  />
-                </div>
-              )}
-
-              {step === 3 && (
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block mb-2 text-sm text-gray-900 dark:text-white"
-                  >
-                    Your Name
+                    Enter OTP
                   </label>
                   <input
                     type="text"
-                    name="name"
-                    id="name"
-                    value={name}
+                    name="otp"
+                    id="otp"
+                    value={otp}
                     onChange={handleInputChange}
                     className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="John Doe"
+                    placeholder="123456"
                     required
                   />
+                  <button
+                    type="button"
+                    onClick={handleLoginClick}
+                    className="mt-4 w-full text-center text-white font-semibold rounded-md py-2 text-sm px-4 bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    {loading ? (
+                      <span className="flex items-center justify-center">
+                        <RiLoader3Fill className="animate-spin text-xl" />
+                      </span>
+                    ) : (
+                      <span>Log In</span>
+                    )}
+                  </button>
                 </div>
               )}
 
-           
-              <button
-                type="button"
-                onClick={handleNextClick}
-                className={`w-full text-center text-white font-semibold rounded-md py-2 text-sm px-4 focus:ring-2 sm:w-auto relative ${step < 3
-                    ? 'bg-gray-500 hover:bg-gray-600 '
-                    : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-                  }`}
-              >
-                {loading && (
-                  <span className="flex items-center justify-center">
-                    <RiLoader3Fill className="animate-spin text-xl" />
-                  </span>
-                )}
-                {subscribed ? (
-                  <span className="flex items-center justify-center">
-                    <FaCheck className="mr-2 text-white" /> Subscribed
-                  </span>
-                ) : (
-                  !loading && <span>{step < 3 ? 'Next' : 'Subscribe'}</span>
-                )}
-              </button>
-
-
               <div className="flex justify-between items-center mt-4">
-                <Link href="/login" className="text-sm ">
-                  Already have subscribed? <span className=' ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline'>Log In</span>
+                <Link href="/subscribe" className="text-sm">
+                  Don't have an account? <span className='ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline'>Subscribe Now</span>
                 </Link>
               </div>
 
@@ -157,9 +127,9 @@ const Login = () => {
 
               <button
                 type="button"
-                className="w-full bg-gray-200 font-semibold text-sm px-4 lg:py-2 py-3 hover:bg-gray-400  text-center text-gray-900 rounded-md focus:ring-2 focus:ring-red-300 sm:w-auto flex items-center justify-center"
+                className="w-full bg-gray-200 font-semibold text-sm px-4 lg:py-2 py-3 hover:bg-gray-400 text-center text-gray-900 rounded-md focus:ring-2 focus:ring-red-300 sm:w-auto flex items-center justify-center"
               >
-                <FcGoogle className="mr-2 text-xl" /> Subscribe with Google
+                <FcGoogle className="mr-2 text-xl" /> Log In with Google
               </button>
             </form>
           </div>
@@ -170,5 +140,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
