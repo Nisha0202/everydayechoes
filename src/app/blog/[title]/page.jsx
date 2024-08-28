@@ -83,7 +83,7 @@ export default function BlogTitle({ params }) {
               blurDataURL="data:..."
               placeholder="blur"
               fill
-              objectFit="cover"
+              style={{objectFit:"cover"}}
               className="md:rounded-md border-2 border-gray-300 dark:border-gray-800"
             />
           </div>
@@ -102,21 +102,6 @@ export default function BlogTitle({ params }) {
 
             </button>
           </div>
-
-          {/* <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm">
-            {blogData.description.split('.').reduce((acc, sentence, index) => {
-              const paragraphIndex = Math.floor(index / 6);
-              if (!acc[paragraphIndex]) {
-                acc[paragraphIndex] = '';
-              }
-              acc[paragraphIndex] += sentence.trim() + '. ';
-              return acc;
-            }, []).map((paragraph, index) => (
-              <p key={index} className="mb-4 leading-relaxed">
-                {paragraph.trim()}
-              </p>
-            ))}
-          </div> */}
           <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm">
             {blogData.description.split('.').reduce((acc, sentence, index) => {
               const paragraphIndex = Math.floor(index / 6);
@@ -129,7 +114,7 @@ export default function BlogTitle({ params }) {
               <p key={index} className="mb-4 leading-relaxed">
                 {index === 0 ? (
                   <>
-                    <span className="first-letter">{paragraph.trim().charAt(0)}</span>
+                    <span className="first-letter leading-tight pr-[1px]">{paragraph.trim().charAt(0)}</span>
                     {paragraph.trim().slice(1)}
                   </>
                 ) : (
