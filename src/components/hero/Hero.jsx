@@ -88,10 +88,7 @@ export default function Hero() {
           height="0"
           sizes="100vw"
           className="w-full h-auto lg:py-8 py-3"
-          // className="rounded hero "
-          // width={500}
-          // height={300}
-          
+          priority
         />
       </div>
     </div>
