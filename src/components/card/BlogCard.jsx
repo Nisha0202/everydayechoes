@@ -17,7 +17,7 @@ export default function BlogCard({ blog }) {
     <>
       {/* <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 md:p-10"> */}
         <div className='p-6 md:p-10  max-w-96 relative'>
-        <div className='mb-4' style={{ position: 'relative', width: '100%', height: '200px' }}>
+        <div className='mb-8' style={{ position: 'relative', width: '100%', height: '200px' }}>
           <Image
             src={blog.image}
             alt={blog.title}
@@ -27,11 +27,11 @@ export default function BlogCard({ blog }) {
           />
         </div>
         <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{blog.date}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{blog.date}</p>
           <h2 className="text-gray-900 dark:text-white  md:text-3xl text-xl font-extrabold mb-2">
             {truncateWords(blog.title, 8)}
           </h2>
-          <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-4">
+          <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-6">
             {truncateWords(blog.description, 14)}
           </p>
           <Link href={`/blog/${blog.id}`} className="underline font-medium text-sm inline-flex items-center hover:scale-105 absolute lg:bottom-4 bottom-0">

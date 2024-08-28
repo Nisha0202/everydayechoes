@@ -54,15 +54,15 @@ export default function BlogTitle({ params }) {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='w-full flex items-center justify-center '>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className='w-full flex items-center justify-center text-red-500'>Error: {error}</div>;
   }
 
   if (!blogData) {
-    return <div>No blog post found.</div>;
+    return <div className='w-full  flex items-center justify-center '>No blog post found.</div>;
   }
 
   return (
@@ -90,20 +90,20 @@ export default function BlogTitle({ params }) {
         </div>
       </div>
 
-      <div className='mx-auto text-center max-w-2xl'>
+      <div className='mx-auto text-center max-w-2xl '>
         <div className='mt-28 max-w-xl mx-auto'>
           <div className="actions w-full flex items-center justify-between text-gray-600 dark:text-gray-300 text-sm px-6">
-            <button className="flex items-center">
-              <FaRegHeart className="mr-1 text-base" />
-              Like
+            <button className="flex items-center text-xs">
+              <FaRegHeart className="mr-1 " />
+              {blogData.like}
             </button>
-            <button className="flex items-center" onClick={handleCommentClick}>
+            <button className="flex items-center text-xs" onClick={handleCommentClick}>
               <FaRegCommentAlt className="mr-1" />
-              Comment
+
             </button>
           </div>
 
-          <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm">
+          {/* <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm">
             {blogData.description.split('.').reduce((acc, sentence, index) => {
               const paragraphIndex = Math.floor(index / 6);
               if (!acc[paragraphIndex]) {
@@ -116,13 +116,35 @@ export default function BlogTitle({ params }) {
                 {paragraph.trim()}
               </p>
             ))}
+          </div> */}
+          <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm">
+            {blogData.description.split('.').reduce((acc, sentence, index) => {
+              const paragraphIndex = Math.floor(index / 6);
+              if (!acc[paragraphIndex]) {
+                acc[paragraphIndex] = '';
+              }
+              acc[paragraphIndex] += sentence.trim() + '. ';
+              return acc;
+            }, []).map((paragraph, index) => (
+              <p key={index} className="mb-4 leading-relaxed">
+                {index === 0 ? (
+                  <>
+                    <span className="first-letter">{paragraph.trim().charAt(0)}</span>
+                    {paragraph.trim().slice(1)}
+                  </>
+                ) : (
+                  paragraph.trim()
+                )}
+              </p>
+            ))}
           </div>
+
         </div>
       </div>
 
-      <hr className="border-gray-200 dark:border-gray-700" />
+      <hr className="border-gray-200 dark:border-gray-700 mb-6" />
 
-      <div className='w-full flex flex-wrap justify-center max-w-screen-xl mx-auto'>
+      <div className='w-full flex flex-wrap justify-center max-w-screen-xl mx-auto mb-6'>
         <div className='flex flex-col flex-1'>
           <h1 className='text-lg w-full font-bold text-gray-900 dark:text-white text-center mb-4 lg:mb-8 mt-6'>
             Recent Comments
@@ -134,7 +156,7 @@ export default function BlogTitle({ params }) {
 
         <div className='flex flex-col items-center justify-center gap-2 max-w-3xl mb-4 md:px-8 px-4'>
           <h1 className='text-lg font-bold text-gray-900 dark:text-white mb-1 mt-6'>Related Blogs</h1>
-          <div className='flex flex-col justify-center mx-auto mb-6'>
+          <div className='flex flex-col gap-4 lg:gap-2 justify-center mx-auto mb-6'>
             {relatedPosts.map((post) => (
               <BlogCard key={post.id} blog={post} />
             ))}
@@ -143,7 +165,7 @@ export default function BlogTitle({ params }) {
       </div>
 
       {/*CommentModal  */}
-      {isModalOpen && <CommentModal  blogData={blogData} closeModal={closeModal} />}
+      {isModalOpen && <CommentModal blogData={blogData} closeModal={closeModal} />}
     </div>
   );
 }

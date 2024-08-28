@@ -20,6 +20,11 @@ body {
   background-color: #111827; /* Equivalent to gray-900 */
 }
 
+.first-letter {
+  font-size: 2rem; /* Make the letter larger */
+  font-weight: bold; /* Make the letter bold */
+}
+
 
 
 

@@ -4,25 +4,79 @@
     "title": "A Day in the Life of a Computer Science Student",
     "date": "13 August 2024",
     "image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "description": "Today was all about debugging my code and solving challenging problems in algorithms class. It started with an early morning lecture on data structures, where we delved into the intricacies of binary trees and their various applications. The professor explained the concepts with such clarity that it felt like the pieces of a puzzle were finally coming together. After class, I headed to the lab to work on my latest project, which involves creating a simple operating system from scratch. The task is daunting, but I find it exhilarating. Every small victory, like getting a process to run smoothly or optimizing memory usage, feels like a huge achievement. My teammates and I spent hours brainstorming solutions to a particularly stubborn bug that had been plaguing us for days. It was frustrating at times, but we finally managed to squash it by the end of the day.\n\nIn the afternoon, I attended a guest lecture by an industry expert who shared insights into the latest trends in artificial intelligence and machine learning. It was fascinating to hear about how these technologies are being applied in real-world scenarios, from autonomous vehicles to personalized medicine. The lecture sparked several ideas that I can’t wait to explore further in my own projects.\n\nAfter the lecture, I grabbed a quick lunch with some friends before heading to the library for a study session. We spent a few hours reviewing the material from our algorithms class, going over practice problems and discussing different approaches to solving them. The group study sessions are incredibly helpful, as they allow us to learn from each other and fill in any gaps in our understanding.\n\nAs the evening approached, I decided to take a break from studying and unwind with a game of chess. Chess is a great way to clear my mind and practice strategic thinking, which is crucial for my coursework. After a few intense matches, I felt refreshed and ready to tackle my next task.\n\nBefore heading home, I met with my academic advisor to discuss my progress and plan for the upcoming semester. We talked about the courses I should take, potential research opportunities, and how to balance my workload effectively. It’s reassuring to have someone to guide me through the complexities of my academic journey.\n\nBy the time I got home, I was exhausted but satisfied with how the day had gone. I spent the evening relaxing, catching up on some reading, and reflecting on everything I had learned. It’s days like these that remind me why I chose to pursue a degree in computer science. The challenges are immense, but so are the rewards. I’m constantly learning, growing, and pushing the boundaries of what I thought was possible. And that, to me, is what makes this journey so worthwhile",
-    "link": "#"
+    "description": "Today was all about debugging my code and solving challenging problems in algorithms class. I started the day with a morning lecture, followed by a lab session where we worked on a complex coding assignment. The afternoon was spent debugging some issues in my code that had been bothering me for days. By the evening, I felt a sense of accomplishment as I finally solved the problem and submitted the assignment on time. It's days like these that remind me why I love studying computer science. Even though it's tough, the satisfaction of overcoming challenges makes it all worthwhile.",
+    "like": 30
   },
   {
     "id": 2,
     "title": "How I Stay on Top of My Studies",
     "date": "12 August 2024",
     "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "description": "Staying organized is key. Here are my tips for managing coursework, projects, and prepping for exams as a computer science student. The first thing I do is maintain a detailed planner where I jot down all my deadlines, assignments, and exam dates. This helps me keep track of everything that needs to be done and ensures that nothing slips through the cracks. I also break down my tasks into smaller, more manageable chunks, which makes them less overwhelming and easier to tackle.\n\nAnother strategy I use is to establish a consistent study routine. I dedicate specific hours of the day to studying, and I stick to this schedule as much as possible. This helps me stay focused and ensures that I’m making steady progress in my studies. I also make it a point to review my notes regularly, rather than cramming all the material at the last minute. This not only helps me retain the information better but also reduces the stress of exam preparation.\n\nWhen it comes to projects, I make sure to start working on them as early as possible. Procrastination can be a real problem, especially when you have multiple projects to juggle. By starting early, I give myself plenty of time to brainstorm, research, and experiment with different solutions. I also make it a point to stay in regular communication with my teammates, so we’re all on the same page and can collaborate effectively.\n\nIn addition to my study routine, I’ve found that staying healthy is crucial for maintaining my productivity. I make sure to get enough sleep, eat nutritious meals, and exercise regularly. These habits help me stay energized and focused throughout the day. I also take short breaks during my study sessions to avoid burnout and keep my mind fresh.\n\nOne of the most important aspects of staying on top of my studies is seeking help when I need it. Whether it’s reaching out to my professors, joining study groups, or asking questions in class, I’ve learned that it’s okay to admit when I don’t understand something. Getting clarification early on prevents confusion from snowballing and ensures that I’m on the right track.\n\nLastly, I try to stay motivated by reminding myself of my long-term goals. I’m passionate about computer science, and I know that the hard work I’m putting in now will pay off in the future. Whenever I’m feeling discouraged, I take a moment to reflect on how far I’ve come and the progress I’ve made. This helps me stay positive and keeps me going, even when the workload feels overwhelming.\n\nIn conclusion, staying on top of my studies requires a combination of organization, discipline, and self-care. By maintaining a structured routine, starting projects early, and taking care of my health, I’m able to manage my coursework effectively and set myself up for success. It’s not always easy, but with the right strategies, I’ve found that it’s definitely achievable",
-    "link": "#"
+    "description": "Staying organized is key to managing the workload of a computer science student. I rely heavily on my planner to keep track of deadlines, class schedules, and study sessions. I also make sure to break down larger projects into smaller tasks that are easier to manage. This approach helps me stay on top of my coursework without feeling overwhelmed. In addition to staying organized, I also make time for regular breaks and self-care. This helps me stay focused and productive without burning out.",
+    "like": 34
   },
   {
     "id": 3,
     "title": "Balancing Studies and Social Life",
     "date": "10 August 2024",
     "image": "https://images.unsplash.com/photo-1604882406305-67a5b1376126?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "description": "Finding the right balance between studies and hanging out with friends can be tricky, but here’s how I manage. The first step is to prioritize my commitments. I know that my studies are my top priority, so I make sure to allocate enough time each day to focus on my coursework. However, I also recognize the importance of socializing and taking breaks, so I set aside time each week to spend with friends and engage in activities that I enjoy.\n\nOne strategy that has worked well for me is to combine study time with socializing. For example, I often organize group study sessions with my classmates. This way, I’m able to review the material and get work done while also spending time with others. We’ll meet up at a café or library, and after a productive study session, we might grab a bite to eat or catch a movie together. It’s a great way to balance both aspects of my life without feeling like I’m neglecting either one.\n\nAnother approach I take is to plan my social activities around my academic schedule. If I have a big exam coming up, I’ll prioritize studying and limit my social outings. But once the exam is over, I reward myself with a fun night out or a weekend trip with friends. This not only gives me something to look forward to but also helps me stay focused during the intense study periods.\n\nTime management is also crucial in maintaining a balance between studies and social life. I make it a point to avoid procrastination, so I can complete my assignments on time and free up my evenings and weekends for socializing. I also use a planner to schedule my tasks and activities, which helps me stay organized and ensures that I’m not overcommitting myself.\n\nIn addition to spending time with friends, I’ve found that engaging in extracurricular activities is a great way to unwind and meet new people. Whether it’s joining a club, playing sports, or volunteering, these activities provide a much-needed break from the academic grind and allow me to explore my interests outside of the classroom.\n\nHowever, it’s important to recognize when to say no. There are times when I have to decline social invitations because I need to focus on my studies. While it can be difficult to turn down a fun outing, I remind myself that my education comes first. My friends understand and respect my priorities, and we always find other opportunities to hang out when my schedule allows.\n\nFinally, I make sure to take care of my mental and emotional well-being. Balancing studies and social life can be stressful at times, so I practice mindfulness and relaxation techniques to stay grounded. Whether it’s taking a walk, meditating, or journaling, these activities help me stay centered and maintain a positive outlook.\n\nIn conclusion, balancing studies and social life is all about prioritization, time management, and self-care. By staying organized, combining study time with social activities, and knowing when to take a break, I’m able to enjoy the best of both worlds. It’s not always easy, but with a little effort, it’s definitely possible to maintain a healthy and fulfilling balance",
-    "link": "#"
+    "description": "Finding the right balance between studies and hanging out with friends can be tricky, but here’s how I manage. I make sure to prioritize my assignments and study time, but I also set aside time each week to unwind and socialize with friends. Whether it's grabbing coffee, going for a walk, or just hanging out in the dorm, spending time with friends helps me recharge and stay motivated. It's all about finding a balance that works for you and being mindful of your time management.",
+    "like": 15
+  },
+  {
+    "id": 4,
+    "title": "My First Hackathon Experience",
+    "date": "9 August 2024",
+    "image": "https://images.unsplash.com/photo-1499914485622-a88fac536970?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Participating in my first hackathon was both exhilarating and exhausting. We worked tirelessly to create a working prototype of our idea within 24 hours. The experience taught me a lot about teamwork, time management, and problem-solving under pressure. Although we faced several challenges along the way, the thrill of seeing our project come to life made it all worthwhile. It was a memorable experience that has fueled my passion for coding and innovation.",
+    "like": 27
+  },
+  {
+    "id": 5,
+    "title": "Tips for Surviving Exam Season",
+    "date": "8 August 2024",
+    "image": "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Exam season is here, and it's time to buckle down. My strategies for staying focused include creating a study schedule, taking regular breaks, and making sure to get enough sleep. I also make use of past papers and study groups to reinforce my understanding of key concepts. It’s important to stay calm and not let stress get the best of you. With the right approach, you can ace your exams without burning out.",
+    "like": 45
+  },
+  {
+    "id": 6,
+    "title": "Why I Love Learning Python",
+    "date": "7 August 2024",
+    "image": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1840&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Python has become one of my favorite programming languages. It’s powerful yet simple, making it ideal for beginners and experts alike. The versatility of Python allows me to work on a wide range of projects, from web development to data analysis. I also love the large community of Python developers who are always willing to help and share their knowledge. Python has opened up so many opportunities for me, and I’m excited to continue learning and growing my skills.",
+    "like": 22
+  },
+  {
+    "id": 7,
+    "title": "Overcoming Imposter Syndrome",
+    "date": "6 August 2024",
+    "image": "https://images.unsplash.com/photo-1723754165998-305df32c501e?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Imposter syndrome can be tough to deal with, especially in a competitive field like computer science. I've found that focusing on my accomplishments, seeking feedback from peers, and setting realistic goals helps me build confidence in my abilities. It's important to remember that everyone experiences self-doubt at times, but it doesn’t define your worth or potential. By taking small steps to overcome imposter syndrome, I’ve been able to grow both personally and professionally.",
+    "like": 31
+  },
+  {
+    "id": 8,
+    "title": "The Importance of Networking in Tech",
+    "date": "5 August 2024",
+    "image": "https://images.unsplash.com/photo-1550177977-ad69e8f3cae0?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Networking has opened up so many opportunities for me in the tech industry. Building a strong professional network has helped me connect with mentors, learn about job opportunities, and stay updated on industry trends. Whether it’s attending conferences, joining online communities, or simply reaching out to someone on LinkedIn, networking is a powerful tool that can help you advance your career. It's something I highly recommend to anyone looking to grow in the tech field.",
+    "like": 29
+  },
+  {
+    "id": 9,
+    "title": "Building My First Web App",
+    "date": "4 August 2024",
+    "image": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1840&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Creating my first web app was a challenging yet rewarding experience. I learned a lot about coding, debugging, and deployment. The process taught me the importance of patience, perseverance, and attention to detail. It was amazing to see my idea come to life and to receive positive feedback from users. This project has inspired me to continue building and improving my skills in web development.",
+    "like": 24
+  },
+  {
+    "id": 10,
+    "title": "The Power of Open Source",
+    "date": "3 August 2024",
+    "image": "https://images.unsplash.com/photo-1535930749574-1399327ce78f?q=80&w=1850&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Contributing to open source projects has been one of the most fulfilling aspects of my journey as a developer. Open source allows you to collaborate with developers from around the world, learn new skills, and make a positive impact on the community. It's a great way to give back and help improve the tools and technologies that we all rely on. I encourage everyone, regardless of experience level, to get involved in open source. It's a powerful way to learn, grow, and connect with others in the tech community.",
+    "like": 20
   }
 ]
-
-  
