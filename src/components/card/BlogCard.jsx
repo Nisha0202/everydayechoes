@@ -21,9 +21,8 @@ export default function BlogCard({ blog }) {
           <Image
             src={blog.image}
             alt={blog.title}
-            className="rounded hero"
+            className="rounded hero object-cover"
             fill
-            objectFit="cover"
             loading= "lazy"
           />
         </div>
@@ -38,7 +37,7 @@ export default function BlogCard({ blog }) {
           <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-6">
             {truncateWords(blog.description, 14)}
           </p>
-          <Link href={`/blog/${blog.id}`} className="underline font-medium text-sm inline-flex items-center hover:scale-105 absolute lg:bottom-4 bottom-0">
+          <Link href={`/blog/${blog._id}`} className="underline font-medium text-sm inline-flex items-center hover:scale-105 absolute lg:bottom-4 bottom-0">
             Read more
             <FaArrowRightLong className='ms-1.5' />
           </Link>

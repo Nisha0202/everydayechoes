@@ -1,36 +1,57 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import BlogCard from '@/components/card/BlogCard';
 import BlogCardSkeleton from '@/components/skeleton/BlogCardSkeleton';
-
+import { IoMdArrowDropup } from "react-icons/io";
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true); // Initialize loading state
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [showGoTop, setShowGoTop] = useState(false); // Track if "Load More" has been clicked
 
   useEffect(() => {
     const getData = async () => {
       try {
-        // Fetch data from your API or endpoint
-        const response = await fetch('http://localhost:3000/api/blog'); 
+        const response = await fetch(`http://localhost:3000/api/blog?page=${page}&limit=3`); 
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const blogsData = await response.json();
-        setBlogs(blogsData); // Set the fetched data
+        const data = await response.json();
+        
+        console.log('Fetched blogs:', data.blogs);
+        
+        setBlogs(prevBlogs => {
+          const newBlogs = data.blogs.filter(blog => !prevBlogs.some(prevBlog => prevBlog._id === blog._id));
+          return [...prevBlogs, ...newBlogs];
+        });
+        setHasMore(page < data.pagination.totalPages);
       } catch (error) {
         console.error('Failed to fetch blogs:', error);
         setError('Failed to load blogs.');
       } finally {
-        setLoading(false); // Set loading to false once the data is fetched or an error occurs
+        setLoading(false);
       }
     };
 
     getData();
-  }, []); 
+  }, [page]);
 
-  if (loading) {
+  const loadMore = () => {
+    if (hasMore && !loading) {
+      setPage(prevPage => prevPage + 1);
+      setShowGoTop(true); // Show the "Go to Top" button after loading more
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setShowGoTop(false);
+  };
+
+  if (loading && blogs.length === 0) {
     return (
       <section className="bg-white dark:bg-gray-900">
         <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
@@ -59,18 +80,32 @@ const BlogList = () => {
         <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
         <div className="flex flex-wrap justify-around gap-6">
           {blogs.length > 0 ? (
-            blogs.map((blog) => {
-              console.log('Blog Date:', blog.date); // Log date for debugging
-              return <BlogCard key={blog._id} blog={blog} />;
-            })
+            blogs.map((blog) => (
+              <BlogCard key={blog._id} blog={blog} />
+            ))
           ) : (
             <p>No blogs available.</p>
           )}
         </div>
+        {hasMore && (
+          <div className="text-center mt-4">
+            <button onClick={loadMore} className="bg-blue-500 text-sm text-white px-3 py-1 rounded text-center  dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
+              Read More
+            </button>
+          </div>
+        )}
+        {showGoTop && (
+          <div className="fixed bottom-4 right-4">
+            <button 
+              onClick={scrollToTop} 
+              className="py-2 px-3 rounded-full shadow-lg  bg-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600">
+              <IoMdArrowDropup/>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
 export default BlogList;
-
