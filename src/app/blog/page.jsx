@@ -18,21 +18,44 @@ const BlogList = () => {
   const [loading, setLoading] = useState(true); // Initialize loading state
   const [error, setError] = useState(null);
 
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const blogsData = await fetchData('/blogs.json');
+  //       setBlogs(blogsData);
+  //     } catch (error) {
+  //       console.error('Failed to fetch blogs:', error);
+  //       setError('Failed to load blogs.');
+  //     } finally {
+  //       setLoading(false); // Set loading to false after data is fetched or error occurs
+  //     }
+  //   };
+
+  //   getData();
+  // }, []); // Empty dependency array ensures this runs once on mount
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const blogsData = await fetchData('/blogs.json');
-        setBlogs(blogsData);
+        // Fetch data from your API or endpoint
+        const response = await fetch('http://localhost:3000/api/blog'); 
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const blogsData = await response.json();
+        setBlogs(blogsData); // Set the fetched data
       } catch (error) {
         console.error('Failed to fetch blogs:', error);
         setError('Failed to load blogs.');
       } finally {
-        setLoading(false); // Set loading to false after data is fetched or error occurs
+        setLoading(false); // Set loading to false once the data is fetched or an error occurs
       }
     };
 
     getData();
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []); 
+
+
 
   if (loading) {
     return (
