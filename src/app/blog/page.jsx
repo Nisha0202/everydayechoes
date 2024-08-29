@@ -46,9 +46,25 @@ const BlogList = () => {
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) { // Adjust this value as needed
+        setShowGoTop(true);
+      } else {
+        setShowGoTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setShowGoTop(false);
+    
   };
 
   if (loading && blogs.length === 0) {
