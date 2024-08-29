@@ -25,7 +25,6 @@
 // };
 
 import { MongoClient } from 'mongodb';
-import { NextResponse } from 'next/server';
 
 // Connection URI and options
 const uri = `mongodb+srv://Admin:Admin0202@cluster0.5cua0xk.mongodb.net/blogy?retryWrites=true&w=majority&appName=Cluster0`;

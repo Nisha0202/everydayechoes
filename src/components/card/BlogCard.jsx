@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
 import { FaArrowRightLong } from 'react-icons/fa6';
-
+import { format } from 'date-fns';
 export default function BlogCard({ blog }) {
 
   // text: '#AAFF01',
@@ -28,7 +28,10 @@ export default function BlogCard({ blog }) {
           />
         </div>
         <div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{blog.date}</p>
+          {/* <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{blog.date}</p> */}
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+  {blog.date ? format(new Date(blog.date), 'dd MMMM yyyy') : 'Date not available'}
+</p>
           <h2 className="text-gray-900 dark:text-white  md:text-3xl text-xl font-extrabold mb-2">
             {truncateWords(blog.title, 8)}
           </h2>
