@@ -83,7 +83,7 @@ export default function BlogTitle({ params }) {
               blurDataURL="data:..."
               placeholder="blur"
               fill
-              style={{objectFit:"cover"}}
+              objectFit='cover'
               className="md:rounded-md border-2 border-gray-300 dark:border-gray-800"
             />
           </div>

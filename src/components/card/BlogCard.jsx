@@ -24,6 +24,7 @@ export default function BlogCard({ blog }) {
             className="rounded hero"
             fill
             objectFit="cover"
+            loading= "lazy"
           />
         </div>
         <div>
