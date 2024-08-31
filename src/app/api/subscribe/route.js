@@ -22,6 +22,7 @@ const sendOTP = async (email, otp) => {
     subject: "Your OTP for Subscription",
     text: `Your OTP is ${otp}`,
   });
+  
 };
 
 // Handler for the subscription

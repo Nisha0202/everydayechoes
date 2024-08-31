@@ -20,7 +20,7 @@ const Subscribe = () => {
     if (name === 'name') setName(value);
   };
   const handleNextClick = async () => {
-    if (step < 3) {
+    if (step <= 3) {
       setLoading(true);
       try {
         const response = await fetch('http://localhost:3000/api/subscribe', {
