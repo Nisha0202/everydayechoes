@@ -1,11 +1,12 @@
 "use client";
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FaRegHeart } from "react-icons/fa";
-import { FaRegCommentAlt } from "react-icons/fa";
+import { FaRegHeart, FaRegCommentAlt, FaArrowLeft } from "react-icons/fa";
 import BlogCard from '@/components/card/BlogCard';
 import CommentSection from '@/components/comment/CommentSection';
 import CommentModal from '@/components/commentinput/CommentModal';
+import { useRouter } from 'next/navigation'; // Import useRouter to handle navigation
+import { IoIosArrowBack, IoIosArrowDropleft, IoIosArrowRoundBack } from 'react-icons/io';
 
 export default function BlogTitle({ params }) {
   const [blogData, setBlogData] = useState(null);
@@ -13,6 +14,8 @@ export default function BlogTitle({ params }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const router = useRouter(); // Initialize router for navigation
 
   console.log("params", params.title);
 
@@ -50,6 +53,10 @@ export default function BlogTitle({ params }) {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleBackClick = () => {
+    router.back(); // Use router to go back to the previous page
   };
 
   if (loading) {
@@ -148,15 +155,16 @@ export default function BlogTitle({ params }) {
         </div>
       </div>
 
-      {/*CommentModal  */}
+      {/* CommentModal */}
       {isModalOpen && <CommentModal blogData={blogData} closeModal={closeModal} />}
+
+      {/* Floating Back Button */}
+      <button
+        onClick={handleBackClick}
+        className="fixed bottom-4 text-sm lg:text-base left-4 p-2 dark:bg-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full shadow-lg dark:hover:bg-gray-800 focus:outline-none"
+      >
+     <IoIosArrowBack />
+      </button>
     </div>
   );
 }
-
-
-
-
-
-
-

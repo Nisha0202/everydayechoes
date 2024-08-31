@@ -154,9 +154,11 @@ const Subscribe = () => {
 
               <button
                 type="button"
-                className="w-full bg-gray-200 font-semibold text-sm px-4 lg:py-2 py-3 hover:bg-gray-400  text-center text-gray-900 rounded-md focus:ring-2 focus:ring-red-300 flex items-center justify-center"
+                className="w-full  font-semibold text-sm px-4 lg:py-2 py-3 text-center 
+                 rounded-md focus:ring-2 focus:ring-blue-200 flex items-center justify-center
+                  bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-900 dark:bg-gray-700"
               >
-                <FcGoogle className="mr-2 text-xl" /> Subscribe with Google
+                <FcGoogle className="mr-2 text-2xl" /> Subscribe with Google
               </button>
             </form>
           </div>
