@@ -4,7 +4,8 @@ import React, { useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { FaCheck } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Subscribe = () => {
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
@@ -19,6 +20,44 @@ const Subscribe = () => {
     if (name === 'otp') setOTP(value);
     if (name === 'name') setName(value);
   };
+
+  // const handleNextClick = async () => {
+  //   if (step <= 3) {
+  //     setLoading(true);
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/subscribe', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ email, otp, name, step }),
+  //       });
+  
+  //       const data = await response.json();
+  
+  //       if (!response.ok) {
+  //         throw new Error(data.error || 'Something went wrong');
+  //       }
+  
+  //       if (step === 1 && data.message === 'OTP sent') {
+  //         setStep(2);
+  //       } else if (step === 2 && data.message === 'OTP verified') {
+  //         setStep(3);
+  //         setOTP('');   // Clear OTP field
+  //       } else if (step === 3 && data.message === 'Subscription successful') {
+  //         setSubscribed(true);
+  //         setEmail(''); // Clear email field
+  //         setOTP('');   
+  //         setName(''); 
+  //       }
+  //     } catch (error) {
+  //       console.error(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  // };
+  
   const handleNextClick = async () => {
     if (step <= 3) {
       setLoading(true);
@@ -30,19 +69,29 @@ const Subscribe = () => {
           },
           body: JSON.stringify({ email, otp, name, step }),
         });
-  
+
         const data = await response.json();
-  
+
         if (!response.ok) {
+          if (data.error === 'Email already registered. Please log in.') {
+            toast.error('Email already registered. Please log in.');
+            setStep(1); // Reset the step to 1
+            setLoading(false);
+            return;
+          }
           throw new Error(data.error || 'Something went wrong');
         }
-  
+
         if (step === 1 && data.message === 'OTP sent') {
           setStep(2);
         } else if (step === 2 && data.message === 'OTP verified') {
           setStep(3);
+          setOTP('');   // Clear OTP field
         } else if (step === 3 && data.message === 'Subscription successful') {
           setSubscribed(true);
+          setEmail(''); // Clear email field
+          setOTP('');   
+          setName(''); 
         }
       } catch (error) {
         console.error(error.message);
@@ -51,7 +100,6 @@ const Subscribe = () => {
       }
     }
   };
-  
 
   return (
     <section className="">
@@ -132,7 +180,7 @@ const Subscribe = () => {
                     value={name}
                     onChange={handleInputChange}
                     className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="John Doe"
+                    placeholder="Name"
                     required
                   />
                 </div>
@@ -181,9 +229,11 @@ const Subscribe = () => {
                 <FcGoogle className="mr-2 text-2xl" /> Subscribe with Google
               </button>
             </form>
+          
           </div>
         </div>
       </div>
+        <ToastContainer />
     </section>
   );
 };
