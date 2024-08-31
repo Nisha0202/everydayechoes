@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
-import { TbArrowRight } from 'react-icons/tb';
 import { FaCheck } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -14,24 +13,45 @@ const Subscribe = () => {
   const [otp, setOTP] = useState('');
   const [name, setName] = useState('');
 
-  const handleNextClick = () => {
-    if (step < 3) {
-      setStep(step + 1);
-    } else {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setSubscribed(true);
-      }, 1000); // Simulate API call
-    }
-  };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'email') setEmail(value);
     if (name === 'otp') setOTP(value);
     if (name === 'name') setName(value);
   };
+  const handleNextClick = async () => {
+    if (step < 3) {
+      setLoading(true);
+      try {
+        const response = await fetch('http://localhost:3000/api/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, otp, name, step }),
+        });
+  
+        const data = await response.json();
+  
+        if (!response.ok) {
+          throw new Error(data.error || 'Something went wrong');
+        }
+  
+        if (step === 1 && data.message === 'OTP sent') {
+          setStep(2);
+        } else if (step === 2 && data.message === 'OTP verified') {
+          setStep(3);
+        } else if (step === 3 && data.message === 'Subscription successful') {
+          setSubscribed(true);
+        }
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+  
 
   return (
     <section className="">

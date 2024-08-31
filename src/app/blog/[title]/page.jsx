@@ -60,15 +60,15 @@ export default function BlogTitle({ params }) {
   };
 
   if (loading) {
-    return <div className='w-full flex items-center justify-center '>Loading...</div>;
+    return <div className='w-full flex items-center justify-center my-4 '>Loading...</div>;
   }
 
   if (error) {
-    return <div className='w-full flex items-center justify-center text-red-500'>Error: {error}</div>;
+    return <div className='w-full flex items-center justify-center text-red-500 my-4'>Error: {error}</div>;
   }
 
   if (!blogData) {
-    return <div className='w-full  flex items-center justify-center '>No blog post found.</div>;
+    return <div className='w-full  flex items-center justify-center my-4 '>No blog post found.</div>;
   }
 
   return (
