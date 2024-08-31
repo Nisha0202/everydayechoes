@@ -20,7 +20,7 @@ export default function Hero() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('/blogs.json');
+        const response = await fetch('http://localhost:3000/api/blog?page=${page}&limit=3');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -28,7 +28,7 @@ export default function Hero() {
         
         
         // Set the first 2 blogs for display
-        setBlogs(data.slice(0, 2));
+        setBlogs(data.blogs.slice(0, 2));
         
       } catch (error) {
         setError(error.message);
@@ -109,41 +109,14 @@ export default function Hero() {
           <p className="text-sm/relaxed font-normal text-gray-500 dark:text-gray-400 mb-4">
             {truncateWords(blog.description, 20)}
           </p>
-          <Link href={`/blog/${blog.id}`} className="mt-auto text-blue-600 dark:text-blue-500 hover:underline font-medium text-sm inline-flex items-center">
+          <Link href={`/blog/${blog._id}`} className="mt-auto text-blue-600 dark:text-blue-500 hover:underline font-medium text-sm inline-flex items-center">
             Read more
             <FaArrowRightLong className='ms-1.5' />
           </Link>
         </div>
       ))}
     </div>
-        {/* <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">25 Jan 2024</p>
-            <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
-              {truncateWords('How I Stay on Top of My Studies', 10)}
-            </h2>
-            <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-4">
-              {truncateWords('Staying organized is key. Here are my tips for managing coursework, projects, and prepping for exams as a computer science student.', 50)}
-            </p>
-            <Link href={'/'} className="text-blue-600 dark:text-blue-500 hover:underline font-medium text-sm inline-flex items-center">
-              Read more
-              <FaArrowRightLong className='ms-1.5' />
-            </Link>
-          </div>
-          <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">20 Jan 2024</p>
-            <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
-              {truncateWords('Balancing Studies and Personal Life', 10)}
-            </h2>
-            <p className="text-sm/relaxed font-normal text-gray-500 dark:text-gray-400 mb-4">
-              {truncateWords('Finding time for myself, friends, and family is a challenge. Here’s how I try to keep everything in balance while pursuing my degree.', 50)}
-            </p>
-            <Link href={'/'} className="text-blue-600 dark:text-blue-500 hover:underline font-medium text-sm inline-flex items-center">
-              Read more
-              <FaArrowRightLong className='ms-1.5' />
-            </Link>
-          </div>
-        </div> */}
+ 
       </div>
 
     </section>

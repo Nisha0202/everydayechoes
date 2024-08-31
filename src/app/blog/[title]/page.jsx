@@ -5,8 +5,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaRegCommentAlt } from "react-icons/fa";
 import BlogCard from '@/components/card/BlogCard';
 import CommentSection from '@/components/comment/CommentSection';
-
 import CommentModal from '@/components/commentinput/CommentModal';
+
 export default function BlogTitle({ params }) {
   const [blogData, setBlogData] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
@@ -16,68 +16,7 @@ export default function BlogTitle({ params }) {
 
   console.log("params", params.title);
 
-  //   const fetchData = async () => {
-  //     try {
-  //       // Ensure the title is correctly passed to the API route
-  //       const response = await fetch(`/api/blog?title=${params.title}`);
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  
-  //       const data = await response.json();
-  //       console.log("data", data); // Check the data returned
-  
-  //       // Set the fetched data
-  //       if (data.blog) {
-  //         setBlogData(data.blog);
-  //       } else {
-  //         throw new Error('Blog post not found');
-  //       }
-  
-  //       if (data.relatedPosts) {
-  //         setRelatedPosts(data.relatedPosts);
-  //       }
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  
-  //   if (params?.title) {
-  //     fetchData();
-  //   } else {
-  //     setError('Blog ID is missing');
-  //     setLoading(false);
-  //   }
-  // }, [params.title]);
   const title = params.title; // Directly use params.title
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       if (!title) return; // Avoid calling the API if title is not present
-
-  //       const response = await fetch(`http://localhost:3000/api/blog/${title}`);
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-
-  //       const data = await response.json();
-  //       console.log("data", data);
-
-  //       setBlogData(data.blog || null);
-  //       setRelatedPosts(data.relatedPosts || []);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [title]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -143,7 +82,7 @@ export default function BlogTitle({ params }) {
               blurDataURL="data:..."
               placeholder="blur"
               fill
-              objectFit='cover'
+              style={{objectFit:"cover"}}
               className="md:rounded-md border-2 border-gray-300 dark:border-gray-800"
             />
           </div>
