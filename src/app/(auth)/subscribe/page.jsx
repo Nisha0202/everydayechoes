@@ -21,43 +21,7 @@ const Subscribe = () => {
     if (name === 'name') setName(value);
   };
 
-  // const handleNextClick = async () => {
-  //   if (step <= 3) {
-  //     setLoading(true);
-  //     try {
-  //       const response = await fetch('http://localhost:3000/api/subscribe', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({ email, otp, name, step }),
-  //       });
-  
-  //       const data = await response.json();
-  
-  //       if (!response.ok) {
-  //         throw new Error(data.error || 'Something went wrong');
-  //       }
-  
-  //       if (step === 1 && data.message === 'OTP sent') {
-  //         setStep(2);
-  //       } else if (step === 2 && data.message === 'OTP verified') {
-  //         setStep(3);
-  //         setOTP('');   // Clear OTP field
-  //       } else if (step === 3 && data.message === 'Subscription successful') {
-  //         setSubscribed(true);
-  //         setEmail(''); // Clear email field
-  //         setOTP('');   
-  //         setName(''); 
-  //       }
-  //     } catch (error) {
-  //       console.error(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  // };
-  
+
   const handleNextClick = async () => {
     if (step <= 3) {
       setLoading(true);
@@ -79,7 +43,14 @@ const Subscribe = () => {
             setLoading(false);
             return;
           }
-          throw new Error(data.error || 'Something went wrong');
+
+          if (data.error === 'Invalid OTP') {
+            toast.error('Invalid OTP! Please Check Your Email Correctly.');
+            setLoading(false);
+            return;
+          }
+
+          toast.error('Something went wrong, Please try again.');
         }
 
         if (step === 1 && data.message === 'OTP sent') {
@@ -89,6 +60,7 @@ const Subscribe = () => {
           setOTP('');   // Clear OTP field
         } else if (step === 3 && data.message === 'Subscription successful') {
           setSubscribed(true);
+          toast.success("You’re in! Excited to share some awesome vibes with you. 😊😉")
           setEmail(''); // Clear email field
           setOTP('');   
           setName(''); 

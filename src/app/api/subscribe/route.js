@@ -74,9 +74,17 @@ export async function POST(req) {
       return NextResponse.json({ message: 'OTP verified' });
     }
 
+    // if (step === 3) {
+    //   await collection.updateOne({ email }, { $set: { name, verified: true } });
+    //   return NextResponse.json({ message: 'Subscription successful' });
+    // }
+
     if (step === 3) {
-      await collection.updateOne({ email }, { $set: { name, verified: true } });
-      return NextResponse.json({ message: 'Subscription successful' });
+        // Update the document by setting the `name`, marking as `verified`, and removing the `otp` field
+        await collection.updateOne(
+          { email },
+          { $set: { name, verified: true }, $unset: { otp: "" } }
+        );
     }
 
     return NextResponse.json({ error: 'Invalid step' }, { status: 400 });
