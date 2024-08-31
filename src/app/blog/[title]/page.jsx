@@ -14,37 +14,97 @@ export default function BlogTitle({ params }) {
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log("params", params.title);
+
+  //   const fetchData = async () => {
+  //     try {
+  //       // Ensure the title is correctly passed to the API route
+  //       const response = await fetch(`/api/blog?title=${params.title}`);
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  
+  //       const data = await response.json();
+  //       console.log("data", data); // Check the data returned
+  
+  //       // Set the fetched data
+  //       if (data.blog) {
+  //         setBlogData(data.blog);
+  //       } else {
+  //         throw new Error('Blog post not found');
+  //       }
+  
+  //       if (data.relatedPosts) {
+  //         setRelatedPosts(data.relatedPosts);
+  //       }
+  //     } catch (error) {
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  
+  //   if (params?.title) {
+  //     fetchData();
+  //   } else {
+  //     setError('Blog ID is missing');
+  //     setLoading(false);
+  //   }
+  // }, [params.title]);
+  const title = params.title; // Directly use params.title
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       if (!title) return; // Avoid calling the API if title is not present
+
+  //       const response = await fetch(`http://localhost:3000/api/blog/${title}`);
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+
+  //       const data = await response.json();
+  //       console.log("data", data);
+
+  //       setBlogData(data.blog || null);
+  //       setRelatedPosts(data.relatedPosts || []);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [title]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/blogs.json');
+        if (!title) return; // Avoid calling the API if title is not present
+  
+        const response = await fetch(`http://localhost:3000/api/blog/${title}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+  
         const data = await response.json();
-        const blog = data.find(blog => blog.id === parseInt(params.title, 10));
-        if (!blog) {
-          throw new Error('Blog post not found');
-        }
-        setBlogData(blog);
-
-        const related = data.filter(blog => blog.id !== parseInt(params.title, 10));
-        setRelatedPosts(related.slice(0, 2));
+        console.log("data", data);
+  
+        setBlogData(data.blog || null);
+        setRelatedPosts(data.relatedPosts || []);
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-
-    if (params?.title) {
-      fetchData();
-    } else {
-      setError('Blog ID is missing');
-      setLoading(false);
-    }
-  }, [params.title]);
-
+  
+    fetchData();
+  }, [title]); 
+  
+  
   const handleCommentClick = () => {
     setIsModalOpen(true);
   };

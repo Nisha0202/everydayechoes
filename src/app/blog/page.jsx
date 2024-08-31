@@ -21,7 +21,7 @@ const BlogList = () => {
         }
         const data = await response.json();
         
-        console.log('Fetched blogs:', data.blogs);
+        // console.log('Fetched blogs:', data.blogs);
         
         setBlogs(prevBlogs => {
           const newBlogs = data.blogs.filter(blog => !prevBlogs.some(prevBlog => prevBlog._id === blog._id));
@@ -94,7 +94,7 @@ const BlogList = () => {
     <section className="bg-white dark:bg-gray-900">
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
         <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
-        <div className="flex flex-wrap justify-around gap-6">
+        <div className="flex flex-wrap justify-around lg:gap-6 gap-8">
           {blogs.length > 0 ? (
             blogs.map((blog) => (
               <BlogCard key={blog._id} blog={blog} />
