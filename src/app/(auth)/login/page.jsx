@@ -3,26 +3,70 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { FcGoogle } from 'react-icons/fc';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
 
-  const handleNextClick = () => {
+  // API URL
+  const apiUrl = 'http://localhost:3000/api/login';
+
+  const handleNextClick = async () => {
     if (step === 1 && email) {
-      setStep(2); // Move to OTP input step
+      setLoading(true);
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, step: 1 }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Step 1 complete, moving to step 2');
+          setStep(2); // Move to OTP input step
+        } else {
+          toast.error(data.error || 'Failed to send OTP');
+        }
+      } catch (error) {
+        console.error('Error sending OTP:', error);
+        toast.error('Failed to send OTP');
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+  
+  const handleLoginClick = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, otp, step: 2 }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log('Login successful');
+        console.log(data);
+        toast.success(`Hi ${data.username}`); // Assuming the API returns a username
+      } else {
+        toast.error(data.error || 'Invalid OTP');
+      }
+    } catch (error) {
+      console.error('Error verifying OTP:', error);
+      toast.error('Failed to verify OTP');
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleLoginClick = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      // Add logic here for OTP verification and login
-    }, 1000); // Simulate API call
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -72,9 +116,17 @@ const Login = () => {
                   <button
                     type="button"
                     onClick={handleNextClick}
-                    className="mt-4 w-full bg-gray-500 hover:bg-gray-600  text-center text-white font-semibold rounded-md py-2 text-sm px-4 focus:ring-2 focus:ring-gray-300 "
+                    className={`w-full text-center text-white font-semibold rounded-md py-2 mt-6 text-sm px-4 focus:ring-2 ${step < 3
+                      ? 'bg-gray-500 hover:bg-gray-600 '
+                      : 'bg-gray-400 cursor-not-allowed'
+                    }`}
                   >
-                    Next
+                    {loading && (
+                      <span className="flex items-center justify-center w-full">
+                        <RiLoader3Fill className="animate-spin text-xl" />
+                      </span>
+                    )}
+                    {!loading && <span>Next</span>}
                   </button>
                 </div>
               )}
@@ -127,16 +179,22 @@ const Login = () => {
 
               <button
                 type="button"
-                className="w-full bg-gray-200 font-semibold text-sm px-4 lg:py-2 py-3 hover:bg-gray-400 text-center text-gray-900 rounded-md focus:ring-2 focus:ring-red-300 sm:w-auto flex items-center justify-center"
+                className="w-full  font-semibold text-sm px-4 lg:py-2 py-3 text-center 
+                 rounded-md focus:ring-2 focus:ring-blue-200 flex items-center justify-center
+                  bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-900 dark:bg-gray-700"
               >
-                <FcGoogle className="mr-2 text-xl" /> Log In with Google
+                <FcGoogle className="mr-2 text-2xl" /> Login with Google
               </button>
             </form>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
+
+
+
 };
 
 export default Login;
