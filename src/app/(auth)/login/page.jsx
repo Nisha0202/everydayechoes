@@ -55,7 +55,7 @@ const Login = () => {
       if (response.ok) {
         console.log('Login successful');
         console.log(data);
-        toast.success(`Hi ${data.username}`); // Assuming the API returns a username
+        toast.success(`Hey ${data.username}, looking fabulous today!`); 
       } else {
         toast.error(data.error || 'Invalid OTP');
       }
