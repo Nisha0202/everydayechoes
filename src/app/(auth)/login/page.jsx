@@ -40,7 +40,41 @@ const Login = () => {
       }
     }
   };
-  
+
+  // const handleLoginClick = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch(apiUrl, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ email, otp, step: 2 }),
+  //     });
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       console.log('Login successful');
+  //       console.log(data);
+  //       toast.success(`Hey ${data.username}, looking fabulous today!`);
+
+  //       // Capture the JWT token
+  //       const token = data.token;
+
+  //       // Store the token in local storage or state (for example, localStorage)
+  //       localStorage.setItem('authToken', token);
+
+
+  //     } else {
+  //       toast.error(data.error || 'Invalid OTP');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error verifying OTP:', error);
+  //     toast.error('Failed to verify OTP');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleLoginClick = async () => {
     setLoading(true);
     try {
@@ -55,7 +89,13 @@ const Login = () => {
       if (response.ok) {
         console.log('Login successful');
         console.log(data);
-        toast.success(`Hey ${data.username}, looking fabulous today!`); 
+        toast.success(`Hey ${data.username}, looking fabulous today!`);
+  
+        // Capture the JWT token
+        const token = data.token;
+  
+        // Store the token in local storage or state (for example, localStorage)
+        localStorage.setItem('authToken', token);
       } else {
         toast.error(data.error || 'Invalid OTP');
       }
@@ -66,8 +106,7 @@ const Login = () => {
       setLoading(false);
     }
   };
-
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'email') setEmail(value);
@@ -119,7 +158,7 @@ const Login = () => {
                     className={`w-full text-center text-white font-semibold rounded-md py-2 mt-6 text-sm px-4 focus:ring-2 ${step < 3
                       ? 'bg-gray-500 hover:bg-gray-600 '
                       : 'bg-gray-400 cursor-not-allowed'
-                    }`}
+                      }`}
                   >
                     {loading && (
                       <span className="flex items-center justify-center w-full">

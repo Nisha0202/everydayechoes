@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowRightLong } from "react-icons/fa6";
-
+import { format } from 'date-fns';
 export default function Hero() {
+
 
   function truncateWords(str, numWords) {
     if (!str) return '';
@@ -42,7 +43,7 @@ export default function Hero() {
 
   // Handle loading, error, and render logic
   if (loading) {
-    return <div className='w-full flex items-center justify-center '>Loading...</div>;
+    return <div className='w-full flex items-center justify-center h-full '>Loading...</div>;
   }
 
   if (error) {
@@ -102,7 +103,10 @@ export default function Hero() {
         <div className="grid md:grid-cols-2 gap-8">
       {blogs.map((blog) => (
         <div key={blog.id} className="bg-gray-100  dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{blog.date}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+          {blog.date ? format(new Date(blog.date), 'dd MMMM yyyy') : 'Date not available'}
+          </p>
+
           <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
             {truncateWords(blog.title, 10)}
           </h2>
