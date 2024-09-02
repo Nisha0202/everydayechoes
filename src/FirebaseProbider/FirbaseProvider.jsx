@@ -13,7 +13,7 @@ export default function FirebaseProvider(props) {
   const googleProvider = new GoogleAuthProvider();
   const [usern, setUsern] = useState(null);
   const [ googleLoading, setLoading] = useState(false); // Optional: to manage loading state
-  const [subscribed, setSubscribed] = useState(false); // Optional: to manage subscription state
+  const [ googlesub, setSubscribed] = useState(false); // Optional: to manage subscription state
 
   const googleLogin = () => {
     setLoading(true);
@@ -29,7 +29,9 @@ export default function FirebaseProvider(props) {
   };
 
   const saveUserToDatabase = async (user) => {
-     // Start loading
+
+    //  console.log("data:", user);
+    //  console.log("email:", user.email);
     try {
       const response = await fetch('http://localhost:3000/api/subscribe', {
         method: 'POST',
@@ -39,8 +41,8 @@ export default function FirebaseProvider(props) {
         body: JSON.stringify({
           email: user.email,
           otp: null,
-          username: user.displayName || user.email.split('@')[0], // Fallback to email username if displayName is unavailable
-          step: 3
+          name: user.displayName || user.email.split('@')[0],
+          step: 4
         }),
       });
 
@@ -51,14 +53,11 @@ export default function FirebaseProvider(props) {
           toast.error('Email already registered. Please log in.');
           return;
         }
-        if (data.error === 'Invalid OTP') {
-          toast.error('Invalid OTP! Please check your email correctly.');
-          return;
-        }
-        toast.error('Something went wrong. Please try again.');
+      
       } else if (data.message === 'Subscription successful') {
         setSubscribed(true);
-        toast.success("You’re in! Excited to share some awesome vibes with you. 😊😉");
+        const username = user.displayName || user.email.split('@')[0];
+        toast.success(`Hello ${username}! Excited to share some awesome vibes with you. 😊😉`);
         const token = data.token;
         localStorage.setItem('authToken', token);
       }
@@ -85,7 +84,7 @@ export default function FirebaseProvider(props) {
     googleLogin,
     usern,
    googleLoading,
-    subscribed,
+     googlesub,
   };
 
   return (

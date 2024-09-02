@@ -8,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 const Subscribe = () => {
-  const { googleLogin, googleLoading } = useContext(AuthContext);
+  const { googleLogin, googleLoading, googlesub } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
   const [step, setStep] = useState(1);
@@ -183,13 +183,20 @@ const Subscribe = () => {
                   </span>
                 )}
 
-                {subscribed ? (
-                  <span className="flex items-center justify-center w-full">
-                    <FaCheck className="mr-2 text-white" /> Subscribed
-                  </span>
-                ) : (
-                  !loading && <span>{step < 3 ? 'Next' : 'Subscribe'}</span>
-                )}
+                {
+                  (subscribed || googlesub) ? (
+                    <span className="flex items-center justify-center w-full">
+                      <FaCheck className="mr-2 text-white" /> Subscribed
+                    </span>
+                  ) : (
+                    !loading && (
+                      <span>
+                        {googleLoading ? 'Google Login' : (step < 3 ? 'Next' : 'Subscribe')}
+                      </span>
+                    )
+                  )
+                }
+        
               </button>
 
               <div className="flex justify-between items-center mt-4">
