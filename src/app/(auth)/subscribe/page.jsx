@@ -1,12 +1,14 @@
 "use client";
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { FaCheck } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 const Subscribe = () => {
+  const { googleLogin, googleLoading } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
   const [step, setStep] = useState(1);
@@ -22,56 +24,6 @@ const Subscribe = () => {
   };
 
 
-  // const handleNextClick = async () => {
-  //   if (step <= 3) {
-  //     setLoading(true);
-  //     try {
-  //       const response = await fetch('http://localhost:3000/api/subscribe', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({ email, otp, name, step }),
-  //       });
-
-  //       const data = await response.json();
-
-  //       if (!response.ok) {
-  //         if (data.error === 'Email already registered. Please log in.') {
-  //           toast.error('Email already registered. Please log in.');
-  //           setStep(1); // Reset the step to 1
-  //           setLoading(false);
-  //           return;
-  //         }
-
-  //         if (data.error === 'Invalid OTP') {
-  //           toast.error('Invalid OTP! Please Check Your Email Correctly.');
-  //           setLoading(false);
-  //           return;
-  //         }
-
-  //         toast.error('Something went wrong, Please try again.');
-  //       }
-
-  //       if (step === 1 && data.message === 'OTP sent') {
-  //         setStep(2);
-  //       } else if (step === 2 && data.message === 'OTP verified') {
-  //         setStep(3);
-  //         setOTP('');   // Clear OTP field
-  //       } else if (step === 3 && data.message === 'Subscription successful') {
-  //         setSubscribed(true);
-  //         toast.success("You’re in! Excited to share some awesome vibes with you. 😊😉")
-  //         setEmail(''); // Clear email field
-  //         setOTP('');   
-  //         setName(''); 
-  //       }
-  //     } catch (error) {
-  //       console.error(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  // };
 
   const handleNextClick = async () => {
     if (step <= 3) {
@@ -84,9 +36,9 @@ const Subscribe = () => {
           },
           body: JSON.stringify({ email, otp, name, step }),
         });
-  
+
         const data = await response.json();
-  
+
         if (!response.ok) {
           if (data.error === 'Email already registered. Please log in.') {
             toast.error('Email already registered. Please log in.');
@@ -94,16 +46,16 @@ const Subscribe = () => {
             setLoading(false);
             return;
           }
-  
+
           if (data.error === 'Invalid OTP') {
             toast.error('Invalid OTP! Please Check Your Email Correctly.');
             setLoading(false);
             return;
           }
-  
+
           toast.error('Something went wrong, Please try again.');
         }
-  
+
         if (step === 1 && data.message === 'OTP sent') {
           setStep(2);
         } else if (step === 2 && data.message === 'OTP verified') {
@@ -112,17 +64,17 @@ const Subscribe = () => {
         } else if (step === 3 && data.message === 'Subscription successful') {
           setSubscribed(true);
           toast.success("You’re in! Excited to share some awesome vibes with you. 😊😉");
-  
+
           // Capture the JWT token
           const token = data.token;
-          
+
           // Store the token in local storage or state (for example, localStorage)
           localStorage.setItem('authToken', token);
-  
+
           // Clear input fields
-          setEmail(''); 
-          setOTP('');   
-          setName(''); 
+          setEmail('');
+          setOTP('');
+          setName('');
         }
       } catch (error) {
         console.error(error.message);
@@ -131,7 +83,7 @@ const Subscribe = () => {
       }
     }
   };
-  
+
   return (
     <section className="">
       <div className="py-10 px-4 mx-auto max-w-screen-xl lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-16">
@@ -225,11 +177,12 @@ const Subscribe = () => {
                   : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
                   }`}
               >
-                {loading && (
+                {(loading || googleLoading) && (
                   <span className="flex items-center justify-center w-full">
                     <RiLoader3Fill className="animate-spin text-xl" />
                   </span>
                 )}
+
                 {subscribed ? (
                   <span className="flex items-center justify-center w-full">
                     <FaCheck className="mr-2 text-white" /> Subscribed
@@ -256,15 +209,16 @@ const Subscribe = () => {
                 className="w-full  font-semibold text-sm px-4 lg:py-2 py-3 text-center 
                  rounded-md focus:ring-2 focus:ring-blue-200 flex items-center justify-center
                   bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-900 dark:bg-gray-700"
+                onClick={() => googleLogin()}
               >
                 <FcGoogle className="mr-2 text-2xl" /> Subscribe with Google
               </button>
             </form>
-          
+
           </div>
         </div>
       </div>
-        <ToastContainer />
+      <ToastContainer />
     </section>
   );
 };
