@@ -21,7 +21,7 @@ export default function Hero() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('https://everydayechoes.vercel.app/api/blog?page=${page}&limit=3');
+        const response = await fetch('http://localhost:3000/api/blog?page=${page}&limit=3');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -47,7 +47,7 @@ export default function Hero() {
   }
 
   if (error) {
-    return <div className='w-full flex items-center justify-center text-red-500'>Error: {error}</div>;
+    return <div className='w-full flex items-center justify-center text-red-500 h-full'>Error: {error}</div>;
   }
 
   return (
@@ -75,9 +75,6 @@ export default function Hero() {
               </Link>
             </div>
 
-
-
-
           </div>
 
           <div className="lg:w-1/2 w-full rounded flex justify-end">
@@ -94,10 +91,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
-
-
-
 
         {/* blogs */}
         <div className="grid md:grid-cols-2 gap-8">

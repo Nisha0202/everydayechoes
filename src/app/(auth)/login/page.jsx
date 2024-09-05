@@ -17,7 +17,7 @@ const Login = () => {
   const [otp, setOtp] = useState('');
 
   // API URL
-  const apiUrl = 'https://everydayechoes.vercel.app/api/login';
+  const apiUrl = 'http://localhost:3000/api/login';
 
   const handleNextClick = async () => {
     if (step === 1 && email) {

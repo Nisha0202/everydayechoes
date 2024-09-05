@@ -26,7 +26,7 @@ export default function BlogTitle({ params }) {
       try {
         if (!title) return; // Avoid calling the API if title is not present
   
-        const response = await fetch(`https://everydayechoes.vercel.app/api/blog/${title}`);
+        const response = await fetch(`http://localhost:3000/api/blog/${title}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

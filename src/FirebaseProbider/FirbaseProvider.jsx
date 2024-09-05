@@ -29,7 +29,7 @@ export default function FirebaseProvider(props) {
   const saveUserToDatabase = async (user) => {
 
     try {
-      const response = await fetch('https://everydayechoes.vercel.app/api/subscribe', {
+      const response = await fetch('http://localhost:3000/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function FirebaseProvider(props) {
   };
 
   // API URL
-  const apiUrl = 'https://everydayechoes.vercel.app/api/login';
+  const apiUrl = 'http://localhost:3000/api/login';
 
   const loginToDatabase = async (user) => {
     setLoading(true);

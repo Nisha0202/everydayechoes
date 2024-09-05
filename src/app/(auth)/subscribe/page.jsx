@@ -28,7 +28,7 @@ const Subscribe = () => {
     if (step <= 3) {
       setLoading(true);
       try {
-        const response = await fetch('https://everydayechoes.vercel.app/api/subscribe', {
+        const response = await fetch('http://localhost:3000/api/subscribe', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
