@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
-import { FaCheck } from 'react-icons/fa6';
+import { FaCheck } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
