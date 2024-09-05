@@ -18,12 +18,10 @@ const Subscribe = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'email') setEmail(value);
-    if (name === 'otp') setOTP(value);
-    if (name === 'name') setName(value);
+    if (name === "email") setEmail(value);
+    if (name === "otp") setOTP(value);
+    if (name === "name") setName(value);
   };
-
-
 
   const handleNextClick = async () => {
     if (step <= 3) {
@@ -47,21 +45,21 @@ const Subscribe = () => {
             return;
           }
 
-          if (data.error === 'Invalid OTP') {
-            toast.error('Invalid OTP! Please Check Your Email Correctly.');
+          if (data.error === "Invalid OTP") {
+            toast.error("Invalid OTP! Please Check Your Email Correctly.");
             setLoading(false);
             return;
           }
 
-          toast.error('Something went wrong, Please try again.');
+          toast.error("Something went wrong, Please try again.");
         }
 
-        if (step === 1 && data.message === 'OTP sent') {
+        if (step === 1 && data.message === "OTP sent") {
           setStep(2);
-        } else if (step === 2 && data.message === 'OTP verified') {
+        } else if (step === 2 && data.message === "OTP verified") {
           setStep(3);
           setOTP('');   // Clear OTP field
-        } else if (step === 3 && data.message === 'Subscription successful') {
+        } else if (step === 3 && data.message === "Subscription successful") {
           setSubscribed(true);
           toast.success("You’re in! Excited to share some awesome vibes with you. 😊😉");
 
@@ -173,8 +171,8 @@ const Subscribe = () => {
                 type="button"
                 onClick={handleNextClick}
                 className={`w-full text-center text-white font-semibold rounded-md py-2 text-sm px-4 focus:ring-2 ${step < 3
-                  ? 'bg-gray-500 hover:bg-gray-600 '
-                  : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                  ? "bg-gray-500 hover:bg-gray-600 "
+                  : "bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   }`}
               >
                 {(loading || googleLoading) && (
@@ -191,7 +189,7 @@ const Subscribe = () => {
                   ) : (
                     !loading && (
                       <span>
-                        {googleLoading ? '' : (step < 3 ? 'Next' : 'Subscribe')}
+                        {googleLoading ? "" : (step < 3 ? "Next" : "Subscribe")}
                       </span>
                     )
                   )
@@ -201,7 +199,7 @@ const Subscribe = () => {
 
               <div className="flex justify-between items-center mt-4">
                 <Link href="/login" className="text-sm ">
-                  Already have subscribed? <span className=' ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline'>Log In</span>
+                  Already have subscribed? <span className="ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Log In</span>
                 </Link>
               </div>
 

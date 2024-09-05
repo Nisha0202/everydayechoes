@@ -1,5 +1,5 @@
 "use client";
-import Link from 'next/link';
+import Link from "next/link";
 import React, { useContext, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { FcGoogle } from 'react-icons/fc';
@@ -69,7 +69,7 @@ const Login = () => {
         // Store the token in local storage or state (for example, localStorage)
         localStorage.setItem('authToken', token);
       } else {
-        toast.error(data.error || 'Invalid OTP');
+        toast.error(data.error || "Invalid OTP");
       }
     } catch (error) {
       console.error('Error verifying OTP:', error);
@@ -129,8 +129,8 @@ const Login = () => {
                     type="button"
                     onClick={handleNextClick}
                     className={`w-full text-center text-white font-semibold rounded-md py-2 mt-6 text-sm px-4 focus:ring-2 ${step < 3
-                      ? 'bg-gray-500 hover:bg-gray-600 '
-                      : 'bg-gray-400 cursor-not-allowed'
+                      ? "bg-gray-500 hover:bg-gray-600 "
+                      : "bg-gray-400 cursor-not-allowed"
                       }`}
                   >
 
@@ -204,8 +204,8 @@ const Login = () => {
 
               <div className="flex justify-between items-center mt-4">
                 <Link href="/subscribe" className="text-sm">
-                  Don't have an account? <span className='ms-1 font-medium text-blue-600
-                   dark:text-blue-500 hover:underline'>Subscribe Now</span>
+                  Don"t have an account? <span className="ms-1 font-medium text-blue-600
+                   dark:text-blue-500 hover:underline">Subscribe Now</span>
                 </Link>
               </div>
 
