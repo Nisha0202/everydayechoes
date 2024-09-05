@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import React, { useContext, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
