@@ -90,7 +90,7 @@ const Subscribe = () => {
             Subscribe Today
           </h1>
           <p className="lg:mb-6 mb-4 font-light text-gray-500 dark:text-gray-400">
-            If you're interested in following the daily life of a female student navigating her way through studies, experiences,
+            If you&apos;re interested in following the daily life of a female student navigating her way through studies, experiences,
             and the little moments that make life special, subscribe to Everyday Echoes.
           </p>
           <Link
