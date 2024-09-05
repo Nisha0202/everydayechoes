@@ -1,3 +1,4 @@
+// login
 import { connectDB } from "@/lib/config/db"; // Adjust the path as necessary
 import { NextResponse } from "next/server";
 import nodemailer from 'nodemailer';
@@ -40,63 +41,7 @@ const sendOTP = async (email, otp) => {
   });
 };
 
-// Handler for the subscription
-// export async function POST(req) {
-//   try {
-//     const { email, otp, step } = await req.json();
-
-//     if (!email) {
-//       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
-//     }
-
-//     const db = await connectDB();
-//     const collection = db.collection('users');
-
-//     // Check if email already exists in the database
-//     const existingUser = await collection.findOne({ email });
-//     if (!existingUser) {
-//       return NextResponse.json({ error: 'Email not found. Please register.' }, { status: 400 });
-//     }
-
-//     if (step === 1) {
-//       const otp = generateOTP();
-//       await sendOTP(email, otp);
-//       // Save the OTP to the database (for verification later)
-//       await collection.updateOne(
-//         { email },
-//         { $set: { otp } } // Remove expiry
-//       );
-//       return NextResponse.json({ message: 'OTP sent' });
-//     }
-
-//     if (step === 2) {
-//       const subscriber = await collection.findOne({ email });
-
-//       if (!subscriber || subscriber.otp !== otp) {
-//         return NextResponse.json({ error: 'Invalid OTP' }, { status: 400 });
-//       }
-
-//       //   return NextResponse.json({ message: 'OTP verified' });
-//       await collection.updateOne(
-//         { email },
-//         { $set: { verified: true }, $unset: { otp: "" } }
-//       );
-
-//       // Generate JWT token
-//       const token = jwt.sign({ name, email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-//       // Login successful
-//       return NextResponse.json({ message: `Hi ${subscriber.name}`, username: subscriber.name, token });
-//     }
-
-
-//     return NextResponse.json({ error: 'Invalid step' }, { status: 400 });
-//   } catch (error) {
-//     console.error('Error processing subscription:', error);
-//     return NextResponse.json({ error: 'Failed to process subscription' }, { status: 500 });
-//   }
-// }
-
+// Handler for the login
 export async function POST(req) {
   try {
     const { email, otp, step } = await req.json();

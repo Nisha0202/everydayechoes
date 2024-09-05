@@ -1,6 +1,4 @@
 "use client";
-
-
 import React, { createContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import auth from '../firebase/firebase.config';
@@ -12,8 +10,8 @@ export default function FirebaseProvider(props) {
 
   const googleProvider = new GoogleAuthProvider();
   const [usern, setUsern] = useState(null);
-  const [ googleLoading, setLoading] = useState(false); // Optional: to manage loading state
-  const [ googlesub, setSubscribed] = useState(false); // Optional: to manage subscription state
+  const [googleLoading, setLoading] = useState(false); // Optional: to manage loading state
+  const [googlesub, setSubscribed] = useState(false); // Optional: to manage subscription state
 
   const googleLogin = () => {
     setLoading(true);
@@ -30,8 +28,6 @@ export default function FirebaseProvider(props) {
 
   const saveUserToDatabase = async (user) => {
 
-    //  console.log("data:", user);
-    //  console.log("email:", user.email);
     try {
       const response = await fetch('http://localhost:3000/api/subscribe', {
         method: 'POST',
@@ -53,7 +49,7 @@ export default function FirebaseProvider(props) {
           toast.error('Email already registered. Please log in.');
           return;
         }
-      
+
       } else if (data.message === 'Subscription successful') {
         setSubscribed(true);
         const username = user.displayName || user.email.split('@')[0];
@@ -69,6 +65,63 @@ export default function FirebaseProvider(props) {
     }
   };
 
+
+  const googleUp = () => {
+    setLoading(true);
+    signInWithPopup(auth, googleProvider)
+      .then(async (result) => {
+        setUsern(result.user);
+        await loginToDatabase(result.user);
+      })
+      .catch((error) => {
+        console.error("Error during Google sign-in:", error.message);
+        toast.error('Error during Google sign-in.');
+      });
+  };
+
+  // API URL
+  const apiUrl = 'http://localhost:3000/api/login';
+
+  const loginToDatabase = async (user) => {
+    setLoading(true);
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: user.email,
+          step: 2
+
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log('Login successful');
+        console.log(data);
+        toast.success(`Hey ${data.username}, looking fabulous today!`);
+        setSubscribed(true);
+        
+        // Capture the JWT token
+        const token = data.token;
+
+        // Store the token in local storage or state (for example, localStorage)
+        localStorage.setItem('authToken', token);
+      } else {
+        toast.error(data.error || 'Invalid OTP');
+      }
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+      toast.error('Failed to send OTP');
+    } finally {
+      setLoading(false); // End loading
+    }
+  };
+
+
+
+
   // Observer
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -82,9 +135,10 @@ export default function FirebaseProvider(props) {
 
   const allValues = {
     googleLogin,
+    googleUp,
     usern,
-   googleLoading,
-     googlesub,
+    googleLoading,
+    googlesub,
   };
 
   return (

@@ -191,7 +191,7 @@ const Subscribe = () => {
                   ) : (
                     !loading && (
                       <span>
-                        {googleLoading ? 'Google Login' : (step < 3 ? 'Next' : 'Subscribe')}
+                        {googleLoading ? '' : (step < 3 ? 'Next' : 'Subscribe')}
                       </span>
                     )
                   )

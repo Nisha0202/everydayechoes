@@ -1,12 +1,17 @@
 "use client";
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { FcGoogle } from 'react-icons/fc';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
+import { FaCheck } from 'react-icons/fa6';
+
 const Login = () => {
+  const { googleUp, googleLoading, googlesub } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
@@ -41,40 +46,6 @@ const Login = () => {
     }
   };
 
-  // const handleLoginClick = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch(apiUrl, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ email, otp, step: 2 }),
-  //     });
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       console.log('Login successful');
-  //       console.log(data);
-  //       toast.success(`Hey ${data.username}, looking fabulous today!`);
-
-  //       // Capture the JWT token
-  //       const token = data.token;
-
-  //       // Store the token in local storage or state (for example, localStorage)
-  //       localStorage.setItem('authToken', token);
-
-
-  //     } else {
-  //       toast.error(data.error || 'Invalid OTP');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error verifying OTP:', error);
-  //     toast.error('Failed to verify OTP');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleLoginClick = async () => {
     setLoading(true);
     try {
@@ -90,10 +61,11 @@ const Login = () => {
         console.log('Login successful');
         console.log(data);
         toast.success(`Hey ${data.username}, looking fabulous today!`);
-  
+        setSubscribed(true);
+
         // Capture the JWT token
         const token = data.token;
-  
+
         // Store the token in local storage or state (for example, localStorage)
         localStorage.setItem('authToken', token);
       } else {
@@ -106,7 +78,7 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'email') setEmail(value);
@@ -148,7 +120,8 @@ const Login = () => {
                     id="email"
                     value={email}
                     onChange={handleInputChange}
-                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-md
+                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required
                   />
@@ -160,12 +133,37 @@ const Login = () => {
                       : 'bg-gray-400 cursor-not-allowed'
                       }`}
                   >
-                    {loading && (
-                      <span className="flex items-center justify-center w-full">
-                        <RiLoader3Fill className="animate-spin text-xl" />
-                      </span>
-                    )}
-                    {!loading && <span>Next</span>}
+
+
+{
+  (loading || googleLoading) ? (
+    <span className="flex items-center justify-center w-full">
+      <RiLoader3Fill className="animate-spin text-xl" />
+    </span>
+  ) : (
+    !googlesub && <span>Next</span> // Don't show "Next" if googlesub is true
+  )
+}
+
+
+{
+  (subscribed || googlesub) && (
+    <span className="flex items-center justify-center w-full">
+      <FaCheck className="mr-2 text-white" /> Subscribed
+    </span>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
                   </button>
                 </div>
               )}
@@ -206,7 +204,8 @@ const Login = () => {
 
               <div className="flex justify-between items-center mt-4">
                 <Link href="/subscribe" className="text-sm">
-                  Don't have an account? <span className='ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline'>Subscribe Now</span>
+                  Don't have an account? <span className='ms-1 font-medium text-blue-600
+                   dark:text-blue-500 hover:underline'>Subscribe Now</span>
                 </Link>
               </div>
 
@@ -221,6 +220,7 @@ const Login = () => {
                 className="w-full  font-semibold text-sm px-4 lg:py-2 py-3 text-center 
                  rounded-md focus:ring-2 focus:ring-blue-200 flex items-center justify-center
                   bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-900 dark:bg-gray-700"
+                onClick={() => googleUp()}
               >
                 <FcGoogle className="mr-2 text-2xl" /> Login with Google
               </button>
@@ -231,9 +231,6 @@ const Login = () => {
       <ToastContainer />
     </section>
   );
-
-
-
 };
 
 export default Login;
