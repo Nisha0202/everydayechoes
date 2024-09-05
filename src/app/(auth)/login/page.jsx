@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import React, { useContext, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
@@ -133,37 +132,17 @@ const Login = () => {
                       : "bg-gray-400 cursor-not-allowed"
                       }`}
                   >
-
-
-{
-  (loading || googleLoading) ? (
-    <span className="flex items-center justify-center w-full">
-      <RiLoader3Fill className="animate-spin text-xl" />
-    </span>
-  ) : (
-    !googlesub && <span>Next</span> // Don't show "Next" if googlesub is true
-  )
-}
-
-
-{
-  (subscribed || googlesub) && (
-    <span className="flex items-center justify-center w-full">
-      <FaCheck className="mr-2 text-white" /> Subscribed
-    </span>
-  )
-}
-
-
-
-
-
-
-
-
-
-
-
+                    {loading || googleLoading ? (
+                      <span className="flex items-center justify-center w-full">
+                        <RiLoader3Fill className="animate-spin text-xl" />
+                      </span>
+                    ) : !googlesub ? (
+                      <span>Next</span> // Don't show "Next" if googlesub is true
+                    ) : (
+                      <span className="flex items-center justify-center w-full">
+                        <FaCheck className="mr-2 text-white" /> Subscribed
+                      </span>
+                    )}
                   </button>
                 </div>
               )}
@@ -204,7 +183,7 @@ const Login = () => {
 
               <div className="flex justify-between items-center mt-4">
                 <Link href="/subscribe" className="text-sm">
-                  Don"t have an account? <span className="ms-1 font-medium text-blue-600
+                  Don&apos;t have an account? <span className="ms-1 font-medium text-blue-600
                    dark:text-blue-500 hover:underline">Subscribe Now</span>
                 </Link>
               </div>
@@ -217,7 +196,7 @@ const Login = () => {
 
               <button
                 type="button"
-                className="w-full  font-semibold text-sm px-4 lg:py-2 py-3 text-center 
+                className="w-full font-semibold text-sm px-4 lg:py-2 py-3 text-center 
                  rounded-md focus:ring-2 focus:ring-blue-200 flex items-center justify-center
                   bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-900 dark:bg-gray-700"
                 onClick={() => googleUp()}

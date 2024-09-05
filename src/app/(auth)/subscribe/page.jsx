@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
+
 const Subscribe = () => {
   const { googleLogin, googleLoading, googlesub } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -52,6 +53,8 @@ const Subscribe = () => {
           }
 
           toast.error("Something went wrong, Please try again.");
+          setLoading(false);
+          return;
         }
 
         if (step === 1 && data.message === "OTP sent") {
@@ -108,7 +111,7 @@ const Subscribe = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm  text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm text-gray-900 dark:text-white"
                   >
                     Your Email
                   </label>
@@ -174,6 +177,7 @@ const Subscribe = () => {
                   ? "bg-gray-500 hover:bg-gray-600 "
                   : "bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   }`}
+                disabled={loading || googleLoading} // Disable button when loading
               >
                 {(loading || googleLoading) && (
                   <span className="flex items-center justify-center w-full">
@@ -194,11 +198,10 @@ const Subscribe = () => {
                     )
                   )
                 }
-        
               </button>
 
               <div className="flex justify-between items-center mt-4">
-                <Link href="/login" className="text-sm ">
+                <Link href="/login" className="text-sm">
                   Already have subscribed? <span className="ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Log In</span>
                 </Link>
               </div>
@@ -211,15 +214,13 @@ const Subscribe = () => {
 
               <button
                 type="button"
-                className="w-full  font-semibold text-sm px-4 lg:py-2 py-3 text-center 
-                 rounded-md focus:ring-2 focus:ring-blue-200 flex items-center justify-center
-                  bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-900 dark:bg-gray-700"
+                className="w-full font-semibold text-sm px-4 lg:py-2 py-3 text-center rounded-md focus:ring-2 focus:ring-blue-200 flex items-center justify-center bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-900 dark:bg-gray-700"
                 onClick={() => googleLogin()}
+                disabled={googleLoading} // Disable button when loading
               >
                 <FcGoogle className="mr-2 text-2xl" /> Subscribe with Google
               </button>
             </form>
-
           </div>
         </div>
       </div>
