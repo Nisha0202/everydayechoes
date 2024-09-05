@@ -137,7 +137,7 @@ const Login = () => {
                         <RiLoader3Fill className="animate-spin text-xl" />
                       </span>
                     ) : !googlesub ? (
-                      <span>Next</span> // Don't show "Next" if googlesub is true
+                      <span>Next</span> // Dont show "Next" if googlesub is true
                     ) : (
                       <span className="flex items-center justify-center w-full">
                         <FaCheck className="mr-2 text-white" /> Subscribed

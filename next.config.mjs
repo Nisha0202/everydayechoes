@@ -1,21 +1,36 @@
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+ 
+//     images: {
+//         remotePatterns: [
+//           {
+//             protocol: 'https',
+//             hostname: 'images.unsplash.com',
+//             pathname: '**',
+//           },
+//         ],
+//       },
+//       eslint: {
+//         ignoreDuringBuilds: true, 
+//       }
+// };
+
+// export default nextConfig;
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- 
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 'images.unsplash.com',
-            pathname: '**',
-          },
-        ],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '**',
       },
-      eslint: {
-        ignoreDuringBuilds: true, 
-      },
-      rules: {
-        'react/no-unescaped-entities': 'off',
-      },
+    ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true, // This allows the build to succeed even if there are ESLint errors
+  },
 };
 
 export default nextConfig;
+

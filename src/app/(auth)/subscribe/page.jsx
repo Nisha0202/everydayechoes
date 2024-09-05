@@ -64,7 +64,7 @@ const Subscribe = () => {
           setOTP('');   // Clear OTP field
         } else if (step === 3 && data.message === "Subscription successful") {
           setSubscribed(true);
-          toast.success("You’re in! Excited to share some awesome vibes with you. 😊😉");
+          toast.success("You are in! Excited to share some awesome vibes with you. 😊😉");
 
           // Capture the JWT token
           const token = data.token;
