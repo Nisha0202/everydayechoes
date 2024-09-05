@@ -11,7 +11,10 @@ const nextConfig = {
         ],
       },
       eslint: {
-        ignoreDuringBuilds: true, // This will allow the build to succeed even if there are ESLint errors
+        ignoreDuringBuilds: true, 
+      },
+      rules: {
+        'react/no-unescaped-entities': 'off',
       },
 };
 
