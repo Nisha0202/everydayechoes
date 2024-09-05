@@ -15,7 +15,7 @@ const BlogList = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/blog?page=${page}&limit=3`); 
+        const response = await fetch(`https://everydayechoes.vercel.app/api/blog?page=${page}&limit=3`); 
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
