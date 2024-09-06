@@ -57,20 +57,44 @@ export default function BlogTitle({ params }) {
 
   const handleLikeClick = async () => {
     if (blogData) {
-      try {
+      const likedBlogs = JSON.parse(localStorage.getItem('likedBlogs')) || []; // Retrieve liked blogs from localStorage
+      
+      const isLiked = likedBlogs.includes(blogData._id); // Check if the blog is already liked
+      
+      let newLikeCount;
+      
+      if (isLiked) {
+        // If blog is already liked, decrement the like count (unlike)
+        newLikeCount = blogData.like - 1;
         setBlogData(prevData => ({
           ...prevData,
-          like: prevData.like + 1
+          like: newLikeCount
         }));
+        
+        // Remove blog from likedBlogs in local storage
+        const updatedLikedBlogs = likedBlogs.filter(id => id !== blogData._id);
+        localStorage.setItem('likedBlogs', JSON.stringify(updatedLikedBlogs));
+      } else {
+        // If blog is not liked, increment the like count
+        newLikeCount = blogData.like + 1;
+        setBlogData(prevData => ({
+          ...prevData,
+          like: newLikeCount
+        }));
+        
+        // Add blog to likedBlogs in local storage
+        likedBlogs.push(blogData._id);
+        localStorage.setItem('likedBlogs', JSON.stringify(likedBlogs));
+      }
   
-        console.log("Sending title:", title);
-    
+      // Send the updated like count and isLiked status to the server
+      try {
         const response = await fetch('http://localhost:3000/api/blog/like', { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ title }) // Send title in body
+          body: JSON.stringify({ title: blogData._id, isLiked }) // Send title and isLiked in body
         });
     
         if (!response.ok) {
@@ -84,13 +108,18 @@ export default function BlogTitle({ params }) {
         }));
       } catch (error) {
         console.error('Failed to update like count:', error);
+        
+        // Revert like count if the server request fails
         setBlogData(prevData => ({
           ...prevData,
-          like: prevData.like - 1
+          like: isLiked ? prevData.like + 1 : prevData.like - 1
         }));
       }
     }
   };
+  
+  
+  
   
   
   
@@ -141,7 +170,7 @@ export default function BlogTitle({ params }) {
           <div className="actions w-full flex items-center justify-between text-gray-600 dark:text-gray-300 text-sm px-6">
             <button className="flex items-center text-xs" onClick={handleLikeClick}>
               <FaRegHeart className="mr-1 " />
-              {blogData.like}
+              {blogData.like ?? 0}
             </button>
 
             <button className="flex items-center text-xs" onClick={handleCommentClick}>
