@@ -2,12 +2,6 @@ import { connectDB } from "@/lib/config/db";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 
-
-
-
-
-
-
 export async function GET(req, { params }) {
   try {
     const db = await connectDB();
@@ -42,5 +36,9 @@ export async function GET(req, { params }) {
     return NextResponse.json({ error: 'Failed to fetch blog' }, { status: 500 });
   }
 }
+
+
+
+
 
 

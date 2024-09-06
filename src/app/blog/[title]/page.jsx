@@ -55,6 +55,45 @@ export default function BlogTitle({ params }) {
     setIsModalOpen(false);
   };
 
+  const handleLikeClick = async () => {
+    if (blogData) {
+      try {
+        setBlogData(prevData => ({
+          ...prevData,
+          like: prevData.like + 1
+        }));
+  
+        console.log("Sending title:", title);
+    
+        const response = await fetch('http://localhost:3000/api/blog/like', { 
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title }) // Send title in body
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+    
+        const data = await response.json();
+        setBlogData(prevData => ({
+          ...prevData,
+          like: data.like
+        }));
+      } catch (error) {
+        console.error('Failed to update like count:', error);
+        setBlogData(prevData => ({
+          ...prevData,
+          like: prevData.like - 1
+        }));
+      }
+    }
+  };
+  
+  
+  
   const handleBackClick = () => {
     router.back(); // Use router to go back to the previous page
   };
@@ -98,15 +137,17 @@ export default function BlogTitle({ params }) {
 
       <div className='mx-auto text-center max-w-2xl '>
         <div className='mt-28 max-w-xl mx-auto'>
+
           <div className="actions w-full flex items-center justify-between text-gray-600 dark:text-gray-300 text-sm px-6">
-            <button className="flex items-center text-xs">
+            <button className="flex items-center text-xs" onClick={handleLikeClick}>
               <FaRegHeart className="mr-1 " />
               {blogData.like}
             </button>
+
             <button className="flex items-center text-xs" onClick={handleCommentClick}>
               <FaRegCommentAlt className="mr-1" />
-
             </button>
+
           </div>
           <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm">
             {blogData.description.split('.').reduce((acc, sentence, index) => {
