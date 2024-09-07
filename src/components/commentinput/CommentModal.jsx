@@ -23,7 +23,11 @@ const CommentModal = ({ blogData, closeModal }) => {
     // Get the username from authToken stored in localStorage
     const authToken = localStorage.getItem('authToken');
     if (!authToken) {
+      setLoading(false);
       setErrorMessage('Please log in to comment.');
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 1300);
       return;
     }
 

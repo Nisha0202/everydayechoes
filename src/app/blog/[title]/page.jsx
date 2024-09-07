@@ -17,7 +17,7 @@ export default function BlogTitle({ params }) {
 
   const router = useRouter(); // Initialize router for navigation
 
-  console.log("params", params.title);
+  // console.log("params", params.title);
 
   const title = params.title; // Directly use params.title
 

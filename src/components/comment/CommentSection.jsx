@@ -1,6 +1,20 @@
 import React from 'react';
+import { jwtDecode } from "jwt-decode";
+import axios from 'axios'; 
 
-const CommentSection = () => {
+const CommentSection = ({ blogData}) => {
+  const handleSubmit = async () => {
+    setLoading(true);
+    // Get the username from authToken stored in localStorage
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      setErrorMessage('Please log in to comment.');
+      return;
+    }
+
+    // Decode the JWT
+    const decodedToken = jwtDecode(authToken);
+    const username = decodedToken.name; }
   return (
     <section className="p-6 mx-auto bg-white dark:bg-gray-900">
   
