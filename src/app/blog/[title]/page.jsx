@@ -226,7 +226,10 @@ export default function BlogTitle({ params }) {
       </div>
 
       {/* CommentModal */}
-      {isModalOpen && <CommentModal blogData={blogData} closeModal={closeModal} />}
+     
+ {isModalOpen && <CommentModal blogData={blogData} closeModal={closeModal}  />}
+     
+     
 
       {/* Floating Back Button */}
       <button

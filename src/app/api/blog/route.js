@@ -31,7 +31,7 @@ export async function GET(req) {
     const sortedBlogs = blogs
       .map(blog => ({
         ...blog,
-        date: parseDate(blog.date) // Assuming 'date' is the field with date strings
+        date: parseDate(blog.date) //'date' is the field with date strings
       }))
       .sort((a, b) => b.date - a.date); // Sort from newest to oldest
 
