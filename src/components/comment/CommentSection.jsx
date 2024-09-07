@@ -1,32 +1,56 @@
-import React from 'react';
-import { jwtDecode } from "jwt-decode";
-import axios from 'axios'; 
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { format } from 'date-fns';
 
-const CommentSection = ({ blogData}) => {
-  const handleSubmit = async () => {
-    setLoading(true);
-    // Get the username from authToken stored in localStorage
-    const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-      setErrorMessage('Please log in to comment.');
-      return;
-    }
+const CommentSection = ({ blogData }) => {
+  const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+ console.log("blog", blogData._id);
+  useEffect(() => {
+    // Fetch comments when component mounts or blogData changes
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/comment?blogId=${blogData._id}`);
 
-    // Decode the JWT
-    const decodedToken = jwtDecode(authToken);
-    const username = decodedToken.name; }
+        
+        setComments(response.data.comments); // Adjust based on your API response structure
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch comments:', error);
+        setErrorMessage('Failed to load comments.');
+        setLoading(false);
+      }
+    };
+
+    fetchComments();
+  }, [blogData._id]);
+
+  if (loading) return <p>Loading comments...</p>;
+
+  if (errorMessage) return <p className="text-red-500 mx-2">{errorMessage}</p>;
+
   return (
     <section className="p-6 mx-auto bg-white dark:bg-gray-900">
-  
       <div className="space-y-4">
-        <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-md">
-          <div className="text-sm font-semibold text-gray-900 dark:text-white">Anonymous</div>
-          <p className="mt-2 text-gray-700 dark:text-gray-300">This is an example comment.</p>
-        </div>
-        {/* Add more comment items here */}
+        {comments.length === 0 ? (
+          <p>No comments yet. Be the first to comment!</p>
+        ) : (
+          comments.map((comment) => (
+            <div key={comment._id} className="p-4 bg-gray-100 dark:bg-gray-700 rounded-md">
+              <div className='flex flex-wrap gap-2 justify-between items-center'>
+                            <div className="text-sm font-semibold text-gray-900 dark:text-white">{comment.username}</div>
+                            <div className='text-xs text-gray-500 dark:text-gray-400'>{comment.createdAt ? format(new Date(comment.createdAt), 'dd MMMM yyyy') : 'Date not available'}</div>
+              </div>
+  
+              <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm">{comment.comment}</p>
+            </div>
+          ))
+        )}
       </div>
     </section>
   );
 };
 
 export default CommentSection;
+

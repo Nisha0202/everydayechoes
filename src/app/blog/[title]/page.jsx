@@ -25,15 +25,15 @@ export default function BlogTitle({ params }) {
     const fetchData = async () => {
       try {
         if (!title) return; // Avoid calling the API if title is not present
-  
+
         const response = await fetch(`http://localhost:3000/api/blog/${title}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-  
+
         const data = await response.json();
-        console.log("data", data);
-  
+        // console.log("data", data);
+
         setBlogData(data.blog || null);
         setRelatedPosts(data.relatedPosts || []);
       } catch (error) {
@@ -42,11 +42,11 @@ export default function BlogTitle({ params }) {
         setLoading(false);
       }
     };
-  
+
     fetchData();
-  }, [title]); 
-  
-  
+  }, [title]);
+
+
   const handleCommentClick = () => {
     setIsModalOpen(true);
   };
@@ -58,11 +58,11 @@ export default function BlogTitle({ params }) {
   const handleLikeClick = async () => {
     if (blogData) {
       const likedBlogs = JSON.parse(localStorage.getItem('likedBlogs')) || []; // Retrieve liked blogs from localStorage
-      
+
       const isLiked = likedBlogs.includes(blogData._id); // Check if the blog is already liked
-      
+
       let newLikeCount;
-      
+
       if (isLiked) {
         // If blog is already liked, decrement the like count (unlike)
         newLikeCount = blogData.like - 1;
@@ -70,7 +70,7 @@ export default function BlogTitle({ params }) {
           ...prevData,
           like: newLikeCount
         }));
-        
+
         // Remove blog from likedBlogs in local storage
         const updatedLikedBlogs = likedBlogs.filter(id => id !== blogData._id);
         localStorage.setItem('likedBlogs', JSON.stringify(updatedLikedBlogs));
@@ -81,26 +81,26 @@ export default function BlogTitle({ params }) {
           ...prevData,
           like: newLikeCount
         }));
-        
+
         // Add blog to likedBlogs in local storage
         likedBlogs.push(blogData._id);
         localStorage.setItem('likedBlogs', JSON.stringify(likedBlogs));
       }
-  
+
       // Send the updated like count and isLiked status to the server
       try {
-        const response = await fetch('http://localhost:3000/api/blog/like', { 
+        const response = await fetch('http://localhost:3000/api/blog/like', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ title: blogData._id, isLiked }) // Send title and isLiked in body
         });
-    
+
         if (!response.ok) {
           throw new Error(`Network response was not ok: ${response.statusText}`);
         }
-    
+
         const data = await response.json();
         setBlogData(prevData => ({
           ...prevData,
@@ -108,7 +108,7 @@ export default function BlogTitle({ params }) {
         }));
       } catch (error) {
         console.error('Failed to update like count:', error);
-        
+
         // Revert like count if the server request fails
         setBlogData(prevData => ({
           ...prevData,
@@ -117,12 +117,12 @@ export default function BlogTitle({ params }) {
       }
     }
   };
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   const handleBackClick = () => {
     router.back(); // Use router to go back to the previous page
   };
@@ -157,7 +157,7 @@ export default function BlogTitle({ params }) {
               blurDataURL="data:..."
               placeholder="blur"
               fill
-              style={{objectFit:"cover"}}
+              style={{ objectFit: "cover" }}
               className="md:rounded-md border-2 border-gray-300 dark:border-gray-800"
             />
           </div>
@@ -211,7 +211,7 @@ export default function BlogTitle({ params }) {
             Recent Comments
           </h1>
           <div>
-            <CommentSection />
+            <CommentSection blogData={blogData} />
           </div>
         </div>
 
@@ -226,17 +226,16 @@ export default function BlogTitle({ params }) {
       </div>
 
       {/* CommentModal */}
-     
- {isModalOpen && <CommentModal blogData={blogData} closeModal={closeModal}  />}
-     
-     
+      {isModalOpen && <CommentModal blogData={blogData} closeModal={closeModal} />}
+
+
 
       {/* Floating Back Button */}
       <button
         onClick={handleBackClick}
         className="fixed bottom-4 text-sm lg:text-base left-4 p-2 dark:bg-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full shadow-lg dark:hover:bg-gray-800 focus:outline-none"
       >
-     <IoIosArrowBack />
+        <IoIosArrowBack />
       </button>
     </div>
   );

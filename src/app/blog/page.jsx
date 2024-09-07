@@ -104,7 +104,7 @@ const BlogList = () => {
           )}
         </div>
         {hasMore && (
-          <div className="text-center mt-4">
+          <div className="text-center mt-8 lg:mt-6">
             <button onClick={loadMore} className="bg-blue-500 text-sm text-white px-3 py-1 rounded text-center  dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
               Read More
             </button>
