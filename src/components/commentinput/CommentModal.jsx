@@ -27,7 +27,7 @@ const CommentModal = ({ blogData, closeModal }) => {
       setErrorMessage('Please log in to comment.');
       setTimeout(() => {
         window.location.href = '/login';
-      }, 1300);
+      }, 1100);
       return;
     }
 
@@ -60,7 +60,7 @@ const CommentModal = ({ blogData, closeModal }) => {
       // Close the modal after 1 second
       setTimeout(() => {
         closeModal();
-      }, 2000);
+      }, 1200);
     } catch (error) {
       console.error('Failed to post comment:', error);
       setErrorMessage('Failed to post comment. Please try again.');

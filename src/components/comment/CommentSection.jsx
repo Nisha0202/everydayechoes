@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
 
-const CommentSection = ({ blogData }) => {
+
+
+const CommentSection = ({ blogData, refetchComments }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
- console.log("blog", blogData._id);
+
   useEffect(() => {
-    // Fetch comments when component mounts or blogData changes
     const fetchComments = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/comment?blogId=${blogData._id}`);
-
-        
-        setComments(response.data.comments); // Adjust based on your API response structure
+        setComments(response.data.comments);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch comments:', error);
@@ -24,9 +23,9 @@ const CommentSection = ({ blogData }) => {
     };
 
     fetchComments();
-  }, [blogData._id]);
+  }, [blogData._id, refetchComments]);
 
-  if (loading) return <p>Loading comments...</p>;
+  if (loading) return <p className='mx-auto'>Loading comments...</p>;
 
   if (errorMessage) return <p className="text-red-500 mx-2">{errorMessage}</p>;
 
@@ -39,10 +38,9 @@ const CommentSection = ({ blogData }) => {
           comments.map((comment) => (
             <div key={comment._id} className="p-4 bg-gray-100 dark:bg-gray-700 rounded-md">
               <div className='flex flex-wrap gap-2 justify-between items-center'>
-                            <div className="text-sm font-semibold text-gray-900 dark:text-white">{comment.username}</div>
-                            <div className='text-xs text-gray-500 dark:text-gray-400'>{comment.createdAt ? format(new Date(comment.createdAt), 'dd MMMM yyyy') : 'Date not available'}</div>
+                <div className="text-sm font-semibold text-gray-900 dark:text-white">{comment.username}</div>
+                <div className='text-xs text-gray-500 dark:text-gray-400'>{comment.createdAt ? format(new Date(comment.createdAt), 'dd MMMM yyyy') : 'Date not available'}</div>
               </div>
-  
               <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm">{comment.comment}</p>
             </div>
           ))
@@ -53,4 +51,3 @@ const CommentSection = ({ blogData }) => {
 };
 
 export default CommentSection;
-

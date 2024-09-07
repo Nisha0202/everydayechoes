@@ -20,9 +20,7 @@ export default function BlogTitle({ params }) {
   // console.log("params", params.title);
 
   const title = params.title; // Directly use params.title
-
-  useEffect(() => {
-    const fetchData = async () => {
+   const fetchData = async () => {
       try {
         if (!title) return; // Avoid calling the API if title is not present
 
@@ -42,6 +40,8 @@ export default function BlogTitle({ params }) {
         setLoading(false);
       }
     };
+  useEffect(() => {
+ 
 
     fetchData();
   }, [title]);
@@ -51,9 +51,9 @@ export default function BlogTitle({ params }) {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   const handleLikeClick = async () => {
     if (blogData) {
@@ -117,7 +117,12 @@ export default function BlogTitle({ params }) {
       }
     }
   };
-
+  
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // Trigger refetch of comments
+    fetchData();
+  };
 
 
 
@@ -211,7 +216,7 @@ export default function BlogTitle({ params }) {
             Recent Comments
           </h1>
           <div>
-            <CommentSection blogData={blogData} />
+            <CommentSection blogData={blogData} refetchComments={fetchData}/>
           </div>
         </div>
 
