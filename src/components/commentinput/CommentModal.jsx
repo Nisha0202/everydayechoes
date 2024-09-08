@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { jwtDecode } from "jwt-decode";
-import axios from 'axios'; 
+import axios from 'axios';
 import { RiLoader3Fill } from "react-icons/ri"; // For the loading spinner
 import { FaCheck } from "react-icons/fa"; // For the success checkmark
 
@@ -15,7 +15,15 @@ const CommentModal = ({ blogData, closeModal }) => {
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
-    setErrorMessage(''); // Clear error message when user types
+    setErrorMessage('');
+
+    // Check for authToken
+    const authToken = localStorage.getItem('authToken');
+    if (!authToken) {
+      setErrorMessage('Please log in to comment.');
+   
+    }
+
   };
 
   const handleSubmit = async () => {
@@ -33,7 +41,7 @@ const CommentModal = ({ blogData, closeModal }) => {
 
     // Decode the JWT
     const decodedToken = jwtDecode(authToken);
-    const username = decodedToken.name; 
+    const username = decodedToken.name;
 
     // Ensure comment is not empty
     if (comment.trim() === '') {
@@ -41,7 +49,7 @@ const CommentModal = ({ blogData, closeModal }) => {
       return;
     }
 
-     // Set loading to true while posting the comment
+    // Set loading to true while posting the comment
 
     try {
       // Send the comment to the server

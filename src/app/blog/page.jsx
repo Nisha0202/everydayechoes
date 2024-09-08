@@ -21,8 +21,6 @@ const BlogList = () => {
         }
         const data = await response.json();
         
-        // console.log('Fetched blogs:', data.blogs);
-        
         setBlogs(prevBlogs => {
           const newBlogs = data.blogs.filter(blog => !prevBlogs.some(prevBlog => prevBlog._id === blog._id));
           return [...prevBlogs, ...newBlogs];

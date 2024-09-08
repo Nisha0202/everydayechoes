@@ -7,6 +7,7 @@ import CommentSection from '@/components/comment/CommentSection';
 import CommentModal from '@/components/commentinput/CommentModal';
 import { useRouter } from 'next/navigation'; // Import useRouter to handle navigation
 import { IoIosArrowBack, IoIosArrowDropleft, IoIosArrowRoundBack } from 'react-icons/io';
+import { format } from 'date-fns';
 
 export default function BlogTitle({ params }) {
   const [blogData, setBlogData] = useState(null);
@@ -51,9 +52,6 @@ export default function BlogTitle({ params }) {
     setIsModalOpen(true);
   };
 
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
 
   const handleLikeClick = async () => {
     if (blogData) {
@@ -150,8 +148,8 @@ export default function BlogTitle({ params }) {
         <h1 className='text-center text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white'>
           {blogData.title}
         </h1>
-        <p className='text-center font-light text-xs md:mt-2 mt-1'>
-          {blogData.date}
+        <p className='text-center dark:font-light font-normal text-xs md:mt-2 mt-1'>
+        {blogData.date ? format(new Date(blogData.date), 'dd MMMM yyyy') : 'Date not available'}
         </p>
 
         <div className='w-full mx-auto absolute md:-bottom-24 -bottom-24 flex justify-center'>
