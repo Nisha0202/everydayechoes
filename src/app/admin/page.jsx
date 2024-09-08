@@ -1,14 +1,15 @@
-"use client"; 
+"use client";
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // For navigation
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { RiLoader3Fill } from 'react-icons/ri';
 const NewBlogForm = () => {
   const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
-  const [like, setLike] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
 
@@ -23,24 +24,24 @@ const NewBlogForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // Basic validation
-    if (!title || !date || !image || !description) {
+    if (!title || !image || !description) {
       setErrorMessage('Please fill in all the fields.');
       return;
     }
 
     const newBlogData = {
       title,
-      date,
       image,
       description,
-      like
+      // No need to include date or like in the request
     };
 
     try {
       // Replace the API endpoint with your backend
-      const response = await fetch('/api/blog', {
+      const response = await fetch('http://localhost:3000/api/createblog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,24 +50,27 @@ const NewBlogForm = () => {
       });
 
       if (response.ok) {
+        toast.success(`Great!`);
         // Clear form and redirect to home page or blog list page
         setTitle('');
-        setDate('');
         setImage('');
         setDescription('');
-        setLike(0);
-        
+
+        // Redirect to home page or blog list page
       } else {
         setErrorMessage('Failed to submit the blog.');
       }
+      setLoading(false);
     } catch (error) {
       console.error('Failed to submit blog:', error);
       setErrorMessage('An error occurred. Please try again.');
+      setLoading(false);
     }
   };
 
+
   return (
-    <div className="mx-auto p-6 bg-white dark:bg-gray-800 rounded-md border-2 lg:w-[400px] max-w-96 mb-5">
+    <div className="mx-auto p-6 lg:p-8 bg-gray-100 dark:bg-gray-800 rounded-md lg:w-[440px] max-w-96 mb-5 min-w-80">
       <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Create a New Blog</h1>
 
       <form onSubmit={handleSubmit}>
@@ -83,7 +87,7 @@ const NewBlogForm = () => {
           />
           <label
             htmlFor="title"
-            className="absolute text-sm left-3 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] bg-transparent peer-focus:bg-white dark:peer-focus:bg-gray-800 px-0 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+            className="absolute text-sm left-3 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] bg-transparent peer-focus:bg-gray-100 dark:peer-focus:bg-gray-800 px-0 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
           >
             Blog Title
           </label>
@@ -102,7 +106,7 @@ const NewBlogForm = () => {
           />
           <label
             htmlFor="image"
-            className="absolute text-sm left-3 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] bg-transparent peer-focus:bg-white dark:peer-focus:bg-gray-800 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
+            className="absolute text-sm left-3 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] bg-transparent peer-focus:bg-gray-100 dark:peer-focus:bg-gray-800 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
           >
             Image URL
           </label>
@@ -121,7 +125,7 @@ const NewBlogForm = () => {
           />
           <label
             htmlFor="description"
-            className="absolute text-sm left-3 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] bg-transparent peer-focus:bg-white dark:peer-focus:bg-gray-800 px-0 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 
+            className="absolute text-sm left-3 text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-1 z-10 origin-[0] bg-transparent peer-focus:bg-gray-100 dark:peer-focus:bg-gray-800 px-0 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 
             peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:top-4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4"
           >
             Blog Description
@@ -132,13 +136,23 @@ const NewBlogForm = () => {
         {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
 
         {/* Submit Button */}
+
         <button
           type="submit"
           className="w-full text-blue-500 hover:text-blue-600 text-sm py-2 px-4 rounded-lg transition-colors font-bold"
         >
-          Create Blog
+          {loading ? (
+            <span className="flex items-center justify-center w-full">
+              <RiLoader3Fill className="animate-spin text-2xl" />
+            </span>
+          ) : (
+            <span>Create Blog</span> // Dont show "Next" if googlesub is true
+          )}
+
+
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
