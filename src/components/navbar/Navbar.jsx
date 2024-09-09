@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoCloseSharp } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import ThemeSwitcher from "../../theme/Theme Switcher"
@@ -10,16 +10,50 @@ import { IoMdBook } from "react-icons/io";
 import { FiLogOut, FiMail } from "react-icons/fi";
 import { FaUserShield } from 'react-icons/fa';
 import { GrCircleQuestion } from "react-icons/gr";
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from 'next/navigation'; // For navigation
 export default function Drawer() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const toggleDrawer = () => setIsOpen(!isOpen);
 
   const pathname = usePathname();
 
-  const [session, setSession]= useState(false);
-  const [isAdmin, setIsAdmin]= useState(false);
-  
+  const [session, setSession] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
+
+    if (authToken) {
+      setSession(true);
+      try {
+        const decodedToken = jwtDecode(authToken); // Decode the token
+        const userEmail = decodedToken.email;
+
+        if (userEmail === "admin989@gmail.com") {
+          setIsAdmin(true); // Set admin state if email matches
+        }
+      } catch (error) {
+        console.error("Failed to decode token:", error);
+      }
+    }
+  }, []);
+
+
+  const handleLogout = () => {
+    // Clear the token from localStorage
+    localStorage.removeItem('authToken');
+
+    // Update the session state to false
+    setSession(false);
+
+    // Redirect the user to the homepage or login page
+    router.push('/');
+  };
+
+
   return (
     <nav className='dark:bg-gray-900'>
       {/* Drawer Toggle Button */}
@@ -35,7 +69,7 @@ export default function Drawer() {
             onClick={toggleDrawer}
             aria-controls="drawer-navigation"
           >
-          
+
 
             <TbMenuDeep className='text-2xl hover:text-slate-400 rounded-lg' />
           </button>
@@ -67,78 +101,74 @@ export default function Drawer() {
         </button>
 
         <div className="py-4 overflow-y-auto text-sm font-normal">
-        <ul className="space-y-2">
-  <li className={pathname == "/" ? "active" : ""}>
-    <Link
-      href="/"
-      className="flex items-center p-2 rounded group hover:bg-slate-400"
-    >
-      <RiHome2Line className="text-xl" />
-      <span className="ms-3">Home</span>
-    </Link>
-  </li>
-  <li className={pathname == "/blog" ? "active" : ""}>
-    <Link
-      href="/blog"
-      className="flex items-center p-2 rounded group hover:bg-slate-400"
-    >
-      <IoMdBook className="text-xl" />
-      <span className="flex-1 ms-3 whitespace-nowrap">Blog</span>
-      <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm rounded-full bg-slate-300 dark:bg-slate-600">
-        3
-      </span>
-    </Link>
-  </li>
-  <li className={pathname == "/about" ? "active" : ""}>
-    <Link
-      href="/about"
-      className="flex items-center p-2 rounded group hover:bg-slate-400"
-    >
-      <GrCircleQuestion className="text-xl" />
-      <span className="flex-1 ms-3 whitespace-nowrap">About</span>
-    </Link>
-  </li>
-  {/* <li className={pathname == "/contact" ? "active" : ""}>
-    <Link
-      href="/contact"
-      className="flex items-center p-2 rounded group hover:bg-slate-400"
-    >
-      <FiMail className="text-xl" />
-      <span className="flex-1 ms-3 whitespace-nowrap">Contact</span>
-    </Link>
-  </li> */}
-  {isAdmin && (
-    <li className={pathname == "/admin" ? "active" : ""}>
-      <Link
-        href="/admin"
-        className="flex items-center p-2 rounded group hover:bg-slate-400"
-      >
-        <FaUserShield className="text-xl" />
-        <span className="flex-1 ms-3 whitespace-nowrap">Admin</span>
-      </Link>
-    </li>
-  )}
-  <li className={pathname == "/subscribe" ? "active" : ""}>
-    <Link
-      href="/subscribe"
-      className="flex items-center p-2 rounded group hover:bg-slate-400"
-    >
-      <TbMailPlus className="text-xl" />
-      <span className="flex-1 ms-3 whitespace-nowrap font-medium">Subscribe</span>
-    </Link>
-  </li>
-  {session && (
-    <li>
-      <Link
-        href="/logout"
-        className="flex items-center p-2 rounded group hover:bg-slate-400"
-      >
-        <FiLogOut className="text-xl" />
-        <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
-      </Link>
-    </li>
-  )}
-</ul>
+          <ul className="space-y-2">
+            <li className={pathname == "/" ? "active" : ""}>
+              <Link
+                href="/"
+                className="flex items-center p-2 rounded group hover:bg-slate-400"
+              >
+                <RiHome2Line className="text-xl" />
+                <span className="ms-3">Home</span>
+              </Link>
+            </li>
+            <li className={pathname == "/blog" ? "active" : ""}>
+              <Link
+                href="/blog"
+                className="flex items-center p-2 rounded group hover:bg-slate-400"
+              >
+                <IoMdBook className="text-xl" />
+                <span className="flex-1 ms-3 whitespace-nowrap">Blog</span>
+                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm rounded-full bg-slate-300 dark:bg-slate-600">
+                  3
+                </span>
+              </Link>
+            </li>
+            <li className={pathname == "/about" ? "active" : ""}>
+              <Link
+                href="/about"
+                className="flex items-center p-2 rounded group hover:bg-slate-400"
+              >
+                <GrCircleQuestion className="text-xl" />
+                <span className="flex-1 ms-3 whitespace-nowrap">About</span>
+              </Link>
+            </li>
+
+            {isAdmin && (
+              <li className={pathname == "/admin" ? "active" : ""}>
+                <Link
+                  href="/admin"
+                  className="flex items-center p-2 rounded group hover:bg-slate-400"
+                >
+                  <FaUserShield className="text-xl" />
+                  <span className="flex-1 ms-3 whitespace-nowrap">Admin</span>
+                </Link>
+              </li>
+            )}
+
+            {session ? (
+              <li>
+                <Link
+                  onClick={handleLogout}
+                  href="/logout"
+                  className="flex items-center p-2 rounded group hover:bg-slate-400"
+                >
+                  <FiLogOut className="text-xl" />
+                  <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
+                </Link>
+              </li>
+            ) : (
+              <li className={pathname == "/subscribe" ? "active" : ""}>
+                <Link
+                  href="/subscribe"
+                  className="flex items-center p-2 rounded group hover:bg-slate-400"
+                >
+                  <TbMailPlus className="text-xl" />
+                  <span className="flex-1 ms-3 whitespace-nowrap font-medium">Subscribe</span>
+                </Link>
+              </li>
+            )}
+
+          </ul>
 
         </div>
       </div>

@@ -23,7 +23,6 @@ const CommentModal = ({ blogData, closeModal }) => {
       setErrorMessage('Please log in to comment.');
    
     }
-
   };
 
   const handleSubmit = async () => {
