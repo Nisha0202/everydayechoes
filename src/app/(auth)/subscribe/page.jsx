@@ -7,8 +7,10 @@ import { FcGoogle } from 'react-icons/fc';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
+import { useAuth } from '@/context/AuthContext';
 
 const Subscribe = () => {
+  const { session, isAdmin, logout } = useAuth(); 
   const { googleLogin, googleLoading, googlesub } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
@@ -76,6 +78,7 @@ const Subscribe = () => {
           setEmail('');
           setOTP('');
           setName('');
+          setStep(1);
         }
       } catch (error) {
         console.error(error.message);

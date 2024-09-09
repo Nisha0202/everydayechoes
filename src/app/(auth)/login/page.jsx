@@ -7,8 +7,10 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 import { FaCheck } from 'react-icons/fa';
+import { useAuth } from "@/context/AuthContext";
 
 const Login = () => {
+  const { login } = useAuth(); 
   const { googleUp, googleLoading, googlesub } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
@@ -59,15 +61,20 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         console.log('Login successful');
-        console.log(data);
+        // console.log(data);
         toast.success(`Hey ${data.username}, looking fabulous today!`);
         setSubscribed(true);
+          // Clear input fields
+          setEmail('');
+          setOtp('');
+          setStep(1);
+     
 
         // Capture the JWT token
         const token = data.token;
 
-        // Store the token in local storage or state (for example, localStorage)
-        localStorage.setItem('authToken', token);
+        // localStorage.setItem('authToken', token);  
+         login(token);
       } else {
         toast.error(data.error || "Invalid OTP");
       }

@@ -7,50 +7,49 @@ import ThemeSwitcher from "../../theme/Theme Switcher"
 import { TbMailPlus, TbMenuDeep } from "react-icons/tb";
 import { RiHome2Line } from "react-icons/ri";
 import { IoMdBook } from "react-icons/io";
-import { FiLogOut, FiMail } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 import { FaUserShield } from 'react-icons/fa';
 import { GrCircleQuestion } from "react-icons/gr";
 import { jwtDecode } from "jwt-decode";
-import { useRouter } from 'next/navigation'; // For navigation
+import { useAuth } from '@/context/AuthContext';
+
 export default function Drawer() {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
+  const { session, isAdmin, logout } = useAuth(); 
 
   const toggleDrawer = () => setIsOpen(!isOpen);
 
   const pathname = usePathname();
 
-  const [session, setSession] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [session, setSession] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
 
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
+  // useEffect(() => {
+  //   const authToken = localStorage.getItem('authToken');
 
-    if (authToken) {
-      setSession(true);
-      try {
-        const decodedToken = jwtDecode(authToken); // Decode the token
-        const userEmail = decodedToken.email;
+  //   if (authToken) {
+  //     try {
+  //       const decodedToken = jwtDecode(authToken); // Decode the token
+  //       const userEmail = decodedToken.email;
 
-        if (userEmail === "admin989@gmail.com") {
-          setIsAdmin(true); // Set admin state if email matches
-        }
-      } catch (error) {
-        console.error("Failed to decode token:", error);
-      }
-    }
-  }, []);
-
-
-  const handleLogout = () => {
-    // Clear the token from localStorage
-    localStorage.removeItem('authToken');
-
-    // Update the session state to false
-    setSession(false);
+  //       setSession(true);
+  //       setIsAdmin(userEmail === "admin989@gmail.com"); // Set admin state if email matches
+  //     } catch (error) {
+  //       console.error("Failed to decode token:", error);
+  //     }
+  //   } else {
+  //     setSession(false);
+  //     setIsAdmin(false);
+  //   }
+  // }, [localStorage.getItem('authToken')]);
 
 
-  };
+  // const handleLogout = () => {
+  //   // Clear the token from localStorage
+  //   localStorage.removeItem('authToken');
+
+
+  // };
 
 
   return (
@@ -145,15 +144,15 @@ export default function Drawer() {
             )}
 
             {session ? (
-              <li>
-                <Link
-                  onClick={handleLogout}
-                  href="/logout"
+              <li >
+                <button
+                  onClick={logout}
+                 
                   className="flex items-center p-2 rounded group hover:bg-slate-400"
                 >
                   <FiLogOut className="text-xl" />
                   <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
-                </Link>
+                </button>
               </li>
             ) : (
               <li className={pathname == "/subscribe" ? "active" : ""}>
@@ -174,3 +173,6 @@ export default function Drawer() {
     </nav>
   );
 }
+
+
+
