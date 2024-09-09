@@ -49,8 +49,7 @@ export default function Drawer() {
     // Update the session state to false
     setSession(false);
 
-    // Redirect the user to the homepage or login page
-    router.push('/');
+
   };
 
 

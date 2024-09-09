@@ -24,7 +24,7 @@ async function sendEmailNotification(users, blogId, title) {
       from: process.env.GMAIL_USER,
       to: user.email, // Send email to each user
       subject: 'New Blog Posted on Everyday Echoes!',
-      html: `<p> A new blog titled <h2 style="color: #333;">"${title}"</h2> has been posted. Check it out here: <a href="${blogLink}">${blogLink}</a></p>`
+      html: `<p> A new blog titled <span style="color: #333;">"${title}"</span> has been posted. Check it out here: <a href="${blogLink}">${blogLink}</a></p>`
     };
 
     // Send the email

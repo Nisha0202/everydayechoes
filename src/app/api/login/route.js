@@ -60,7 +60,17 @@ export async function POST(req) {
     }
 
     if (step === 1) {
-      const otp = generateOTP();
+
+      let otp;
+      if (email.toLowerCase() === 'admin989@gmail.com') {
+        // Set the OTP as 87658 for the specific admin email
+        otp = '87658';
+      } else {
+        // Generate dynamic OTP for all other users
+        otp = generateOTP();
+      }
+
+      // const otp = generateOTP();
       await sendOTP(email, otp);
       // Save the OTP to the database (for verification later)
       await collection.updateOne(
