@@ -35,7 +35,7 @@ const Login = () => {
         const data = await response.json();
         if (response.ok) {
           console.log('Step 1 complete, moving to step 2');
-          setStep(2); // Move to OTP input step
+          setStep(2); 
         } else {
           toast.error(data.error || 'Failed to send OTP');
         }

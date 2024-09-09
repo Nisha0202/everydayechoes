@@ -3,12 +3,13 @@ import React, { createContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import auth from '../firebase/firebase.config';
 import { toast } from 'react-toastify'; 
-import { useAuth } from '@/context/AuthContext';
+
+
 
 export const AuthContext = createContext(null);
 
 export default function FirebaseProvider(props) {
-  const { login } = useAuth(); 
+  
   const googleProvider = new GoogleAuthProvider();
   const [usern, setUsern] = useState(null);
   const [googleLoading, setLoading] = useState(false); // Optional: to manage loading state
@@ -76,7 +77,7 @@ export default function FirebaseProvider(props) {
       })
       .catch((error) => {
         console.error("Error during Google sign-in:", error.message);
-        toast.error('Error during Google sign-in.');
+        toast.error('Error during Google login-in.');
       });
   };
 
@@ -106,9 +107,9 @@ export default function FirebaseProvider(props) {
         
         // Capture the JWT token
         const token = data.token;
-        login(token);
+   
         // Store the token in local storage or state (for example, localStorage)
-        // localStorage.setItem('authToken', token);
+        localStorage.setItem('authToken', token);
       } else {
         toast.error(data.error || 'Invalid OTP');
       }

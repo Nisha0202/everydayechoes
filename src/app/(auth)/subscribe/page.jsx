@@ -8,9 +8,10 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 import { useAuth } from '@/context/AuthContext';
+import Login from '../login/page';
 
 const Subscribe = () => {
-  const { session, isAdmin, logout } = useAuth(); 
+  const { login } = useAuth();
   const { googleLogin, googleLoading, googlesub } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
@@ -68,17 +69,19 @@ const Subscribe = () => {
           setSubscribed(true);
           toast.success("You are in! Excited to share some awesome vibes with you. 😊😉");
 
-          // Capture the JWT token
-          const token = data.token;
+
 
           // Store the token in local storage or state (for example, localStorage)
-          localStorage.setItem('authToken', token);
+          // localStorage.setItem('authToken', token);
 
           // Clear input fields
           setEmail('');
           setOTP('');
           setName('');
           setStep(1);
+          // Capture the JWT token
+          const token = data.token;
+          login(token);
         }
       } catch (error) {
         console.error(error.message);

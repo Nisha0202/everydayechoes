@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
     setAuthToken(null);
     setSession(false);
     setIsAdmin(false);
+    
   };
 
   return (

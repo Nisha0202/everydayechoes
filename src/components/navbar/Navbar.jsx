@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IoCloseSharp } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import ThemeSwitcher from "../../theme/Theme Switcher"
@@ -10,46 +10,17 @@ import { IoMdBook } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
 import { FaUserShield } from 'react-icons/fa';
 import { GrCircleQuestion } from "react-icons/gr";
-import { jwtDecode } from "jwt-decode";
 import { useAuth } from '@/context/AuthContext';
+import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 
 export default function Drawer() {
   const [isOpen, setIsOpen] = useState(false);
   const { session, isAdmin, logout } = useAuth(); 
-
+  const { usern } = useContext(AuthContext);
+ 
   const toggleDrawer = () => setIsOpen(!isOpen);
 
   const pathname = usePathname();
-
-  // const [session, setSession] = useState(false);
-  // const [isAdmin, setIsAdmin] = useState(false);
-
-  // useEffect(() => {
-  //   const authToken = localStorage.getItem('authToken');
-
-  //   if (authToken) {
-  //     try {
-  //       const decodedToken = jwtDecode(authToken); // Decode the token
-  //       const userEmail = decodedToken.email;
-
-  //       setSession(true);
-  //       setIsAdmin(userEmail === "admin989@gmail.com"); // Set admin state if email matches
-  //     } catch (error) {
-  //       console.error("Failed to decode token:", error);
-  //     }
-  //   } else {
-  //     setSession(false);
-  //     setIsAdmin(false);
-  //   }
-  // }, [localStorage.getItem('authToken')]);
-
-
-  // const handleLogout = () => {
-  //   // Clear the token from localStorage
-  //   localStorage.removeItem('authToken');
-
-
-  // };
 
 
   return (
@@ -143,15 +114,15 @@ export default function Drawer() {
               </li>
             )}
 
-            {session ? (
-              <li >
+            {(session || usern) ? (
+              <li className='w-full hover:bg-slate-400 rounded'>
                 <button
                   onClick={logout}
                  
-                  className="flex items-center p-2 rounded group hover:bg-slate-400"
+                  className="flex items-center p-2 rounded group hover:bg-slate-400 "
                 >
                   <FiLogOut className="text-xl" />
-                  <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
+                  <span className="flex-1 ms-3 whitespace-nowrap ">Logout</span>
                 </button>
               </li>
             ) : (
