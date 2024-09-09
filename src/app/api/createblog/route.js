@@ -1,6 +1,36 @@
-// pages/api/blog.js
+// pages/api/createblog.js
 import { NextResponse } from 'next/server';
 import { connectDB } from "@/lib/config/db";
+
+
+import nodemailer from 'nodemailer';
+
+// Create a transporter for sending emails using Gmail
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL,
+    pass: process.env.GMAIL_API,
+  },
+});
+
+// Function to send email notifications
+async function sendEmailNotification(users, blogId, title) {
+  const blogLink = `http://localhost:3000/blog/${blogId}`;
+
+  // Send emails to all users
+  for (const user of users) {
+    const mailOptions = {
+      from: process.env.GMAIL_USER,
+      to: user.email, // Send email to each user
+      subject: 'New Blog Posted on Everyday Echoes!',
+      html: `<p> A new blog titled <h2 style="color: #333;">"${title}"</h2> has been posted. Check it out here: <a href="${blogLink}">${blogLink}</a></p>`
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+  }
+}
 
 export async function POST(req) {
   try {
@@ -13,7 +43,8 @@ export async function POST(req) {
 
     // Connect to MongoDB
     const db = await connectDB();
-    const collection = db.collection('blog');
+    const blogCollection = db.collection('blog');
+    const usersCollection = db.collection('users'); // Assuming you have a 'users' collection
 
     // Create a new blog entry
     const newBlog = {
@@ -24,7 +55,14 @@ export async function POST(req) {
       like: 0, // Default like count
     };
 
-    await collection.insertOne(newBlog);
+    const result = await blogCollection.insertOne(newBlog);
+    const blogId = result.insertedId; // Get the ID of the newly created blog
+
+    // Fetch all users except for the one with the email 'admin989@gmail.com'
+    const users = await usersCollection.find({ email: { $ne: 'admin989@gmail.com' } }).toArray();
+
+    // Send email notifications to all remaining users
+    await sendEmailNotification(users, blogId, title);
 
     return NextResponse.json({ message: 'Blog created successfully!' }, { status: 201 });
   } catch (error) {
@@ -32,5 +70,6 @@ export async function POST(req) {
     return NextResponse.json({ message: 'An error occurred. Please try again.' }, { status: 500 });
   }
 }
+
 
 

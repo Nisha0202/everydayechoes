@@ -6,8 +6,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RiLoader3Fill } from 'react-icons/ri';
 
-
-
 const NewBlogForm = () => {
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
@@ -142,7 +140,7 @@ const NewBlogForm = () => {
 
         <button
           type="submit"
-          className="w-full text-blue-500 hover:text-blue-600 text-sm py-2 px-4 rounded-lg transition-colors font-bold"
+          className="w-full text-blue-500 hover:text-blue-600 text-sm mt-2 transition-colors font-bold"
         >
           {loading ? (
             <span className="flex items-center justify-center w-full">
