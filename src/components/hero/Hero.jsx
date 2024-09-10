@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { format } from 'date-fns';
+import Head from 'next/head';
 export default function Hero() {
 
 
@@ -52,6 +53,11 @@ export default function Hero() {
 
   return (
     <section className="bg-white dark:bg-gray-900">
+       <Head>
+        <title>My Awesome Next.js App</title>
+        <meta name="description" content="This is an awesome Next.js app built with React." />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
         <div className="bg-gray-100 flex flex-col-reverse lg:flex-row lg:gap-12 gap-6 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:px-12 md:py-0 mb-8">
           <div className="my-auto lg:w-1/2">

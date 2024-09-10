@@ -1,14 +1,17 @@
 // context/AuthContext.js
 "use client"
 import { createContext, useContext, useState, useEffect } from 'react';
-import {jwtDecode} from 'jwt-decode';
-
+import { jwtDecode } from 'jwt-decode';
+import { useRouter } from 'next/navigation';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [authToken, setAuthToken] = useState(null);
+
+
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -25,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     } else {
       setSession(false);
       setIsAdmin(false);
+      setAuthToken(null);
     }
   }, [authToken]);
 
@@ -38,11 +42,12 @@ export const AuthProvider = ({ children }) => {
     setAuthToken(null);
     setSession(false);
     setIsAdmin(false);
-    
+    router.reload();
+
   };
 
   return (
-    <AuthContext.Provider value={{ session, isAdmin, login, logout }}>
+    <AuthContext.Provider value={{ session, isAdmin, login, authToken, logout }}>
       {children}
     </AuthContext.Provider>
   );

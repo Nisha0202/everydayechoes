@@ -11,20 +11,17 @@ import { FiLogOut } from "react-icons/fi";
 import { FaUserShield } from 'react-icons/fa';
 import { GrCircleQuestion } from "react-icons/gr";
 import { useAuth } from '@/context/AuthContext';
-import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 
 export default function Drawer() {
   const [isOpen, setIsOpen] = useState(false);
-  const { session, isAdmin, logout } = useAuth(); 
-  const { usern } = useContext(AuthContext);
- 
+  const { isAdmin,  authToken, logout } = useAuth(); 
   const toggleDrawer = () => setIsOpen(!isOpen);
-
   const pathname = usePathname();
 
 
   return (
     <nav className='dark:bg-gray-900'>
+      
       {/* Drawer Toggle Button */}
       <div className="lg:p-6 p-4 flex items-center justify-between">
         <Link href={'/'} className='font-semibold'>Everyday Echoes</Link>
@@ -36,10 +33,7 @@ export default function Drawer() {
             className={isOpen ? 'text-slate-500' : ''}
             type="button"
             onClick={toggleDrawer}
-            aria-controls="drawer-navigation"
-          >
-
-
+            aria-controls="drawer-navigation" >
             <TbMenuDeep className='text-2xl hover:text-slate-400 rounded-lg' />
           </button>
         </div>
@@ -114,7 +108,7 @@ export default function Drawer() {
               </li>
             )}
 
-            {(session || usern) ? (
+            {authToken ? (
               <li className='w-full hover:bg-slate-400 rounded'>
                 <button
                   onClick={logout}

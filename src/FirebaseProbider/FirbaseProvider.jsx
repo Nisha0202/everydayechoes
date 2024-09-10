@@ -3,17 +3,15 @@ import React, { createContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import auth from '../firebase/firebase.config';
 import { toast } from 'react-toastify'; 
-
-
+import { useAuth } from '@/context/AuthContext';
 
 export const AuthContext = createContext(null);
 
 export default function FirebaseProvider(props) {
-  
   const googleProvider = new GoogleAuthProvider();
   const [usern, setUsern] = useState(null);
-  const [googleLoading, setLoading] = useState(false); // Optional: to manage loading state
-  const [googlesub, setSubscribed] = useState(false); // Optional: to manage subscription state
+  const [googleLoading, setLoading] = useState(false); 
+  const [googlesub, setSubscribed] = useState(false); 
 
   const googleLogin = () => {
     setLoading(true);
@@ -141,6 +139,7 @@ export default function FirebaseProvider(props) {
     usern,
     googleLoading,
     googlesub,
+   
   };
 
   return (
