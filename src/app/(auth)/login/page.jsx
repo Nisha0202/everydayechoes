@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 import { FaCheck } from 'react-icons/fa';
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { login } = useAuth(); 
@@ -17,6 +18,7 @@ const Login = () => {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
+ const router = useRouter();
 
   // API URL
   const apiUrl = 'http://localhost:3000/api/login';
@@ -68,6 +70,7 @@ const Login = () => {
           setEmail('');
           setOtp('');
           setStep(1);
+          router.push('/');
      
 
         // Capture the JWT token

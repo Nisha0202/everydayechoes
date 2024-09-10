@@ -4,12 +4,12 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
 const AuthContext = createContext();
-
+import Router from 'next/router';
 export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [authToken, setAuthToken] = useState(null);
-
+ 
 
   const router = useRouter();
 
@@ -42,12 +42,12 @@ export const AuthProvider = ({ children }) => {
     setAuthToken(null);
     setSession(false);
     setIsAdmin(false);
-    router.reload();
+    router.refresh();
 
   };
 
   return (
-    <AuthContext.Provider value={{ session, isAdmin, login, authToken, logout }}>
+    <AuthContext.Provider value={{ session, isAdmin, login, authToken, logout, setAuthToken }}>
       {children}
     </AuthContext.Provider>
   );

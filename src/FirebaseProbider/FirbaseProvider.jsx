@@ -3,8 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import auth from '../firebase/firebase.config';
 import { toast } from 'react-toastify'; 
-import { useAuth } from '@/context/AuthContext';
-
+import { useRouter } from "next/navigation";
 export const AuthContext = createContext(null);
 
 export default function FirebaseProvider(props) {
@@ -12,7 +11,7 @@ export default function FirebaseProvider(props) {
   const [usern, setUsern] = useState(null);
   const [googleLoading, setLoading] = useState(false); 
   const [googlesub, setSubscribed] = useState(false); 
-
+const router = useRouter();
   const googleLogin = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -54,7 +53,11 @@ export default function FirebaseProvider(props) {
         setSubscribed(true);
         const username = user.displayName || user.email.split('@')[0];
         toast.success(`Hello ${username}! Excited to share some awesome vibes with you. 😊😉`);
+        
         const token = data.token;
+        setTimeout(() => {
+          router.push('/'); 
+        }, 1000); //
         localStorage.setItem('authToken', token);
       }
     } catch (error) {
@@ -105,7 +108,9 @@ export default function FirebaseProvider(props) {
         
         // Capture the JWT token
         const token = data.token;
-   
+        setTimeout(() => {
+          router.push('/'); 
+        }, 1000); //
         // Store the token in local storage or state (for example, localStorage)
         localStorage.setItem('authToken', token);
       } else {

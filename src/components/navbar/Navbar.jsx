@@ -11,13 +11,21 @@ import { FiLogOut } from "react-icons/fi";
 import { FaUserShield } from 'react-icons/fa';
 import { GrCircleQuestion } from "react-icons/gr";
 import { useAuth } from '@/context/AuthContext';
+import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 
 export default function Drawer() {
+  const { usern } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  const { isAdmin,  authToken, logout } = useAuth(); 
+  const { isAdmin,  authToken, logout, setAuthToken } = useAuth(); 
   const toggleDrawer = () => setIsOpen(!isOpen);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token && usern) {
+      setAuthToken(true);
+    }
+  }, [authToken]);
 
   return (
     <nav className='dark:bg-gray-900'>
