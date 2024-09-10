@@ -70,7 +70,9 @@ const Login = () => {
           setEmail('');
           setOtp('');
           setStep(1);
-          router.push('/');
+          setTimeout(() => {
+            router.push('/'); 
+          }, 1000); //
      
 
         // Capture the JWT token

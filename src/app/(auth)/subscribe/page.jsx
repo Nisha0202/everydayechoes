@@ -69,19 +69,19 @@ const Subscribe = () => {
           setSubscribed(true);
           toast.success("You are in! Excited to share some awesome vibes with you. 😊😉");
 
-
-
-          // Store the token in local storage or state (for example, localStorage)
-          // localStorage.setItem('authToken', token);
-
           // Clear input fields
           setEmail('');
           setOTP('');
           setName('');
           setStep(1);
+      
           // Capture the JWT token
           const token = data.token;
           login(token);
+    setTimeout(() => {
+            router.push('/'); 
+          }, 1000); 
+
         }
       } catch (error) {
         console.error(error.message);
