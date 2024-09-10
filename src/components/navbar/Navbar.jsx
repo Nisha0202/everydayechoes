@@ -16,7 +16,8 @@ import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 export default function Drawer() {
   const { usern } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  const { isAdmin,  authToken, logout, setAuthToken } = useAuth(); 
+  const { isAdmin, authToken, logout, setAuthToken } = useAuth();
+  const [blogCount, setBlogCount] = useState(0);
   const toggleDrawer = () => setIsOpen(!isOpen);
   const pathname = usePathname();
 
@@ -27,9 +28,30 @@ export default function Drawer() {
     }
   }, [authToken]);
 
+  useEffect(() => {
+    // Check your fetch request
+    const fetchBlogCount = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/count', {
+          method: 'GET', // Ensure this matches the expected method
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch blog count');
+        }
+        const data = await response.json();
+        console.log('Blog count:', data.count);
+      } catch (error) {
+        console.error('Error fetching blog', error);
+      }
+    };
+
+
+    fetchBlogCount();
+  }, []);
+
   return (
     <nav className='dark:bg-gray-900'>
-      
+
       {/* Drawer Toggle Button */}
       <div className="lg:p-6 p-4 flex items-center justify-between">
         <Link href={'/'} className='font-semibold'>Everyday Echoes</Link>
@@ -90,7 +112,7 @@ export default function Drawer() {
                 <IoMdBook className="text-xl" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Blog</span>
                 <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm rounded-full bg-slate-300 dark:bg-slate-600">
-                  3
+                  {blogCount}
                 </span>
               </Link>
             </li>
@@ -120,7 +142,7 @@ export default function Drawer() {
               <li className='w-full hover:bg-slate-400 rounded'>
                 <button
                   onClick={logout}
-                 
+
                   className="flex items-center p-2 rounded group hover:bg-slate-400 "
                 >
                   <FiLogOut className="text-xl" />

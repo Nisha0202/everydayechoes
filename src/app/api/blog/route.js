@@ -1,10 +1,6 @@
 import { connectDB } from "@/lib/config/db";
 const {NextResponse} = require("next/server");
 
-
-
-
-
 export async function GET(req) {
   try {
     const db = await connectDB();
