@@ -29,19 +29,19 @@ export default function Drawer() {
     }
   }, [authToken]);
 
-  // const fetchBlogCount = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:3000/api/blogcount');
-  //       console.log('Blog count:', response.data.count);
-  //       setBlogCount(response.data.count); // Set the blog count from the response
-  //     } catch (error) {
-  //       console.error('Error fetching blog count:', error); // Log the error
-  //     }
-  //   };
+  const fetchBlogCount = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/blogcount');
+        console.log('Blog count:', response.data.count);
+        setBlogCount(response.data.count); 
+      } catch (error) {
+        console.error('Error fetching blog count:', error); 
+      }
+    };
 
-  // useEffect(() => {
-  //   fetchBlogCount(); 
-  // }, []);
+  useEffect(() => {
+    fetchBlogCount(); 
+  }, []);
 
   return (
     <nav className='dark:bg-gray-900'>

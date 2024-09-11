@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import BlogCard from '@/components/card/BlogCard';
 import BlogCardSkeleton from '@/components/skeleton/BlogCardSkeleton';
 import { IoMdArrowDropup } from "react-icons/io";
+import { NextSeo } from 'next-seo';
+
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -90,6 +92,7 @@ const BlogList = () => {
 
   return (
     <section className="bg-white dark:bg-gray-900">
+        <NextSeo title="Everyday Echoes - All Blogs" description="Browse all blogs" />
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
         <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
         <div className="flex flex-wrap justify-around lg:gap-6 gap-8">
