@@ -59,6 +59,7 @@ const router = useRouter();
           router.push('/'); 
         }, 1000); //
         localStorage.setItem('authToken', token);
+        location.reload();
       }
     } catch (error) {
       console.error('Error saving user to the database:', error.message);

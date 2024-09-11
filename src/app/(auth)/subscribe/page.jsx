@@ -87,9 +87,7 @@ const Subscribe = () => {
           // Capture the JWT token
           const token = data.token;
           login(token);
-    setTimeout(() => {
-            router.push('/'); 
-          }, 1000); 
+          // location.reload();
 
         }
       } catch (error) {

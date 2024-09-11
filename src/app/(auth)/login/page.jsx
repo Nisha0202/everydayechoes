@@ -79,16 +79,17 @@ const Login = () => {
           // Clear input fields
           setEmail('');
           setOtp('');
-          setStep(1);
-          
-          location.reload();
+          setStep(1);  
+          const token = data.token;
+           login(token);
+          // location.reload();
      
 
         // Capture the JWT token
-        const token = data.token;
+      
 
         // localStorage.setItem('authToken', token);  
-         login(token);
+        
       } else {
         toast.error(data.error || "Invalid OTP");
       }
