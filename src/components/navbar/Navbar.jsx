@@ -32,7 +32,7 @@ export default function Drawer() {
     // Check your fetch request
     const fetchBlogCount = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/count', {
+        const response = await fetch('http://localhost:3000/api/blogcount', {
           method: 'GET', // Ensure this matches the expected method
         });
         if (!response.ok) {
@@ -40,6 +40,7 @@ export default function Drawer() {
         }
         const data = await response.json();
         console.log('Blog count:', data.count);
+        setBlogCount(data.count)
       } catch (error) {
         console.error('Error fetching blog', error);
       }
@@ -111,7 +112,7 @@ export default function Drawer() {
               >
                 <IoMdBook className="text-xl" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Blog</span>
-                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm rounded-full bg-slate-300 dark:bg-slate-600">
+                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs rounded-full bg-slate-300 dark:bg-slate-600">
                   {blogCount}
                 </span>
               </Link>

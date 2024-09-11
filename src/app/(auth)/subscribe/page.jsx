@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { FaCheck } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
@@ -8,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
 import { useAuth } from '@/context/AuthContext';
-import Login from '../login/page';
+import { useRouter } from 'next/navigation';
 
 const Subscribe = () => {
   const { login } = useAuth();
@@ -19,6 +19,15 @@ const Subscribe = () => {
   const [email, setEmail] = useState('');
   const [otp, setOTP] = useState('');
   const [name, setName] = useState('');
+  const router = useRouter();
+    // Redirect to home if authToken exists
+    useEffect(() => {
+      const authToken = localStorage.getItem('authToken');
+      if (authToken) {
+        // If token is found, redirect to home
+        router.push('/');
+      }
+    }, [router]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

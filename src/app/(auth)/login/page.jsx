@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { RiLoader3Fill } from "react-icons/ri";
 import { FcGoogle } from 'react-icons/fc';
 import { toast, ToastContainer } from 'react-toastify';
@@ -19,6 +19,15 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
  const router = useRouter();
+
+   // Redirect to home if authToken exists
+   useEffect(() => {
+    const authToken = localStorage.getItem('authToken');
+    if (authToken) {
+      // If token is found, redirect to home
+      router.push('/');
+    }
+  }, []);
 
   // API URL
   const apiUrl = 'http://localhost:3000/api/login';
