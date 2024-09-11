@@ -26,6 +26,7 @@ const Login = () => {
     if (authToken) {
       // If token is found, redirect to home
       router.push('/');
+      
     }
   }, []);
 
@@ -79,9 +80,8 @@ const Login = () => {
           setEmail('');
           setOtp('');
           setStep(1);
-          setTimeout(() => {
-            router.push('/'); 
-          }, 1000); //
+          
+          location.reload();
      
 
         // Capture the JWT token

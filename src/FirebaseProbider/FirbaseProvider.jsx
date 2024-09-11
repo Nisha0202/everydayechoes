@@ -69,6 +69,9 @@ const router = useRouter();
   };
 
 
+
+  //login
+
   const googleUp = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -108,13 +111,13 @@ const router = useRouter();
         
         // Capture the JWT token
         const token = data.token;
-        setTimeout(() => {
-          router.push('/'); 
-        }, 1000); //
+        
         // Store the token in local storage or state (for example, localStorage)
         localStorage.setItem('authToken', token);
+        location.reload();
+     
       } else {
-        toast.error(data.error || 'Invalid OTP');
+        toast.error(data.error || 'Failed to Login, Please try again.');
       }
     } catch (error) {
       console.error('Error sending OTP:', error);

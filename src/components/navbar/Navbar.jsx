@@ -12,7 +12,7 @@ import { FaUserShield } from 'react-icons/fa';
 import { GrCircleQuestion } from "react-icons/gr";
 import { useAuth } from '@/context/AuthContext';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
-
+ import axios from 'axios';
 export default function Drawer() {
   const { usern } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -20,35 +20,28 @@ export default function Drawer() {
   const [blogCount, setBlogCount] = useState(0);
   const toggleDrawer = () => setIsOpen(!isOpen);
   const pathname = usePathname();
+ 
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    if (token && usern) {
+    if (token || usern) {
       setAuthToken(true);
     }
   }, [authToken]);
 
-  useEffect(() => {
-    // Check your fetch request
-    const fetchBlogCount = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/api/blogcount', {
-          method: 'GET', // Ensure this matches the expected method
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog count');
-        }
-        const data = await response.json();
-        console.log('Blog count:', data.count);
-        setBlogCount(data.count)
-      } catch (error) {
-        console.error('Error fetching blog', error);
-      }
-    };
+  // const fetchBlogCount = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:3000/api/blogcount');
+  //       console.log('Blog count:', response.data.count);
+  //       setBlogCount(response.data.count); // Set the blog count from the response
+  //     } catch (error) {
+  //       console.error('Error fetching blog count:', error); // Log the error
+  //     }
+  //   };
 
-
-    fetchBlogCount();
-  }, []);
+  // useEffect(() => {
+  //   fetchBlogCount(); 
+  // }, []);
 
   return (
     <nav className='dark:bg-gray-900'>
@@ -112,9 +105,9 @@ export default function Drawer() {
               >
                 <IoMdBook className="text-xl" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Blog</span>
-                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs rounded-full bg-slate-300 dark:bg-slate-600">
+                {/* <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs rounded-full bg-slate-300 dark:bg-slate-600">
                   {blogCount}
-                </span>
+                </span> */}
               </Link>
             </li>
             <li className={pathname == "/about" ? "active" : ""}>
