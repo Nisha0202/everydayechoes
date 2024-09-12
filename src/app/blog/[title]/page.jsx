@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FaRegHeart, FaRegCommentAlt, FaArrowLeft } from "react-icons/fa";
+import { FaRegHeart, FaRegCommentAlt} from "react-icons/fa";
 import BlogCard from '@/components/card/BlogCard';
 import CommentSection from '@/components/comment/CommentSection';
 import CommentModal from '@/components/commentinput/CommentModal';
@@ -32,7 +32,7 @@ export default function BlogTitle({ params }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [heading, setHeading] = useState("Everyday Echoes");
+  // const [heading, setHeading] = useState("Everyday Echoes");
 
   const router = useRouter(); // Initialize router for navigation
 
@@ -54,7 +54,7 @@ export default function BlogTitle({ params }) {
 
         setBlogData(data.blog || null);
         setRelatedPosts(data.relatedPosts || []);
-        setHeading(data.title);
+        // setHeading(data.title);
 
       } catch (error) {
         setError(error.message);
