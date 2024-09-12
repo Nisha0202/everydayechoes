@@ -58,7 +58,7 @@ const CommentModal = ({ blogData, closeModal }) => {
         comment: comment,
       };
 
-      await axios.post('http://localhost:3000/api/comment', commentData); // Adjust the API route to your setup
+      await axios.post('https://everydayechoes.vercel.app/api/comment', commentData); // Adjust the API route to your setup
 
       // Clear the comment after submission and show success state
       setComment('');

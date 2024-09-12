@@ -42,7 +42,7 @@ To run the project locally:
    npm run dev
    ```
 
-5. Open your browser and visit `http://localhost:3000` to see the application.
+5. Open your browser and visit `https://everydayechoes.vercel.app` to see the application.
 
 ## Deployment
 

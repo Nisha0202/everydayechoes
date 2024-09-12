@@ -31,7 +31,7 @@ const Login = () => {
   }, []);
 
   // API URL
-  const apiUrl = 'http://localhost:3000/api/login';
+  const apiUrl = 'https://everydayechoes.vercel.app/api/login';
 
   const handleNextClick = async () => {
     if (step === 1 && email) {

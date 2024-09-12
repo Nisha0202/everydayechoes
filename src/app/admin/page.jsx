@@ -42,7 +42,7 @@ const NewBlogForm = () => {
 
     try {
       // Replace the API endpoint with your backend
-      const response = await fetch('http://localhost:3000/api/createblog', {
+      const response = await fetch('https://everydayechoes.vercel.app/api/createblog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -28,7 +28,7 @@ const router = useRouter();
   const saveUserToDatabase = async (user) => {
 
     try {
-      const response = await fetch('http://localhost:3000/api/subscribe', {
+      const response = await fetch('https://everydayechoes.vercel.app/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ const router = useRouter();
   };
 
   // API URL
-  const apiUrl = 'http://localhost:3000/api/login';
+  const apiUrl = 'https://everydayechoes.vercel.app/api/login';
 
   const loginToDatabase = async (user) => {
     setLoading(true);

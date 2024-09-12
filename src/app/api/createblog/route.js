@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 
 // Function to send email notifications
 async function sendEmailNotification(users, blogId, title) {
-  const blogLink = `http://localhost:3000/blog/${blogId}`;
+  const blogLink = `https://everydayechoes.vercel.app/blog/${blogId}`;
 
   // Send emails to all users
   for (const user of users) {

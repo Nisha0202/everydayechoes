@@ -14,7 +14,7 @@ import { format } from 'date-fns';
 
 // export async function generateMetadata({ params }) {
 //   const title = params.title;
-//   const res = await fetch(`http://localhost:3000/api/blog/${title}`);
+//   const res = await fetch(`https://everydayechoes.vercel.app/api/blog/${title}`);
 //   const blog = await res.json();
 
 //   return {
@@ -44,7 +44,7 @@ export default function BlogTitle({ params }) {
       try {
         if (!title) return; // Avoid calling the API if title is not present
 
-        const response = await fetch(`http://localhost:3000/api/blog/${title}`);
+        const response = await fetch(`https://everydayechoes.vercel.app/api/blog/${title}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -107,7 +107,7 @@ export default function BlogTitle({ params }) {
 
       // Send the updated like count and isLiked status to the server
       try {
-        const response = await fetch('http://localhost:3000/api/blog/like', {
+        const response = await fetch('https://everydayechoes.vercel.app/api/blog/like', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

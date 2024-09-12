@@ -10,7 +10,7 @@ const CommentSection = ({ blogData, refetchComments }) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/comment?blogId=${blogData._id}`);
+        const response = await axios.get(`https://everydayechoes.vercel.app/api/comment?blogId=${blogData._id}`);
         setComments(response.data.comments);
         setLoading(false);
       } catch (error) {
