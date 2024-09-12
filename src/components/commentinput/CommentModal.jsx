@@ -78,7 +78,7 @@ const CommentModal = ({ blogData, closeModal }) => {
 
   return (
     <div className="fixed inset-0 z-50 overflow-auto bg-gray-400 bg-opacity-30 flex">
-      <div className="relative p-8 bg-gray-100 dark:bg-gray-700 w-full max-w-md m-auto flex-col flex rounded-md">
+      <div className="relative p-8 bg-gray-100 dark:bg-gray-700 w-full max-w-md m-auto flex-col flex rounded-md border-2 border-gray-400">
         <span className="absolute top-0 right-0 p-4">
           <button
             onClick={closeModal}
@@ -106,7 +106,7 @@ const CommentModal = ({ blogData, closeModal }) => {
         <button
           onClick={handleSubmit}
           className={`flex items-center justify-center bg-blue-600 font-medium text-white mt-4 px-4 py-2 rounded text-sm w-full
-            ${loading || success || comment.trim() === '' ? 'opacity-50 cursor-not-allowed' : ''}`}
+            ${loading || success || comment.trim() === '' ? 'bg-blue-400' : ''}`}
           disabled={loading || success || comment.trim() === ''} // Disable button if comment is empty or loading/success
         >
           {loading ? (
