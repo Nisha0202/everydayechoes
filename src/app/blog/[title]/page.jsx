@@ -257,7 +257,7 @@ export default function BlogTitle({ params }) {
       {/* Floating Back Button */}
       <button
         onClick={handleBackClick}
-        className="fixed bottom-8 lg:bottom-4 text-sm lg:text-base left-4 p-2 dark:bg-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full shadow-lg dark:hover:bg-gray-800 focus:outline-none"
+        className="fixed bottom-10 lg:bottom-4 text-sm lg:text-base left-4 p-2 dark:bg-gray-700 bg-gray-300 hover:bg-gray-400 rounded-full shadow-lg dark:hover:bg-gray-800 focus:outline-none"
       >
         <IoIosArrowBack />
       </button>

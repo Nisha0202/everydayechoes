@@ -11,7 +11,7 @@ const Footer = () => {
       <div className='gap-6 flex flex-col lg:flex-row lg:justify-between items-center justify-center container mx-auto px-4'>
 
         {/* Subscribe */}
-        <div className="text-sm">
+        <div className="text-xs lg:text-sm">
 
           <div>Never Miss a Blog Post – Subscribe Now!</div>
     
