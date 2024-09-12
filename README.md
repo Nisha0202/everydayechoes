@@ -1,5 +1,3 @@
-// windowing
-
 # Everyday Echoes
 
 **Everyday Echoes** is a personal blog website designed to share daily life experiences, thoughts, and reflections. It aims to reach readers who enjoy learning from others' lives through engaging and well-structured blog posts.

@@ -5,18 +5,35 @@ import { FaRegHeart, FaRegCommentAlt, FaArrowLeft } from "react-icons/fa";
 import BlogCard from '@/components/card/BlogCard';
 import CommentSection from '@/components/comment/CommentSection';
 import CommentModal from '@/components/commentinput/CommentModal';
-import { useRouter } from 'next/navigation'; // Import useRouter to handle navigation
-import { IoIosArrowBack, IoIosArrowDropleft, IoIosArrowRoundBack } from 'react-icons/io';
+import { useRouter } from 'next/navigation'; 
+import { IoIosArrowBack } from 'react-icons/io';
 import { format } from 'date-fns';
 
 
+
+
+// export async function generateMetadata({ params }) {
+//   const title = params.title;
+//   const res = await fetch(`http://localhost:3000/api/blog/${title}`);
+//   const blog = await res.json();
+
+//   return {
+//     title: `${blog.title} - My Blog`,
+    
+//   };
+// }
+
+
 export default function BlogTitle({ params }) {
+
+
   const [blogData, setBlogData] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const [heading, setHeading] = useState("Everyday Echoes");
+
   const router = useRouter(); // Initialize router for navigation
 
   // console.log("params", params.title);
@@ -36,15 +53,16 @@ export default function BlogTitle({ params }) {
 
         setBlogData(data.blog || null);
         setRelatedPosts(data.relatedPosts || []);
+        setHeading(data.title);
+
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-  useEffect(() => {
- 
 
+  useEffect(() => {
     fetchData();
   }, [title]);
 
@@ -117,16 +135,14 @@ export default function BlogTitle({ params }) {
     }
   };
   
+  // refetching comments
   const closeModal = () => {
     setIsModalOpen(false);
     // Trigger refetch of comments
     fetchData();
   };
 
-
-
-
-
+// going back
   const handleBackClick = () => {
     router.back(); // Use router to go back to the previous page
   };
@@ -143,10 +159,12 @@ export default function BlogTitle({ params }) {
     return <div className='w-full  flex items-center justify-center my-4 '>No blog post found.</div>;
   }
 
+
   return (
     <>
       <div className='w-full md:h-44 h-36 bg-gray-400 dark:bg-gray-600 grid place-content-center relative'>
-         <title> Blogs | Everyday Echoes</title>
+         <title> Blog | Everyday Echoes</title>
+    
         <h1 className='text-center text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white'>
           {blogData.title}
         </h1>

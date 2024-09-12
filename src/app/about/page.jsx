@@ -13,6 +13,7 @@ const AboutSection = () => {
 
   return (
     <section className="bg-white dark:bg-gray-900">
+        <title> About | Everyday Echoes</title>
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8 flex flex-col items-center justify-center">
         <div>
           <h1 className='text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white my-2 text-center'>
