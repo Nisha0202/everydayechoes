@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/config/db";
 
 export async function GET(req) {
   try {
-    const { db } = await connectDB(); // Ensure connectDB returns the 'db' object
+    const { db } = await connectDB();
     console.log('Database connected:', db);
   
     const blogCount = await db.collection('blog').countDocuments({});

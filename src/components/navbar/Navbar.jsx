@@ -20,7 +20,7 @@ export default function Drawer() {
   const [blogCount, setBlogCount] = useState(0);
   const toggleDrawer = () => setIsOpen(!isOpen);
   const pathname = usePathname();
- 
+  
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -105,9 +105,9 @@ export default function Drawer() {
               >
                 <IoMdBook className="text-xl" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Blog</span>
-                {/* <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs rounded-full bg-slate-300 dark:bg-slate-600">
+                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-xs rounded-full bg-slate-300 dark:bg-slate-600">
                   {blogCount}
-                </span> */}
+                </span>
               </Link>
             </li>
             <li className={pathname == "/about" ? "active" : ""}>

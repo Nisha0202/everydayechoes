@@ -10,15 +10,9 @@ import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Export metadata from a server component
-// export const metadata = {
-//   title: "Everyday Echoes",
-//   description: "A blog website using Next.js",
-// };
 
 export const metadata = {
   title: {
-    template: '%s | Everyday Echoes',
     default: 'Everyday Echoes', 
     description: "A blog website using Next.js",
   },

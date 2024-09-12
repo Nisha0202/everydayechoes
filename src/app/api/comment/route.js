@@ -65,7 +65,7 @@ export async function GET(req) {
       .limit(5) // Limit to the latest 5 comments
       .toArray();
 
-    console.log('Latest 5 Comments fetched:', comments);
+    // console.log('Latest 5 Comments fetched:', comments);
 
     // Return the comments
     return NextResponse.json({ comments });

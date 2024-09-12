@@ -9,13 +9,14 @@ import { useRouter } from 'next/navigation'; // Import useRouter to handle navig
 import { IoIosArrowBack, IoIosArrowDropleft, IoIosArrowRoundBack } from 'react-icons/io';
 import { format } from 'date-fns';
 
+
 export default function BlogTitle({ params }) {
   const [blogData, setBlogData] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   const router = useRouter(); // Initialize router for navigation
 
   // console.log("params", params.title);
@@ -143,8 +144,9 @@ export default function BlogTitle({ params }) {
   }
 
   return (
-    <div>
+    <>
       <div className='w-full md:h-44 h-36 bg-gray-400 dark:bg-gray-600 grid place-content-center relative'>
+         <title> Blogs | Everyday Echoes</title>
         <h1 className='text-center text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white'>
           {blogData.title}
         </h1>
@@ -240,6 +242,6 @@ export default function BlogTitle({ params }) {
       >
         <IoIosArrowBack />
       </button>
-    </div>
+    </>
   );
 }

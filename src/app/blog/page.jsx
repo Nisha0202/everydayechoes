@@ -92,7 +92,9 @@ const BlogList = () => {
 
   return (
     <section className="bg-white dark:bg-gray-900">
-        <NextSeo title="Everyday Echoes - All Blogs" description="Browse all blogs" />
+
+<title>All Blogs | Everyday Echoes</title>
+        {/* <NextSeo title="Everyday Echoes - All Blogs" description= "Browse all blogs" /> */}
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
         <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">Latest Blog Posts</h1>
         <div className="flex flex-wrap justify-around lg:gap-6 gap-8">
@@ -112,10 +114,10 @@ const BlogList = () => {
           </div>
         )}
         {showGoTop && (
-          <div className="fixed bottom-4 right-4">
+          <div className="fixed bottom-5 right-4">
             <button 
               onClick={scrollToTop} 
-              className="py-2 px-3 rounded-full shadow-lg  bg-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600">
+              className="py-3 px-3 rounded-full shadow-xl  bg-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600">
               <IoMdArrowDropup/>
             </button>
           </div>
