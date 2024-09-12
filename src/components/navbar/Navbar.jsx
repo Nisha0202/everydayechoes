@@ -17,18 +17,10 @@ export default function Drawer() {
   const { usern } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const { isAdmin, authToken, logout, setAuthToken } = useAuth();
-  const [blogCount, setBlogCount] = useState(0);
+  const [blogCount, setBlogCount] = useState(null);
   const toggleDrawer = () => setIsOpen(!isOpen);
   const pathname = usePathname();
   
-
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token || usern) {
-      setAuthToken(true);
-    }
-  }, [authToken]);
-
   const fetchBlogCount = async () => {
       try {
         const response = await axios.get('http://localhost:3000/api/blogcount');
@@ -40,8 +32,18 @@ export default function Drawer() {
     };
 
   useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token || usern) {
+      setAuthToken(true);
+    }
     fetchBlogCount(); 
-  }, []);
+  }, [authToken]);
+
+
+
+  // useEffect(() => {
+    
+  // }, []);
 
   return (
     <nav className='dark:bg-gray-900'>

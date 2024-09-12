@@ -39,7 +39,8 @@ export default function BlogTitle({ params }) {
   // console.log("params", params.title);
 
   const title = params.title; // Directly use params.title
-   const fetchData = async () => {
+   
+  const fetchData = async () => {
       try {
         if (!title) return; // Avoid calling the API if title is not present
 

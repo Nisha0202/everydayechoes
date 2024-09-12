@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: {
     default: 'Everyday Echoes', 
-    description: "A blog website using Next.js",
+    description: "A personal blog website using Next.js",
   },
 }
 

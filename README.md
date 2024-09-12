@@ -7,7 +7,7 @@
 - **Subscription System:** Allows users to subscribe and receive OTP-verified email notifications for new posts.
 - **Responsive Design:** Fully responsive and mobile-friendly interface using Tailwind CSS.
 - **Admin Dashboard:** Provides an interface for admins to post new blog content.
-- **Dynamic Titles:** Automatically updates page titles based on the content being viewed.
+- **Dynamic Titles:** Automatically updates page titles based on the page.
 - **Dark/Light Mode:** Toggle between dark and light themes for user preference.
 - **Latest Blogs:** Fetches and displays the latest blog posts dynamically.
 - **Engagement Options:** Users can like and comment on blog posts to interact with the content.

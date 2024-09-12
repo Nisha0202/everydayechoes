@@ -47,7 +47,7 @@ export async function GET(req) {
     const url = new URL(req.url, `http://${req.headers.host}`);
     const blogId = url.searchParams.get('blogId');
 
-    console.log('Fetching comments for blogId:', blogId);
+    // console.log('Fetching comments for blogId:', blogId);
 
     // Validate the blogId
     if (!blogId) {
