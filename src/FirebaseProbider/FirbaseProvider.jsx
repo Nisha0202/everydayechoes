@@ -2,16 +2,16 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import auth from '../firebase/firebase.config';
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
 export const AuthContext = createContext(null);
 
 export default function FirebaseProvider(props) {
   const googleProvider = new GoogleAuthProvider();
   const [usern, setUsern] = useState(null);
-  const [googleLoading, setLoading] = useState(false); 
-  const [googlesub, setSubscribed] = useState(false); 
-const router = useRouter();
+  const [googleLoading, setLoading] = useState(false);
+  const [googlesub, setSubscribed] = useState(false);
+  const router = useRouter();
   const googleLogin = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -53,13 +53,15 @@ const router = useRouter();
         setSubscribed(true);
         const username = user.displayName || user.email.split('@')[0];
         toast.success(`Hello ${username}! Excited to share some awesome vibes with you. 😊😉`);
-        
+
         const token = data.token;
         setTimeout(() => {
-          router.push('/'); 
-        }, 1000); //
-        localStorage.setItem('authToken', token);
-        location.reload();
+          router.push('/');
+          localStorage.setItem('authToken', token);
+          location.reload();
+        }, 1300); //
+        
+
       }
     } catch (error) {
       console.error('Error saving user to the database:', error.message);
@@ -109,14 +111,21 @@ const router = useRouter();
         console.log(data);
         toast.success(`Hey ${data.username}, looking fabulous today!`);
         setSubscribed(true);
-        
+
         // Capture the JWT token
         const token = data.token;
-        
-        // Store the token in local storage or state (for example, localStorage)
-        localStorage.setItem('authToken', token);
-        location.reload();
-     
+
+
+
+        setTimeout(() => {
+          router.push('/');
+          // Store the token in local storage or state (for example, localStorage)
+          localStorage.setItem('authToken', token);
+          location.reload();
+
+        }, 1300); //
+      
+
       } else {
         toast.error(data.error || 'Failed to Login, Please try again.');
       }
@@ -148,7 +157,7 @@ const router = useRouter();
     usern,
     googleLoading,
     googlesub,
-   
+
   };
 
   return (

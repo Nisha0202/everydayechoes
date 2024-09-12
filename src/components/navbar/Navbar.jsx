@@ -40,11 +40,6 @@ export default function Drawer() {
   }, [authToken]);
 
 
-
-  // useEffect(() => {
-    
-  // }, []);
-
   return (
     <nav className='dark:bg-gray-900'>
 
