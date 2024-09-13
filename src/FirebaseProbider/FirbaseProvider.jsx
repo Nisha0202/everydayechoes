@@ -58,7 +58,7 @@ export default function FirebaseProvider(props) {
         setTimeout(() => {
           router.push('/');
           localStorage.setItem('authToken', token);
-          location.reload();
+          // location.reload();
         }, 1300); //
         
 
@@ -121,7 +121,7 @@ export default function FirebaseProvider(props) {
           router.push('/');
           // Store the token in local storage or state (for example, localStorage)
           localStorage.setItem('authToken', token);
-          location.reload();
+          // location.reload();
 
         }, 1300); //
       
