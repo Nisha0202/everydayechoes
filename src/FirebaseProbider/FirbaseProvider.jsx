@@ -61,7 +61,7 @@ export default function FirebaseProvider(props) {
           // router.push('/');
           localStorage.setItem('authToken', token);
           // location.reload();
-        }, 1300); //
+        }, 1400); //
         
 
       }
@@ -125,7 +125,7 @@ export default function FirebaseProvider(props) {
           localStorage.setItem('authToken', token);
           // location.reload();
 
-        }, 1300); //
+        }, 1400); //
       
 
       } else {

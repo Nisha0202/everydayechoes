@@ -32,12 +32,12 @@ export default function Drawer() {
     };
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token || usern) {
-      setAuthToken(true);
-    }
+    // const token = localStorage.getItem('authToken');
+    // if (token || usern) {
+    //   setAuthToken(true);
+    // }
     fetchBlogCount(); 
-  }, [authToken]);
+  }, []);
 
 
   return (
@@ -129,7 +129,7 @@ export default function Drawer() {
               </li>
             )}
 
-            {authToken ? (
+            {(token || usern) ? (
               <li className='w-full hover:bg-slate-400 rounded'>
                 <button
                   onClick={logout}
