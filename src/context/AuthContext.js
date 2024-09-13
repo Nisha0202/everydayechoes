@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('authToken', token);
     setAuthToken(token);
     router.refresh();
+    router.push('/');
   };
 
   const logout = () => {
