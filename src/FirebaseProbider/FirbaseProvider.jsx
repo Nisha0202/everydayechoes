@@ -12,6 +12,7 @@ export default function FirebaseProvider(props) {
   const [googleLoading, setLoading] = useState(false);
   const [googlesub, setSubscribed] = useState(false);
   const router = useRouter();
+  
   const googleLogin = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -56,7 +57,7 @@ export default function FirebaseProvider(props) {
 
         const token = data.token;
         setTimeout(() => {
-          router.push('/');
+          // router.push('/');
           localStorage.setItem('authToken', token);
           // location.reload();
         }, 1300); //
@@ -118,7 +119,7 @@ export default function FirebaseProvider(props) {
 
 
         setTimeout(() => {
-          router.push('/');
+          // router.push('/');
           // Store the token in local storage or state (for example, localStorage)
           localStorage.setItem('authToken', token);
           // location.reload();
