@@ -87,8 +87,11 @@ const Subscribe = () => {
           // Capture the JWT token
           const token = data.token;
           login(token);
-          router.forward('/');
-          // location.reload();
+          // setTimeout(() => {
+          //    router.push('/');
+          //   localStorage.setItem('authToken', token);
+           
+          // }, 1300); 
 
         }
       } catch (error) {

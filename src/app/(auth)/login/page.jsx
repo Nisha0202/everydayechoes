@@ -82,9 +82,12 @@ const Login = () => {
           setStep(1);  
           const token = data.token;
           login(token);
-          router.forward('/');
-          // location.reload();
-     
+         
+        //   setTimeout(() => {
+        //     router.push('/');
+        //    localStorage.setItem('authToken', token);
+          
+        //  }, 1300); 
 
         // Capture the JWT token
       
