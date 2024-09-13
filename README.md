@@ -50,6 +50,6 @@ The project is deployed on Vercel. You can view the live site [here](https://eve
 
 # Admin Account
 
-Gmail - admin989@gmail.com
-OTP - 87658
+## Gmail - admin989@gmail.com
+## OTP - 87658
 
