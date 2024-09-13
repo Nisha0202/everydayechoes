@@ -39,7 +39,7 @@ export default function Hero() {
     };
 
     fetchBlogs();
-  }, []); // Add dependencies if needed
+  }, []); 
 
   // Handle loading, error, and render logic
   if (loading) {
@@ -87,7 +87,7 @@ export default function Hero() {
                 height="0"
                 sizes="100vw"
                 className="w-full h-auto lg:py-8 py-3"
-                priority
+                loading="eager"
               />
             </div>
           </div>

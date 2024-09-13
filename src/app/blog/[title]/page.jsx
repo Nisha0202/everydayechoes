@@ -253,7 +253,6 @@ export default function BlogTitle({ params }) {
       {isModalOpen && <CommentModal blogData={blogData} closeModal={closeModal} />}
 
 
-
       {/* Floating Back Button */}
       <button
         onClick={handleBackClick}
