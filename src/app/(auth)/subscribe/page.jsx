@@ -11,7 +11,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 
 const Subscribe = () => {
-  const { login } = useAuth();
+  const { authToken, login } = useAuth();
   const { googleLogin, googleLoading, googlesub } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
@@ -22,10 +22,10 @@ const Subscribe = () => {
   const router = useRouter();
     // Redirect to home if authToken exists
     useEffect(() => {
-      const authToken = localStorage.getItem('authToken');
+  
       if (authToken) {
         // If token is found, redirect to home
-        router.forward('/');
+        router.push('/');
       }
     }, []);
 
