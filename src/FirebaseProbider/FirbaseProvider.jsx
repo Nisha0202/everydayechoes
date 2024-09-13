@@ -11,7 +11,7 @@ export default function FirebaseProvider(props) {
   const [usern, setUsern] = useState(null);
   const [googleLoading, setLoading] = useState(false);
   const [googlesub, setSubscribed] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   const googleLogin = () => {
     setLoading(true);
