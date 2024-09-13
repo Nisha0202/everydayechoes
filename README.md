@@ -48,3 +48,8 @@ To run the project locally:
 
 The project is deployed on Vercel. You can view the live site [here](https://everydayechoes.vercel.app/).
 
+# Admin Account
+
+Gmail - admin989@gmail.com
+Password- Admin
+
