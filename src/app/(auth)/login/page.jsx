@@ -25,7 +25,7 @@ const Login = () => {
     const authToken = localStorage.getItem('authToken');
     if (authToken) {
       // If token is found, redirect to home
-      router.push('/');
+      router.forward('/');
       
     }
   }, []);
@@ -81,7 +81,8 @@ const Login = () => {
           setOtp('');
           setStep(1);  
           const token = data.token;
-           login(token);
+          login(token);
+          router.forward('/');
           // location.reload();
      
 

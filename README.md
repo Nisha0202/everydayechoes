@@ -51,5 +51,5 @@ The project is deployed on Vercel. You can view the live site [here](https://eve
 # Admin Account
 
 Gmail - admin989@gmail.com
-Password- Admin
+OTP - 87658
 

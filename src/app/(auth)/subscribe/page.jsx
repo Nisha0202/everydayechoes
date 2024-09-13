@@ -25,9 +25,9 @@ const Subscribe = () => {
       const authToken = localStorage.getItem('authToken');
       if (authToken) {
         // If token is found, redirect to home
-        router.push('/');
+        router.forward('/');
       }
-    }, [router]);
+    }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -87,6 +87,7 @@ const Subscribe = () => {
           // Capture the JWT token
           const token = data.token;
           login(token);
+          router.forward('/');
           // location.reload();
 
         }

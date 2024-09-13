@@ -12,7 +12,7 @@ export default function FirebaseProvider(props) {
   const [googleLoading, setLoading] = useState(false);
   const [googlesub, setSubscribed] = useState(false);
   const router = useRouter();
-  
+
   const googleLogin = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -22,6 +22,7 @@ export default function FirebaseProvider(props) {
       })
       .catch((error) => {
         console.error("Error during Google sign-in:", error.message);
+        setLoading(false);
         toast.error('Error during Google sign-in.');
       });
   };
@@ -133,6 +134,7 @@ export default function FirebaseProvider(props) {
     } catch (error) {
       console.error('Error sending OTP:', error);
       toast.error('Failed to send OTP');
+      setLoading(false);
     } finally {
       setLoading(false); // End loading
     }
