@@ -72,7 +72,7 @@ export default function Hero() {
 
               </Link>
 
-              {authToken && <Link href={'/subscribe'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white rounded-md bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
+              {!authToken && <Link href={'/subscribe'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white rounded-md bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
                 Subscribe
 
               </Link>
