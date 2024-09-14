@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import BlogCard from '@/components/card/BlogCard';
 import BlogCardSkeleton from '@/components/skeleton/BlogCardSkeleton';
 import { IoMdArrowDropup } from "react-icons/io";
-import { NextSeo } from 'next-seo';
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
