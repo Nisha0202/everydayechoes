@@ -11,7 +11,7 @@ export default function FirebaseProvider(props) {
   const [usern, setUsern] = useState(null);
   const [googleLoading, setLoading] = useState(false);
   const [googlesub, setSubscribed] = useState(false);
-  // const router = useRouter();
+  const router = useRouter();
 
   const googleLogin = () => {
     setLoading(true);
@@ -57,11 +57,13 @@ export default function FirebaseProvider(props) {
         toast.success(`Hello ${username}! Excited to share some awesome vibes with you. 😊😉`);
 
         const token = data.token;
+            localStorage.setItem('authToken', token);
+
         setTimeout(() => {
           router.push('/');
-          localStorage.setItem('authToken', token);
+      
           // location.reload();
-        }, 1400); //
+        }, 1200); //
         
 
       }
@@ -116,13 +118,13 @@ export default function FirebaseProvider(props) {
 
         // Capture the JWT token
         const token = data.token;
-
+    localStorage.setItem('authToken', token);
 
 
         setTimeout(() => {
           router.push('/');
           // Store the token in local storage or state (for example, localStorage)
-          localStorage.setItem('authToken', token);
+      
           // location.reload();
 
         }, 1400); //
