@@ -28,7 +28,7 @@ const Login = () => {
       router.push('/');
       
     }
-  }, []);
+  }, [authToken]);
 
   // API URL
   const apiUrl = 'https://everydayechoes.vercel.app/api/login';

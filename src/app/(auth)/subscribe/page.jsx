@@ -27,7 +27,7 @@ const Subscribe = () => {
         // If token is found, redirect to home
         router.push('/');
       }
-    }, []);
+    }, [authToken]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
