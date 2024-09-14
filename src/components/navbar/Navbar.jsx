@@ -36,7 +36,7 @@ export default function Drawer() {
     const token = localStorage.getItem('authToken');
     if (token || usern) {
       // setSession(true);
-      setAuthToken(true);
+      setAuthToken(token);
     }
     fetchBlogCount(); 
   }, [authToken]);
