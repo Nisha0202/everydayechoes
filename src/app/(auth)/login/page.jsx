@@ -25,8 +25,7 @@ const Login = () => {
 
     if (authToken) {
       // If token is found, redirect to home
-      router.push('/');
-      
+      router.push('/');   
     }
   }, [authToken]);
 

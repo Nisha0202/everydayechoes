@@ -39,7 +39,7 @@ export default function Drawer() {
       setAuthToken(token);
     }
     fetchBlogCount(); 
-  }, [authToken, usern]);
+  }, [usern]);
 
 
   return (

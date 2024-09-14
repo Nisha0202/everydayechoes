@@ -58,10 +58,11 @@ export default function FirebaseProvider(props) {
 
         const token = data.token;
             localStorage.setItem('authToken', token);
-
+// router.refresh();
         setTimeout(() => {
+
           router.push('/');
-      
+          
           // location.reload();
         }, 1200); //
         
@@ -119,10 +120,11 @@ export default function FirebaseProvider(props) {
         // Capture the JWT token
         const token = data.token;
     localStorage.setItem('authToken', token);
-
+//  router.refresh();
 
         setTimeout(() => {
           router.push('/');
+         
           // Store the token in local storage or state (for example, localStorage)
       
           // location.reload();
