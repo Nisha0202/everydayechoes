@@ -35,8 +35,8 @@ export default function Drawer() {
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token || usern) {
-      setSession(true);
-      // setAuthToken(true);
+      // setSession(true);
+      setAuthToken(true);
     }
     fetchBlogCount(); 
   }, []);
@@ -131,7 +131,7 @@ export default function Drawer() {
               </li>
             )}
 
-            {session ? (
+            {authToken ? (
               <li className='w-full hover:bg-slate-400 rounded'>
                 <button
                   onClick={logout}
