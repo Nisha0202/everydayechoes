@@ -20,6 +20,7 @@ export default function Drawer() {
   const [blogCount, setBlogCount] = useState(null);
   const toggleDrawer = () => setIsOpen(!isOpen);
   const pathname = usePathname();
+  const [session, setSession] = useState(false);
   
   const fetchBlogCount = async () => {
       try {
@@ -32,10 +33,11 @@ export default function Drawer() {
     };
 
   useEffect(() => {
-    // const token = localStorage.getItem('authToken');
-    // if (token || usern) {
-    //   setAuthToken(true);
-    // }
+    const token = localStorage.getItem('authToken');
+    if (token || usern) {
+      setSession(true);
+      // setAuthToken(true);
+    }
     fetchBlogCount(); 
   }, []);
 
@@ -129,7 +131,7 @@ export default function Drawer() {
               </li>
             )}
 
-            {(token || usern) ? (
+            {session ? (
               <li className='w-full hover:bg-slate-400 rounded'>
                 <button
                   onClick={logout}
