@@ -17,8 +17,9 @@ export default function FirebaseProvider(props) {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then(async (result) => {
-        setUsern(result.user);
+        
         await saveUserToDatabase(result.user);
+        setUsern(result.user);
       })
       .catch((error) => {
         console.error("Error during Google sign-in:", error.message);
@@ -84,8 +85,9 @@ export default function FirebaseProvider(props) {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then(async (result) => {
-        setUsern(result.user);
+        
         await loginToDatabase(result.user);
+        setUsern(result.user);
       })
       .catch((error) => {
         console.error("Error during Google sign-in:", error.message);

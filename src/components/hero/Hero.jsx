@@ -4,7 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { format } from 'date-fns';
+import { useAuth } from '@/context/AuthContext';
 export default function Hero() {
+  const {authToken} = useAuth();
 
 
   function truncateWords(str, numWords) {
@@ -39,7 +41,7 @@ export default function Hero() {
     };
 
     fetchBlogs();
-  }, []); 
+  }, []);
 
   // Handle loading, error, and render logic
   if (loading) {
@@ -52,7 +54,7 @@ export default function Hero() {
 
   return (
     <section className="bg-white dark:bg-gray-900">
-  
+
       <div className="py-4 px-4 mx-auto max-w-screen-xl lg:py-8 mb-8">
         <div className="bg-gray-100 flex flex-col-reverse lg:flex-row lg:gap-12 gap-6 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:px-12 md:py-0 mb-8">
           <div className="my-auto lg:w-1/2">
@@ -70,10 +72,12 @@ export default function Hero() {
 
               </Link>
 
-              <Link href={'/subscribe'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white rounded-md bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
+              {authToken && <Link href={'/subscribe'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-center text-white rounded-md bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 hover:dark:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-900">
                 Subscribe
 
               </Link>
+              }
+
             </div>
 
           </div>
