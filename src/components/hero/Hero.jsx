@@ -63,7 +63,7 @@ export default function Hero() {
               From small victories to deep reflections, each post captures a snapshot of my everyday life, offering a window into the joys, challenges, and lessons learned along the way.
             </p>
 
-            <div className='flex items-center gap-4 mb-2 lg:mb-0 text-sm'>
+            <div className='flex items-center gap-4 mb-2 lg:mb-1 text-sm'>
 
               <Link href={'/blog'} className="inline-flex justify-center items-center py-2 px-4 text-sm font-semibold text-center  rounded-md bg-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700 dark:bg-gray-600">
                 Read Blogs
