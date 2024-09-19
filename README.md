@@ -6,7 +6,7 @@
 
 - **Subscription System:** Allows users to subscribe and receive OTP-verified email notifications for new posts.
 - **Responsive Design:** Fully responsive and mobile-friendly interface using Tailwind CSS.
-- **Admin Dashboard:** Provides an interface for admins to post new blog content.
+- **Admin Dashboard:** Provides an interface for admins to post new blog content using a rich text editor developed with Tiptap.
 - **Dynamic Titles:** Automatically updates page titles based on the page.
 - **Dark/Light Mode:** Toggle between dark and light themes for user preference.
 - **Latest Blogs:** Fetches and displays the latest blog posts dynamically.
@@ -42,7 +42,41 @@ To run the project locally:
    npm run dev
    ```
 
-5. Open your browser and visit `https://everydayechoes.vercel.app` to see the application.
+## Firebase Setup
+
+To enable Google sign-up functionality, set up Firebase:
+
+1. Create a Firebase project in the Firebase Console.
+2. Add your web app to the Firebase project.
+3. Enable Google Sign-In in the Firebase Authentication settings.
+4. Replace the Firebase configuration in your project with the configuration details from your Firebase Console.
+
+## Nodemailer Setup
+
+For email sending functionality, set up Nodemailer with Gmail:
+
+1. Install Nodemailer in your project:
+   ```bash
+   npm install nodemailer
+   ```
+
+2. Set up a Gmail account and generate an app password (for enhanced security). Follow Gmail’s instructions for creating an app password.
+3. Configure Nodemailer with the Gmail user and app password. Update your environment variables or configuration file with the following details:
+   ```js
+   const transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+       user: 'your-email@gmail.com',
+       pass: 'your-app-password'
+     }
+   });
+   ```
+
+4. Use the transporter to send emails from your application.
+
+## Run Locally
+
+Replace `https://everydayechoes.vercel.app` to `http://localhost:3000`and open `http://localhost:3000` on your browser to see the application.
 
 ## Deployment
 
@@ -50,6 +84,5 @@ The project is deployed on Vercel. You can view the live site [here](https://eve
 
 # Admin Account
 
-## Gmail - admin989@gmail.com
-## OTP - 87658
-
+- **Gmail:** admin989@gmail.com
+- **OTP:** 87658
