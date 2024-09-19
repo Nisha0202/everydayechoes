@@ -18,25 +18,15 @@ const transporter = nodemailer.createTransport({
 async function sendEmailNotification(users, blogId, title) {
   const blogLink = `https://everydayechoes.vercel.app/blog/${blogId}`;
 
-  // // Send emails to all users
-  // for (const user of users) {
-  //   const mailOptions = {
-  //     from: process.env.GMAIL_USER,
-  //     to: user.email, // Send email to each user
-  //     subject: 'New Blog Posted on Everyday Echoes!',
-  //     html: `<p> A new blog titled <span style="color: #333;">"${title}"</span> has been posted. Check it out here: <a href="${blogLink}">${blogLink}</a></p>`
-  //   };
-
-  //   // Send the email
-  //   await transporter.sendMail(mailOptions);
-  // }
 
 
   // Send emails to all users
 for (const user of users) {
   const mailOptions = {
+   
     from: process.env.GMAIL_USER,
-    to: user.email, // Send email to each user
+    // to: user.email, // Send email to each user
+    to: 'nishajabatunnessa@gmail.com',
     subject: '🚀 New Blog Posted on Everyday Echoes!',
 
     html: `
@@ -45,9 +35,9 @@ for (const user of users) {
           <h2 style="color: #333333;">📢 New Blog Alert!</h2>
           <p style="color: #555555; font-size: 16px;">Hey there,</p>
           <p style="color: #555555; font-size: 16px;">
-            A new blog titled <strong style="color: #ff6600;">"${title}"</strong> has just been posted on Everyday Echoes.
+            A new blog titled <strong style="color: #16a34a;">"${title}"</strong> has just been posted on Everyday Echoes.
           </p>
-          <a href="${blogLink}" style="display: inline-block; padding: 12px 24px; background-color: #ff6600; color: white; text-decoration: none; border-radius: 4px; margin-top: 20px;">
+          <a href="${blogLink}" style="display: inline-block; padding: 12px 24px; background-color: #16a34a; color: white; text-decoration: none; border-radius: 4px; margin-top: 20px;">
             Read Now
           </a>
           <p style="color: #888888; font-size: 14px; margin-top: 20px;">

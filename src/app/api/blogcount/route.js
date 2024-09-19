@@ -8,10 +8,9 @@ export async function GET(req) {
     if (!db) {
       throw new Error('Database connection failed');
     }
-    console.log('Database connected:', db);
+ //   console.log('Database connected:', db);
   
-    // const blogCount = await db.collection('blog').countDocuments();
-    // Get the current date and calculate the date 3 days ago
+  
     const currentDate = new Date();
     const threeDaysAgo = new Date();
     threeDaysAgo.setDate(currentDate.getDate() - 3);

@@ -44,9 +44,9 @@ export default function Hero() {
   }, []);
 
   // Handle loading, error, and render logic
-  if (loading) {
-    return <div className='w-full flex items-center justify-center h-full '>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div className='w-full flex items-center justify-center h-full '>Loading...</div>;
+  // }
 
   if (error) {
     return <div className='w-full flex items-center justify-center text-red-500 h-full'>Error: {error}</div>;
@@ -91,14 +91,18 @@ export default function Hero() {
                 height="0"
                 sizes="100vw"
                 className="w-full h-auto lg:py-8 py-3"
-                loading="eager"
+                priority
               />
             </div>
           </div>
         </div>
 
         {/* blogs */}
-        <div className="grid md:grid-cols-2 gap-8">
+        {loading &&
+    <div className='w-full flex items-center justify-center h-full '>Loading...</div>
+        }
+        {!loading && 
+           <div className="grid md:grid-cols-2 gap-8">
           {blogs.map((blog) => (
             <div key={blog.id} className="bg-gray-100  dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
               <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
@@ -118,6 +122,8 @@ export default function Hero() {
             </div>
           ))}
         </div>
+        }
+     
 
       </div>
 

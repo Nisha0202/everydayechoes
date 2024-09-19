@@ -21,7 +21,7 @@ export async function GET(req, { params }) {
     const blog = await collection.findOne({ _id: blogId });
 
     if (!blog) {
-      console.log('Blog post not found for ID:', title);  // Log error
+   //   console.log('Blog post not found for ID:', title);  // Log error
       return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
     }
 

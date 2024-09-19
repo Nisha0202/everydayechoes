@@ -26,6 +26,17 @@ body {
 }
 
 
+/* Targeting the input field that appears in Tiptap's focused state */
+.ProseMirror-focused .ProseMirror-placeholder {
+  height: 3rem; /* Adjust this value as needed */
+}
+
+/* If you need to target a specific class or ID, use that instead */
+.custom-input-class {
+  height: 3rem; /* Adjust this value as needed */
+}
+
+
 
 
 

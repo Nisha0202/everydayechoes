@@ -3,6 +3,8 @@ import Image from 'next/image'
 import React from 'react'
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { format } from 'date-fns';
+import DOMPurify from 'dompurify';
+
 export default function BlogCard({ blog }) {
 
   // text: '#AAFF01',
@@ -12,7 +14,7 @@ export default function BlogCard({ blog }) {
     if (words.length <= numWords) return str;
     return words.slice(0, numWords).join(' ') + '...';
   }
-
+  const sanitizedDescription = DOMPurify.sanitize(truncateWords(blog.description, 14));
   return (
     <>
       {/* <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 md:p-10"> */}
@@ -34,9 +36,13 @@ export default function BlogCard({ blog }) {
           <h2 className="text-gray-900 dark:text-white  md:text-3xl text-xl font-extrabold mb-2">
             {truncateWords(blog.title, 8)}
           </h2>
-          <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-6">
+          {/* <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-6">
             {truncateWords(blog.description, 14)}
-          </p>
+          </p> */}
+             <p
+      className="text-sm leading-relaxed font-normal text-gray-500 dark:text-gray-400 mb-6"
+      dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+    />
           <Link href={`/blog/${blog._id}`} className="underline font-medium text-sm inline-flex items-center hover:scale-105 absolute lg:bottom-4 bottom-0">
             Read more
             <FaArrowRightLong className='ms-1.5' />

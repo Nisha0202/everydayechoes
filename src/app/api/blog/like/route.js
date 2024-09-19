@@ -5,8 +5,8 @@ import { ObjectId } from "mongodb";
 export async function POST(req) {
     try {
       const { title, isLiked } = await req.json(); // Accept both title and isLiked from the request body
-      console.log('Title received:', title);
-      console.log('IsLiked received:', isLiked);
+    //  console.log('Title received:', title);
+    //  console.log('IsLiked received:', isLiked);
   
       if (!title) {
         return NextResponse.json({ error: 'Blog ID is required' }, { status: 400 });
@@ -20,7 +20,7 @@ export async function POST(req) {
       const blog = await collection.findOne({ _id: blogId });
   
       if (!blog) {
-        console.log('Blog post not found for ID:', title);
+    //    console.log('Blog post not found for ID:', title);
         return NextResponse.json({ error: 'Blog post not found' }, { status: 404 });
       }
   

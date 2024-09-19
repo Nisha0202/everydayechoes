@@ -42,10 +42,6 @@ const sendOTP = async (email, otp) => {
 };
 
 
-
-
-
-
 // Handler for the subscription
 export async function POST(req) {
   try {
@@ -68,7 +64,7 @@ export async function POST(req) {
     if (step === 1) {
       const otp = generateOTP();
       await sendOTP(email, otp);
-      await collection.insertOne({ email, otp, verified: false });
+      await collection.insertOne({ email, otp, verified: false,  createdAt: new Date().toDateString(), });
       return NextResponse.json({ message: 'OTP sent' });
     }
 
@@ -102,6 +98,7 @@ export async function POST(req) {
         email,
         name,
         verified: true,
+        createdAt: new Date().toDateString(),
       };
 
       await collection.insertOne(newData);

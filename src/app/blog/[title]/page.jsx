@@ -1,32 +1,19 @@
 "use client";
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FaRegHeart, FaRegCommentAlt} from "react-icons/fa";
+import { FaRegHeart, FaRegCommentAlt } from "react-icons/fa";
 import BlogCard from '@/components/card/BlogCard';
 import CommentSection from '@/components/comment/CommentSection';
 import CommentModal from '@/components/commentinput/CommentModal';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import { IoIosArrowBack } from 'react-icons/io';
 import { format } from 'date-fns';
-
-
-
-
-// export async function generateMetadata({ params }) {
-//   const title = params.title;
-//   const res = await fetch(`https://everydayechoes.vercel.app/api/blog/${title}`);
-//   const blog = await res.json();
-
-//   return {
-//     title: `${blog.title} - My Blog`,
-    
-//   };
-// }
+import DOMPurify from 'dompurify';
 
 
 export default function BlogTitle({ params }) {
 
-
+  const [sanitizedContent, setSanitizedContent] = useState('');
   const [blogData, setBlogData] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,33 +26,45 @@ export default function BlogTitle({ params }) {
   // console.log("params", params.title);
 
   const title = params.title; // Directly use params.title
-   
+
   const fetchData = async () => {
-      try {
-        if (!title) return; // Avoid calling the API if title is not present
+    try {
+      if (!title) return; // Avoid calling the API if title is not present
 
-        const response = await fetch(`https://everydayechoes.vercel.app/api/blog/${title}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        // console.log("data", data);
-
-        setBlogData(data.blog || null);
-        setRelatedPosts(data.relatedPosts || []);
-        // setHeading(data.title);
-
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+      const response = await fetch(`https://everydayechoes.vercel.app/api/blog/${title}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
+
+      const data = await response.json();
+      // console.log("data", data);
+
+      setBlogData(data.blog || null);
+      setRelatedPosts(data.relatedPosts || []);
+      // setHeading(data.title);
+     
+
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchData();
   }, [title]);
+
+  useEffect(() => {
+    if (blogData && blogData.description) {
+      // Modify description to add a CSS class to the first letter
+      const desc = blogData.description;
+      const description = desc.slice(3);
+      const modifiedDescription = `<span class="first-letter">${description.charAt(0)}</span>${description.slice(1)}`;
+      setSanitizedContent(DOMPurify.sanitize(modifiedDescription));
+    }
+  }, [blogData]);
+  
 
 
   const handleCommentClick = () => {
@@ -124,6 +123,9 @@ export default function BlogTitle({ params }) {
           ...prevData,
           like: data.like
         }));
+
+
+
       } catch (error) {
         console.error('Failed to update like count:', error);
 
@@ -135,7 +137,9 @@ export default function BlogTitle({ params }) {
       }
     }
   };
-  
+
+
+
   // refetching comments
   const closeModal = () => {
     setIsModalOpen(false);
@@ -143,7 +147,7 @@ export default function BlogTitle({ params }) {
     fetchData();
   };
 
-// going back
+  // going back
   const handleBackClick = () => {
     router.back(); // Use router to go back to the previous page
   };
@@ -164,13 +168,13 @@ export default function BlogTitle({ params }) {
   return (
     <>
       <div className='w-full md:h-44 h-36 bg-gray-400 dark:bg-gray-600 grid place-content-center relative'>
-         <title> Blog | Everyday Echoes</title>
-    
+        <title> Blog | Everyday Echoes</title>
+
         <h1 className='text-center text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white'>
           {blogData.title}
         </h1>
         <p className='text-center dark:font-light font-normal text-xs md:mt-2 mt-1'>
-        {blogData.date ? format(new Date(blogData.date), 'dd MMMM yyyy') : 'Date not available'}
+          {blogData.date ? format(new Date(blogData.date), 'dd MMMM yyyy') : 'Date not available'}
         </p>
 
         <div className='w-full mx-auto absolute md:-bottom-24 -bottom-24 flex justify-center'>
@@ -202,26 +206,8 @@ export default function BlogTitle({ params }) {
             </button>
 
           </div>
-          <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm">
-            {blogData.description.split('.').reduce((acc, sentence, index) => {
-              const paragraphIndex = Math.floor(index / 6);
-              if (!acc[paragraphIndex]) {
-                acc[paragraphIndex] = '';
-              }
-              acc[paragraphIndex] += sentence.trim() + '. ';
-              return acc;
-            }, []).map((paragraph, index) => (
-              <p key={index} className="mb-4 leading-relaxed">
-                {index === 0 ? (
-                  <>
-                    <span className="first-letter leading-tight pr-[1px]">{paragraph.trim().charAt(0)}</span>
-                    {paragraph.trim().slice(1)}
-                  </>
-                ) : (
-                  paragraph.trim()
-                )}
-              </p>
-            ))}
+          <div className="blog-post text-start lg:px-2 px-4 py-6 max-w-4xl mx-auto text-gray-900 dark:text-gray-300 text-sm"
+            dangerouslySetInnerHTML={{ __html: sanitizedContent }} >
           </div>
 
         </div>
@@ -235,7 +221,7 @@ export default function BlogTitle({ params }) {
             Recent Comments
           </h1>
           <div>
-            <CommentSection blogData={blogData} refetchComments={fetchData}/>
+            <CommentSection blogData={blogData} refetchComments={fetchData} />
           </div>
         </div>
 

@@ -12,7 +12,8 @@ import { FaUserShield } from 'react-icons/fa';
 import { GrCircleQuestion } from "react-icons/gr";
 import { useAuth } from '@/context/AuthContext';
 import { AuthContext } from '@/FirebaseProbider/FirbaseProvider';
- import axios from 'axios';
+import axios from 'axios';
+
 export default function Drawer() {
   const { usern } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);

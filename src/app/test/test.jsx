@@ -5,6 +5,6 @@ export default function test() {
 
     
   return (
-    <div>test</div>
+    <div>test1</div>
   )
 }
