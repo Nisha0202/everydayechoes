@@ -43,10 +43,6 @@ export default function Hero() {
     fetchBlogs();
   }, []);
 
-  // Handle loading, error, and render logic
-  // if (loading) {
-  //   return <div className='w-full flex items-center justify-center h-full '>Loading...</div>;
-  // }
 
   if (error) {
     return <div className='w-full flex items-center justify-center text-red-500 h-full'>Error: {error}</div>;
@@ -87,8 +83,8 @@ export default function Hero() {
               <Image
                 src="/img/blog.png"
                 alt="Picture of a study session"
-                width="0"
-                height="0"
+                width={700}
+                height={475}
                 sizes="100vw"
                 className="w-full h-auto lg:py-8 py-3"
                 priority

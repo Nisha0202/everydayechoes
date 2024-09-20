@@ -12,7 +12,10 @@ export default function FirebaseProvider(props) {
   const [googleLoading, setLoading] = useState(false);
   const [googlesub, setSubscribed] = useState(false);
   const router = useRouter();
-  const previousPath = router.query.redirect || '/'; 
+
+  // Save the previous path before pushing to login or another page
+  const previousPath = router.asPath || '/';
+
   const googleLogin = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)

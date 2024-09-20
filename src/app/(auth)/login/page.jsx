@@ -19,7 +19,10 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
  const router = useRouter();
- const previousPath = router.query.redirect || '/'; 
+ 
+   // Save the previous path before pushing to login or another page
+   const previousPath = router.asPath || '/';
+   
    // Redirect to home if authToken exists
    useEffect(() => {
 

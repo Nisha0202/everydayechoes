@@ -11,7 +11,10 @@ export const AuthProvider = ({ children }) => {
  
  
   const router = useRouter();
-  const previousPath = router.query.redirect || '/'; 
+  
+   // Save the previous path before pushing to login or another page
+   const previousPath = router.asPath || '/';
+
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
