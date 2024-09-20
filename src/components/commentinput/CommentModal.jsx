@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 import { RiLoader3Fill } from "react-icons/ri"; // For the loading spinner
 import { FaCheck } from "react-icons/fa"; // For the success checkmark
+import { useRouter } from 'next/navigation';
 
 const CommentModal = ({ blogData, closeModal }) => {
   const [comment, setComment] = useState('');
@@ -13,6 +14,7 @@ const CommentModal = ({ blogData, closeModal }) => {
   const [loading, setLoading] = useState(false); // To track loading state
   const [success, setSuccess] = useState(false); // To track success state
 
+  const router = useRouter()
   const handleCommentChange = (e) => {
     setComment(e.target.value);
     setErrorMessage('');
@@ -21,7 +23,7 @@ const CommentModal = ({ blogData, closeModal }) => {
     const authToken = localStorage.getItem('authToken');
     if (!authToken) {
       setErrorMessage('Please log in to comment.');
-   
+
     }
   };
 
@@ -32,9 +34,16 @@ const CommentModal = ({ blogData, closeModal }) => {
     if (!authToken) {
       setLoading(false);
       setErrorMessage('Please log in to comment.');
+
       setTimeout(() => {
-        window.location.href = '/login';
-      }, 1100);
+
+        router.push({
+          pathname: '/login',
+          query: { redirect: router.asPath },  // Save the current path before redirecting to login
+        });
+        
+      }, 1200);
+
       return;
     }
 

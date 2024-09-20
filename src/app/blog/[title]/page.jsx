@@ -10,16 +10,13 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { format } from 'date-fns';
 import DOMPurify from 'dompurify';
 
-
 export default function BlogTitle({ params }) {
-
   const [sanitizedContent, setSanitizedContent] = useState('');
   const [blogData, setBlogData] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [heading, setHeading] = useState("Everyday Echoes");
 
   const router = useRouter(); // Initialize router for navigation
 
@@ -64,13 +61,10 @@ export default function BlogTitle({ params }) {
       setSanitizedContent(DOMPurify.sanitize(modifiedDescription));
     }
   }, [blogData]);
-  
-
 
   const handleCommentClick = () => {
     setIsModalOpen(true);
   };
-
 
   const handleLikeClick = async () => {
     if (blogData) {
@@ -137,8 +131,6 @@ export default function BlogTitle({ params }) {
       }
     }
   };
-
-
 
   // refetching comments
   const closeModal = () => {

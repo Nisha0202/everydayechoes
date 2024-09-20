@@ -25,7 +25,7 @@ const Subscribe = () => {
   
       if (authToken) {
         // If token is found, redirect to home
-        router.push('/');
+        router.push(previousPath || '/');
       }
     }, [authToken]);
 
@@ -87,11 +87,7 @@ const Subscribe = () => {
           // Capture the JWT token
           const token = data.token;
           login(token);
-          // setTimeout(() => {
-          //    router.push('/');
-          //   localStorage.setItem('authToken', token);
-           
-          // }, 1300); 
+      
 
         }
       } catch (error) {

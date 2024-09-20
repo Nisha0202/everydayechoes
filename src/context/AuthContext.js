@@ -4,7 +4,6 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useRouter } from 'next/navigation';
 const AuthContext = createContext();
-import Router from 'next/router';
 export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -36,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('authToken', token);
     setAuthToken(token);
     router.refresh();
-    router.push('/');
+    router.push(previousPath || '/');
   };
 
   const logout = () => {
