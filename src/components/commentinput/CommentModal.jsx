@@ -7,6 +7,7 @@ import axios from 'axios';
 import { RiLoader3Fill } from "react-icons/ri"; // For the loading spinner
 import { FaCheck } from "react-icons/fa"; // For the success checkmark
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const CommentModal = ({ blogData, closeModal }) => {
   const [comment, setComment] = useState('');
@@ -14,7 +15,9 @@ const CommentModal = ({ blogData, closeModal }) => {
   const [loading, setLoading] = useState(false); // To track loading state
   const [success, setSuccess] = useState(false); // To track success state
 
-  const router = useRouter()
+  
+  const router = useRouter();
+  const { asPath } = router;
   const handleCommentChange = (e) => {
     setComment(e.target.value);
     setErrorMessage('');
@@ -109,12 +112,16 @@ const CommentModal = ({ blogData, closeModal }) => {
           disabled={loading || success} // Disable input when loading or after success
         />
         {errorMessage && (
-             <Link href="/login" className="text-red-500 text-sm mt-2">
-             {errorMessage} <span className="ms-1 font-medium text-blue-600
-              dark:text-blue-500 hover:underline">Log In</span>
-           </Link>
-        
-        )}
+        <Link
+          href={{ pathname: '/login', query: { redirect: asPath } }} 
+          className="text-red-500 text-sm mt-2"
+        >
+          {errorMessage} 
+          <span className="ms-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">
+            Log In
+          </span>
+        </Link>
+      )}
 
         <button
           onClick={handleSubmit}
