@@ -17,7 +17,8 @@ const CommentModal = ({ blogData, closeModal }) => {
 
   
   const router = useRouter();
-  const asPath = `https://everydayechoes.vercel.app/blog/${blogData._id}`;
+  router.asPath = `https://everydayechoes.vercel.app/blog/${blogData._id}`;
+  
   const handleCommentChange = (e) => {
     setComment(e.target.value);
     setErrorMessage('');
@@ -113,7 +114,7 @@ const CommentModal = ({ blogData, closeModal }) => {
         />
         {errorMessage && (
         <Link
-          href={{ pathname: '/login', query: { redirect: asPath } }} 
+          href={'/login'} 
           className="text-red-500 text-sm mt-2"
         >
           {errorMessage} 
