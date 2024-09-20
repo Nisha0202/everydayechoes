@@ -17,7 +17,7 @@ const CommentModal = ({ blogData, closeModal }) => {
 
   
   const router = useRouter();
-  const { asPath } = router;
+  const asPath = `https://everydayechoes.vercel.app/blog/${blogData._id}`;
   const handleCommentChange = (e) => {
     setComment(e.target.value);
     setErrorMessage('');
@@ -34,21 +34,21 @@ const CommentModal = ({ blogData, closeModal }) => {
     setLoading(true);
     // Get the username from authToken stored in localStorage
     const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-      setLoading(false);
-      setErrorMessage('Please log in to comment.');
+    // if (!authToken) {
+    //   setLoading(false);
+    //   setErrorMessage('Please log in to comment.');
 
-      setTimeout(() => {
+    //   setTimeout(() => {
 
-        router.push({
-          pathname: '/login',
-          query: { redirect: router.asPath },  // Save the current path before redirecting to login
-        });
+    //     router.push({
+    //       pathname: '/login',
+    //       query: { redirect: router.asPath },  // Save the current path before redirecting to login
+    //     });
 
-      }, 1200);
+    //   }, 1200);
 
-      return;
-    }
+    //   return;
+    // }
 
     // Decode the JWT
     const decodedToken = jwtDecode(authToken);
