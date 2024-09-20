@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       router.refresh();
       router.push(previousPath);
 
-    }, 1200); 
+    }, 1400); 
   
 
   };
