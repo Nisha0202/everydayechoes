@@ -62,7 +62,6 @@ export default function FirebaseProvider(props) {
 
         const token = data.token;
             localStorage.setItem('authToken', token);
-// router.refresh();
         setTimeout(() => {
 
           router.push(previousPath);
