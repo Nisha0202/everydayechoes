@@ -9,9 +9,9 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [authToken, setAuthToken] = useState(null);
  
-
+ 
   const router = useRouter();
-
+  const previousPath = router.query.redirect || '/'; 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('authToken', token);
     setAuthToken(token);
     router.refresh();
-    router.push(previousPath || '/');
+    router.push(previousPath);
   };
 
   const logout = () => {

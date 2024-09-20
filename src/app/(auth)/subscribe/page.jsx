@@ -20,12 +20,13 @@ const Subscribe = () => {
   const [otp, setOTP] = useState('');
   const [name, setName] = useState('');
   const router = useRouter();
+  const previousPath = router.query.redirect || '/'; 
     // Redirect to home if authToken exists
     useEffect(() => {
   
       if (authToken) {
         // If token is found, redirect to home
-        router.push(previousPath || '/');
+        router.push(previousPath);
       }
     }, [authToken]);
 

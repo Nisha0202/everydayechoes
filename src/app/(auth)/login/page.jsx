@@ -19,13 +19,13 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
  const router = useRouter();
-
+ const previousPath = router.query.redirect || '/'; 
    // Redirect to home if authToken exists
    useEffect(() => {
 
     if (authToken) {
       // If token is found, redirect to home
-      router.push(previousPath || '/');   
+      router.push(previousPath);   
     }
   }, [authToken]);
 

@@ -12,7 +12,7 @@ export default function FirebaseProvider(props) {
   const [googleLoading, setLoading] = useState(false);
   const [googlesub, setSubscribed] = useState(false);
   const router = useRouter();
-
+  const previousPath = router.query.redirect || '/'; 
   const googleLogin = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -62,7 +62,7 @@ export default function FirebaseProvider(props) {
 // router.refresh();
         setTimeout(() => {
 
-          router.push(previousPath || '/');
+          router.push(previousPath);
           
           // location.reload();
         }, 1200); 
@@ -124,7 +124,7 @@ export default function FirebaseProvider(props) {
     localStorage.setItem('authToken', token);
 
         setTimeout(() => {
-          router.push(previousPath || '/');
+          router.push(previousPath);
 
         }, 1400); 
       
