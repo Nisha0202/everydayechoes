@@ -83,10 +83,10 @@ export default function Hero() {
               <Image
                 src="/img/blog.png"
                 alt="Picture of a study session"
-                width={700}
-                height={475}
+                width={500}
+                height={500}
                 sizes="100vw"
-                className="w-full h-auto lg:py-8 py-3"
+                className="lg:py-8 py-3"
                 priority
               />
             </div>
