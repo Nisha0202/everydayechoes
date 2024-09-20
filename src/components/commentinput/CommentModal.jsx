@@ -41,7 +41,7 @@ const CommentModal = ({ blogData, closeModal }) => {
           pathname: '/login',
           query: { redirect: router.asPath },  // Save the current path before redirecting to login
         });
-        
+
       }, 1200);
 
       return;
@@ -109,7 +109,11 @@ const CommentModal = ({ blogData, closeModal }) => {
           disabled={loading || success} // Disable input when loading or after success
         />
         {errorMessage && (
-          <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+             <Link href="/login" className="text-red-500 text-sm mt-2">
+             {errorMessage} <span className="ms-1 font-medium text-blue-600
+              dark:text-blue-500 hover:underline">Log In</span>
+           </Link>
+        
         )}
 
         <button
