@@ -23,6 +23,8 @@ export default function FirebaseProvider(props) {
         
         await saveUserToDatabase(result.user);
         setUsern(result.user);
+        const username = result.user.displayName || result.user.email.split('@')[0];
+        toast.success(`Hello ${username}! Excited to share some awesome vibes with you. 😊😉`);
       })
       .catch((error) => {
         console.error("Error during Google sign-in:", error.message);
@@ -57,11 +59,12 @@ export default function FirebaseProvider(props) {
 
       } else if (data.message === 'Subscription successful') {
         setSubscribed(true);
-        const username = user.displayName || user.email.split('@')[0];
-        toast.success(`Hello ${username}! Excited to share some awesome vibes with you. 😊😉`);
+        // const username = user.displayName || user.email.split('@')[0];
+        // toast.success(`Hello ${username}! Excited to share some awesome vibes with you. 😊😉`);
 
         const token = data.token;
-            localStorage.setItem('authToken', token);
+        localStorage.setItem('authToken', token);
+
         setTimeout(() => {
 
           router.push(previousPath);
@@ -81,15 +84,16 @@ export default function FirebaseProvider(props) {
 
 
   //login
-
   const googleUp = () => {
     setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then(async (result) => {
         
         await loginToDatabase(result.user);
-        setUsern(result.user);
-      })
+        setUsern(result.user); 
+        const username = result.user.displayName || result.user.email.split('@')[0];
+        toast.success(`Hey ${username}, looking fabulous today!`);
+           })
       .catch((error) => {
         console.error("Error during Google sign-in:", error.message);
         toast.error('Error during Google login-in.');
@@ -117,7 +121,7 @@ export default function FirebaseProvider(props) {
       if (response.ok) {
         console.log('Login successful');
         console.log(data);
-        toast.success(`Hey ${data.username}, looking fabulous today!`);
+        // toast.success(`Hey ${data.username}, looking fabulous today!`);
         setSubscribed(true);
 
         // Capture the JWT token
