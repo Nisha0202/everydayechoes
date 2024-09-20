@@ -67,8 +67,7 @@ export default function FirebaseProvider(props) {
 
           router.push(previousPath);
           
-          // location.reload();
-        }, 1200); 
+        }, 1400); 
         
 
       }

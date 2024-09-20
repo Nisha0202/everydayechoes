@@ -38,7 +38,12 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('authToken', token);
     setAuthToken(token);
     router.refresh();
-    router.push(previousPath);
+    setTimeout(() => {
+      router.push(previousPath);
+
+    }, 1200); 
+  
+
   };
 
   const logout = () => {
