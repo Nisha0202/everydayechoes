@@ -39,7 +39,7 @@ export default function BlogTitle({ params }) {
       setBlogData(data.blog || null);
       setRelatedPosts(data.relatedPosts || []);
       // setHeading(data.title);
-     
+
 
     } catch (error) {
       setError(error.message);
@@ -56,7 +56,17 @@ export default function BlogTitle({ params }) {
     if (blogData && blogData.description) {
       // Modify description to add a CSS class to the first letter
       const desc = blogData.description;
-      const description = desc.slice(3);
+
+
+      let description;
+
+      // Check if the first 8 characters contain "<p>"
+      if (desc.slice(0, 8).includes("<p>")) {
+        description = desc.replace("<p>", "");  // Remove the first occurrence of "<p>"
+      } else {
+        description = desc;  // Leave the description unchanged
+      }
+
       const modifiedDescription = `<span class="first-letter">${description.charAt(0)}</span>${description.slice(1)}`;
       setSanitizedContent(DOMPurify.sanitize(modifiedDescription));
     }

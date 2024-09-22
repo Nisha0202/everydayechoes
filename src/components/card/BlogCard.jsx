@@ -36,9 +36,6 @@ export default function BlogCard({ blog }) {
           <h2 className="text-gray-900 dark:text-white  md:text-3xl text-xl font-extrabold mb-2">
             {truncateWords(blog.title, 8)}
           </h2>
-          {/* <p className="text-sm/relaxed  font-normal text-gray-500 dark:text-gray-400 mb-6">
-            {truncateWords(blog.description, 14)}
-          </p> */}
              <p
       className="text-sm leading-relaxed font-normal text-gray-500 dark:text-gray-400 mb-6"
       dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
