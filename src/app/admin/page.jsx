@@ -15,11 +15,12 @@ const NewBlogForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
   const [resetEditor, setResetEditor] = useState(false);
+  const { isAdmin, authToken } = useAuth();
 
   // Check for auth token in localStorage on component mount
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (!token) {
+    
+    if (!(authToken && isAdmin)) {
       // If no token, redirect to the login page
       router.push('/login');
     }
