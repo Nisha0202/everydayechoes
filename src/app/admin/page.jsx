@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RiLoader3Fill } from 'react-icons/ri';
 import TiptapEditor from '@/components/tiptap/Tiptap';
+import { useAuth } from '@/context/AuthContext';
 
 const NewBlogForm = () => {
   const [title, setTitle] = useState('');
