@@ -19,12 +19,11 @@ const NewBlogForm = () => {
 
   // Check for auth token in localStorage on component mount
   useEffect(() => {
-    
     if (!(authToken && isAdmin)) {
-      // If no token, redirect to the login page
+      // If no token or user is not admin, redirect to the login page
       router.push('/login');
     }
-  }, [router]);
+  }, [authToken, isAdmin, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
